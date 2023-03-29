@@ -6,7 +6,7 @@ export const configuration = {
   ethereumHost: 'http://136.244.98.226:8545',
   explorerUrl: 'http://136.244.98.226:3000',
   hostedSdkUrl: null,
-  rollupHost: 'http://136.244.98.226:8081'
+  rollupHost: 'http://136.244.98.226:8081',
 };
 
 export interface Config {
@@ -71,7 +71,14 @@ async function getInferredDeployTag() {
 }
 
 function getDeployConfig(deployTag: string, rollupProviderUrl: string, chainId: number) {
-  return { deployTag, hostedSdkUrl: configuration.hostedSdkUrl, rollupProviderUrl, explorerUrl: configuration.explorerUrl, chainId, ethereumHost: configuration.ethereumHost };
+  return {
+    deployTag,
+    hostedSdkUrl: configuration.hostedSdkUrl,
+    rollupProviderUrl,
+    explorerUrl: configuration.explorerUrl,
+    chainId,
+    ethereumHost: configuration.ethereumHost,
+  };
 }
 
 function getRawConfigWithOverrides() {
