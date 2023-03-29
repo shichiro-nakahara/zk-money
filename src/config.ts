@@ -2,6 +2,13 @@ import { SDK_VERSION, getRollupProviderStatus } from '@aztec/sdk';
 import { AssetLabel } from './alt-model/known_assets/known_asset_display_data.js';
 import { toBaseUnits } from './app/units.js';
 
+export const configuration = {
+  ethereumHost: 'http://136.244.98.226:8545',
+  explorerUrl: 'http://136.244.98.226:3000',
+  hostedSdkUrl: null,
+  rollupHost: 'http://136.244.98.226:8081'
+};
+
 export interface Config {
   deployTag: string;
   hostedSdkUrl: string;
@@ -50,33 +57,6 @@ const developmentConfig: ConfigVars = {
   debugFilter: 'zm:*,bb:*',
 };
 
-function getEthereumHost(chainId: number) {
-  switch (chainId) {
-    case 5:
-      return 'https://goerli.infura.io/v3/85712ac4df0446b58612ace3ed566352';
-    case 1337:
-      return 'http://localhost:8545';
-    case 0xe2e: {
-      const apiKey = localStorage.getItem('ETH_HOST_API_KEY') ?? '';
-      return `http://localhost:8545/${apiKey}`;
-    }
-    case 0xa57ec: {
-      const apiKey = localStorage.getItem('ETH_HOST_API_KEY') ?? '';
-      return `https://aztec-connect-testnet-eth-host.aztec.network:8545/${apiKey}`;
-    }
-    case 0x57a93: {
-      const apiKey = localStorage.getItem('ETH_HOST_API_KEY') ?? '';
-      return `https://aztec-connect-stage-eth-host.aztec.network:8545/${apiKey}`;
-    }
-    case 0xdef: {
-      const apiKey = localStorage.getItem('ETH_HOST_API_KEY') ?? '';
-      return `https://aztec-connect-dev-eth-host.aztec.network:8545/${apiKey}`;
-    }
-    default:
-      return 'https://aztec-connect-prod-eth-host.aztec.network:8545';
-  }
-}
-
 async function getInferredDeployTag() {
   // If we haven't overridden our deploy tag, we discover it at runtime. All s3 deployments have a file
   // called DEPLOY_TAG in their root containing the deploy tag.
@@ -91,29 +71,12 @@ async function getInferredDeployTag() {
 }
 
 function getDeployConfig(deployTag: string, rollupProviderUrl: string, chainId: number) {
-  if (deployTag && deployTag !== 'localhost') {
-    const hostedSdkUrl = `https://${deployTag}-sdk.aztec.network`;
-    // TODO: use https://explorer.aztec.network on prod once old explorer is switched out
-    const explorerUrl = `https://${deployTag}-explorer.aztec.network`;
-
-    const ethereumHost = getEthereumHost(chainId);
-    return { deployTag, hostedSdkUrl, rollupProviderUrl, explorerUrl, chainId, ethereumHost };
-  } else {
-    const hostedSdkUrl = `${window.location.protocol}//${window.location.hostname}:1234`;
-    const explorerUrl = `${window.location.protocol}//${window.location.hostname}:3000`;
-    const ethereumHost = `${window.location.protocol}//${window.location.hostname}:8545`;
-    return { deployTag, hostedSdkUrl, rollupProviderUrl, explorerUrl, chainId, ethereumHost };
-  }
+  return { deployTag, hostedSdkUrl: configuration.hostedSdkUrl, rollupProviderUrl, explorerUrl: configuration.explorerUrl, chainId, ethereumHost: configuration.ethereumHost };
 }
 
 function getRawConfigWithOverrides() {
   const defaultConfig = process.env.NODE_ENV === 'development' ? developmentConfig : productionConfig;
   return { ...defaultConfig, ...removeEmptyValues(fromEnvVars()), ...removeEmptyValues(fromLocalStorage()) };
-}
-
-function getRollupProviderUrl(deployTag: string) {
-  if (deployTag && deployTag !== 'localhost') return `https://api.aztec.network/${deployTag}/falafel`;
-  return `${window.location.protocol}//${window.location.hostname}:8081`;
 }
 
 function assembleConfig(
@@ -151,11 +114,10 @@ function assembleConfig(
 export async function getEnvironment() {
   const rawConfig = getRawConfigWithOverrides();
   const deployTag = rawConfig.deployTag || (await getInferredDeployTag());
-  const rollupProviderUrl = getRollupProviderUrl(deployTag);
-  const initialRollupProviderStatus = await getRollupProviderStatus(rollupProviderUrl);
+  const initialRollupProviderStatus = await getRollupProviderStatus(configuration.rollupHost);
   const deployConfig = getDeployConfig(
     deployTag,
-    rollupProviderUrl,
+    configuration.rollupHost,
     initialRollupProviderStatus.blockchainStatus.chainId,
   );
   const config = assembleConfig(rawConfig, deployConfig);

@@ -4,15 +4,13 @@ import { lightTheme, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { WagmiConfig } from 'wagmi';
 import './ui-components/styles/reset.css';
 import './ui-components/styles/global.css';
-import { getEnvironment } from './config.js';
+import { getEnvironment, configuration } from './config.js';
 import { Views } from './views/index.js';
 import { TopLevelContextProvider } from './alt-model/top_level_context/top_level_context_provider.js';
 import { AppInitFailed } from './views/app_init_failed.js';
 import { getSupportStatus } from './device_support.js';
 import { Toolbox } from './toolbox/index.js';
 import { getWagmiRainbowConfig } from './toolbox/wagmi_rainbow_config.js';
-
-const PROD_EXPLORER_URL = 'https://aztec-connect-prod-explorer.aztec.network/';
 
 async function rootRender() {
   try {
@@ -23,13 +21,13 @@ async function rootRender() {
     if (supportStatus !== 'supported') {
       return (
         <BrowserRouter>
-          <AppInitFailed reason={{ type: 'unsupported', supportStatus }} explorerUrl={PROD_EXPLORER_URL} />
+          <AppInitFailed reason={{ type: 'unsupported', supportStatus }} explorerUrl={configuration.explorerUrl} />
         </BrowserRouter>
       );
     } else if (staleFrontend) {
       return (
         <BrowserRouter>
-          <AppInitFailed reason={{ type: 'stale-frontend' }} explorerUrl={PROD_EXPLORER_URL} />
+          <AppInitFailed reason={{ type: 'stale-frontend' }} explorerUrl={configuration.explorerUrl} />
         </BrowserRouter>
       );
     }
@@ -58,9 +56,10 @@ async function rootRender() {
       </WagmiConfig>
     );
   } catch (e) {
+    console.error(e);
     return (
       <BrowserRouter>
-        <AppInitFailed reason={{ type: 'falafel-down' }} explorerUrl={PROD_EXPLORER_URL} />
+        <AppInitFailed reason={{ type: 'falafel-down' }} explorerUrl={configuration.explorerUrl} />
       </BrowserRouter>
     );
   }
