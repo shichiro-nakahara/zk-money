@@ -46,8 +46,7 @@ interface LinkItem {
 }
 
 const LINKS: LinkItem[] = [
-  { url: Pages.EARN, label: 'Earn', mobileImage: <MobileNavbarEarn className={style.mobileImage} /> },
-  { url: Pages.TRADE, label: 'Trade', mobileImage: <MobileNavbarTrade className={style.mobileImage} /> },
+  { url: Pages.EARN, label: 'Earn', mobileImage: <MobileNavbarEarn className={style.mobileImage} /> }
 ];
 
 export function Navbar({
@@ -62,8 +61,8 @@ export function Navbar({
   return (
     <div className={style.headerRoot}>
       <div className={cx(style.logoRoot, { enabled: !!onChange })}>
-        <Link to={Pages.HOME}>
-          <Logo className={cx(style.logo, style.white)} />
+        <Link to={Pages.HOME} className={style.headerTitle}>
+          PolyAztec
         </Link>
       </div>
 
@@ -72,7 +71,7 @@ export function Navbar({
           <Link
             key={link.url}
             to={link.url}
-            className={cx(style.link, isSafari && style.noLetterSpacing, style.navLink, {
+            className={cx(style.link, isSafari && style.noLetterSpacing, style.navLink, link.label == 'Earn' && style.disabledLink, {
               active: link.url === location.pathname,
               white: theme === Theme.WHITE,
               gradient: theme === Theme.GRADIENT,

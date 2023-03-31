@@ -1,8 +1,8 @@
 import React from 'react';
 import { default as styled } from 'styled-components';
+import { Link } from '../../ui-components/index.js';
 import { breakpoints, spacings } from '../../ui-components/styles/layout.js';
 import { PaddedBlock } from '../padded_block.js';
-import { Text } from '../text.js';
 import { TextLink } from '../text_link.js';
 import { ContentWrapper } from './content_wrapper.js';
 import style from './footer.module.scss';
@@ -14,29 +14,13 @@ interface MenuItem {
 }
 
 const staticHelpItems = [
-  {
-    name: 'GitHub',
-    href: 'https://docs.aztec.network/how-aztec-works/faq',
-  },
-  {
-    name: 'Documentation',
-    href: 'https://docs.aztec.network/',
-  },
 ];
 
 const socialItems = [
   {
     name: 'Twitter',
     href: 'https://twitter.com/aztecnetwork',
-  },
-  {
-    name: 'Discord',
-    href: 'https://discord.gg/c7kaz9s5kr',
-  },
-  {
-    name: 'Medium',
-    href: 'https://medium.com/aztec-protocol',
-  },
+  }
 ];
 
 const Col = styled.div`
@@ -92,7 +76,13 @@ export function Footer(props: FooterProps) {
           <FooterMenu title="Community" menuItems={socialItems} />
         </div>
         <Foot>
-          <Text text="Made in London" size="xxs" />
+          <Link
+            className={style.techLink}
+            href="https://twitter.com/aztecnetwork"
+            target="_blank"
+          >
+            Technology developed by @aztecnetwork
+          </Link>
         </Foot>
       </ContentWrapper>
     </div>

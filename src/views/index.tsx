@@ -12,11 +12,10 @@ import { Template } from '../components/index.js';
 import { Config } from '../config.js';
 import { PageTransitionHandler } from '../page_transition_handler.js';
 import { Pages } from './views.js';
-import { getCookiesToast } from './toasts/toast_configurations.js';
+import { getTOSToastPartOne } from './toasts/toast_configurations.js';
 import { Navbar, Theme } from '../ui-components/index.js';
 import { UserAccountMenu } from '../components/template/user_account_menu.js';
 import { Earn } from './account/dashboard/earn.js';
-import { Trade } from './account/dashboard/trade.js';
 import { Balance } from './account/dashboard/balance.js';
 import { DefiModal, DefiModalProps } from './account/dashboard/modals/defi_modal/defi_modal.js';
 import { Home } from './home.js';
@@ -26,17 +25,17 @@ import { useValidRecipesOnly } from './account/dashboard/defi_cards_list.js';
 import { useL1PendingBalances } from '../alt-model/assets/l1_balance_hooks.js';
 import './app.css';
 
-const getIsCookieAccepted = () => Cookie.get('accepted') === 'true';
+const getIsTOSAccepted = () => Cookie.get('tos_accepted') === 'true';
 
-function useShowCookies() {
+function useShowTOS() {
   const { toastsObs } = useContext(TopLevelContext);
-  const isCookieAccepted = getIsCookieAccepted();
+  const isTOSAccepted = getIsTOSAccepted();
 
   useEffect(() => {
-    if (!isCookieAccepted) {
-      toastsObs.addToast(getCookiesToast(toastsObs));
+    if (!isTOSAccepted) {
+      toastsObs.addToast(getTOSToastPartOne(toastsObs));
     }
-  }, [isCookieAccepted, toastsObs]);
+  }, [isTOSAccepted, toastsObs]);
 }
 
 function getTheme(location: Location) {
@@ -74,7 +73,7 @@ export function Views({ config }: ViewsProps) {
     setDefiModalProps({ recipe, flowDirection: 'exit', onClose: handleCloseDefiModal });
   };
 
-  useShowCookies();
+  useShowTOS();
 
   const isInAccessPage = location.pathname === Pages.BALANCE && (!isLoggedIn || accountState?.isSyncing);
   const shouldCenterContent = location.pathname === Pages.TRADE || isInAccessPage;
@@ -101,7 +100,7 @@ export function Views({ config }: ViewsProps) {
         >
           <CSSTransition key={location.pathname} classNames="fade" timeout={250}>
             <Routes location={location.pathname}>
-              <Route
+              {/* <Route
                 path={Pages.EARN}
                 element={
                   <Earn
@@ -110,8 +109,7 @@ export function Views({ config }: ViewsProps) {
                     onOpenDefiExitModal={handleOpenDefiExitModal}
                   />
                 }
-              />
-              <Route path={Pages.TRADE} element={<Trade />} />
+              /> */}
               <Route path={Pages.BALANCE} element={<Balance onOpenDefiExitModal={handleOpenDefiExitModal} />} />
               <Route path={Pages.HOME} element={<Home onSignup={() => navigate(Pages.BALANCE)} recipes={recipes} />} />
               <Route
