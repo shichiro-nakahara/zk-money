@@ -52,7 +52,7 @@ export class CachingRecoverAliasFlow {
       );
       emitState({ phase: 'checking-legacy-keys' });
       const isRegistered = await throwIfCancelled(sdk.isAccountRegistered(keys.publicKey));
-      if (!isRegistered) throw new Error('No old zk.money account found at this address');
+      if (!isRegistered) throw new Error('No old PolyAztec account found at this address');
       await verifyAliasFlow(
         verifyAliasFlow => emitState({ phase: 'verify-alias', verifyAliasFlow }),
         throwIfCancelled,

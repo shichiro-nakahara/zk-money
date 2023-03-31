@@ -20,3 +20,13 @@
   background-color: #f8f8f8;
   word-break: break-word;
 }
+
+.TOSToast {
+  b {
+    font-weight: bold !important;
+  }
+  ol {
+    list-style: auto !important;
+    margin-left: 2rem;
+  }
+}

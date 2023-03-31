@@ -27,7 +27,6 @@ import whyZkMoney1 from '../images/why_zkmoney_1.svg';
 import whyZkMoney2 from '../images/why_zkmoney_2.svg';
 import whyZkMoney3 from '../images/why_zkmoney_3.svg';
 
-import { Hyperlink, HyperlinkIcon } from '../ui-components/index.js';
 import { bindStyle } from '../ui-components/util/classnames.js';
 import { DefiCard } from '../components/index.js';
 import { DefiRecipe } from '../alt-model/defi/types.js';
@@ -47,7 +46,7 @@ export function Home({ onSignup, recipes }: HomeProps) {
       <Banner onShieldNow={onSignup} recipes={recipes} />
       <FavoriteApps />
       <div className={style.section}>
-        <div className={style.sectionTitle}>How do I use zk.money?</div>
+        <div className={style.sectionTitle}>How do I use PolyAztec?</div>
         <div className={style.steps}>
           <div className={style.step}>
             <div className={style.number}>1</div>
@@ -55,7 +54,7 @@ export function Home({ onSignup, recipes }: HomeProps) {
             <div className={style.content}>
               <div className={style.title}>Shield funds</div>
               <div className={style.description}>
-                Connect your Ethereum wallet to shield funds to Aztec and register an account alias.
+                Connect your Ethereum wallet to shield funds to PolyAztec and register an account alias.
               </div>
             </div>
             <img src={shieldFunds} className={style.stepImage} alt="" />
@@ -76,7 +75,7 @@ export function Home({ onSignup, recipes }: HomeProps) {
             <div className={style.content}>
               <div className={style.title}>Send and receive privately</div>
               <div className={style.description}>
-                Funds within zk.money can be sent fully privately to another Aztec alias or sent to Layer 1. Remember to
+                Funds within PolyAztec can be sent fully privately to another PolyAztec alias or sent to Layer 1. Remember to
                 follow privacy best practices!
               </div>
             </div>
@@ -85,7 +84,7 @@ export function Home({ onSignup, recipes }: HomeProps) {
         </div>
       </div>
       <div className={style.section}>
-        <div className={style.sectionTitle}>Why zk.money?</div>
+        <div className={style.sectionTitle}>Why PolyAztec?</div>
         <div className={style.howItWorksWrapper}>
           <img className={cx(style.whyZk, style.whyImage1)} src={whyZkMoney1} alt="" />
           <img className={cx(style.whyZk, style.whyImage2)} src={whyZkMoney2} alt="" />
@@ -94,7 +93,7 @@ export function Home({ onSignup, recipes }: HomeProps) {
             <div className={style.content}>
               <div className={style.title}>How does shielding work?</div>
               <div className={style.description}>
-                Shielding funds to Aztec creates a private note on Layer 2. Private notes can be traded, staked, and
+                Shielding funds to PolyAztec creates a private note on Layer 2. Private notes can be traded, staked, and
                 used to earn yield just like normal Ethereum assets–but with full privacy protection.
               </div>
             </div>
@@ -103,7 +102,7 @@ export function Home({ onSignup, recipes }: HomeProps) {
             <div className={style.content}>
               <div className={style.title}>Privacy by default</div>
               <div className={style.description}>
-                Using zk.money means full privacy without having to opt-in. All transactions are default
+                Using PolyAztec means full privacy without having to opt-in. All transactions are default
                 privacy-shielded. Learn more about best practices here.
               </div>
             </div>
@@ -195,24 +194,10 @@ function Banner({ onShieldNow, recipes }: { onShieldNow: () => void; recipes: De
           DeFi yield aggregator for Ethereum.
         </div>
         <div className={style.subtitle}>
-          zk.money is your portal to using Ethereum DeFi services with full privacy and up to 100x cost savings. Shield
+        PolyAztec is your portal to using Ethereum DeFi services with full privacy and up to 100x cost savings. Shield
           funds to start accessing!
         </div>
         <Button text="Shield Now" onClick={onShieldNow} className={style.shieldButton} />
-        <div className={style.links}>
-          <Hyperlink
-            theme="gradient"
-            icon={HyperlinkIcon.Open}
-            href="https://old.zk.money"
-            label="Looking for old zk.money?"
-          />
-          <Hyperlink
-            theme="gradient"
-            icon={HyperlinkIcon.Open}
-            href="https://docs.aztec.network/how-aztec-works/faq#what-happens-when-i-shield-a-token"
-            label="What is Shielding? Read our FAQ"
-          />
-        </div>
       </div>
     </div>
   );
@@ -226,7 +211,7 @@ function FavoriteApps() {
           <div className={style.sectionTitle}>Your favorite Dapps, made private.</div>
           <div className={style.subtitle}>
             Fixed yield. Liquid staking. Money markets. Trading. The universe of Ethereum DeFi is open to you with
-            complete privacy, all via the magic of Aztec Connect.
+            complete privacy, all via the magic of PolyAztec.
           </div>
           <div className={style.logos}>
             <img className={style.logo} src={aaveLogo} alt="Aave logo" />
@@ -263,7 +248,7 @@ function InfoBoxes() {
           <div className={style.info}>
             <img className={style.logo} src={yieldLogo} alt="" />
             <span className={style.title}>Fixed Yield</span>
-            <div className={style.subtitle}>Earn reliable fixed yields on funds deposited to Aztec.</div>
+            <div className={style.subtitle}>Earn reliable fixed yields on funds deposited to PolyAztec.</div>
           </div>
         </div>
       </div>
@@ -274,7 +259,7 @@ function InfoBoxes() {
             <img className={style.logo} src={privateSendLogo} alt="" />
             <span className={style.title}>Private Send</span>
             <div className={style.subtitle}>
-              Send to any Layer 1 address or internally to any Aztec alias with full privacy.
+              Send to any Layer 1 address or internally to any PolyAztec alias with full privacy.
             </div>
           </div>
           <div className={style.info}>

@@ -51,6 +51,17 @@
   flex-shrink: 0;
 }
 
+.headerTitle {
+  font-size: 50px;
+  color: #2f1f49;
+  letter-spacing: 4px;
+}
+
+.disabledLink {
+  pointer-events: none;
+  opacity: 0.25 !important;
+}
+
 .accountItem {
   padding: spacings.$xxs 0;
 }
