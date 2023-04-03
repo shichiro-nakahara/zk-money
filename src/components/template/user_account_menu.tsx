@@ -144,8 +144,8 @@ export function UserAccountMenu() {
                     )}
                   </div>
                   <Field
-                    label="Aztec Account Alias"
-                    sublabel="This is the alias for your Aztec account"
+                    label="PolyAztec Account Alias"
+                    sublabel="This is the alias for your PolyAztec account"
                     value={hasAlias ? cachedAlias : alias}
                     onChangeValue={value => setAlias(value)}
                     disabled={hasAlias || walletInteractionIsOngoing}
@@ -169,8 +169,8 @@ export function UserAccountMenu() {
                     }}
                   />
                   <Field
-                    label="Aztec Account Address"
-                    sublabel="This is your address in the Aztec Network"
+                    label="PolyAztec Account Address"
+                    sublabel="This is your address in the PolyAztec Network"
                     value={formattedAddress}
                     disabled={true}
                     onClick={() => {

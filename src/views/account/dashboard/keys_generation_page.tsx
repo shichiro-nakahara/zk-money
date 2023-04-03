@@ -30,13 +30,13 @@ interface KeysGenerationPageProps {
 function getTitle(userHasConfirmationKey: boolean, userHasSpendingKeys: boolean) {
   if (!userHasConfirmationKey)
     return {
-      title: 'Sign a message from your Ethereum wallet to retrieve your Aztec address',
-      subtitle: 'Remember which Ethereum address you used to sign up!',
+      title: 'Sign a message from your Polygon wallet to retrieve your PolyAztec address',
+      subtitle: 'Remember which Polygon address you used to sign up!',
     };
   if (!userHasSpendingKeys)
     return {
-      title: 'Sign a message to retrieve a Spending Key for your Aztec account',
-      subtitle: 'You will use your Ethereum wallet for this action.',
+      title: 'Sign a message to retrieve a Spending Key for your PolyAztec account',
+      subtitle: 'You will use your Polygon wallet for this action.',
     };
   return {
     title: 'Save your data somewhere safe but accessible',

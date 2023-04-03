@@ -128,7 +128,7 @@ export const getWalletSelectorToast = (closeModal: () => void) => ({
     <div className={style.signatureToast}>
       Do you wish to switch the wallet you're signing with?
       <div className={style.note}>
-        Please note, this has no effect on the Aztec account you're currently signed in with.
+        Please note, this has no effect on the PolyAztec account you're currently signed in with.
       </div>
       <div className={style.interactions}>
         <ConnectButton accountStatus="address" showBalance={false} />

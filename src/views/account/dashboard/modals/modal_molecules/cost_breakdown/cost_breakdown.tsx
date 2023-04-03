@@ -48,7 +48,7 @@ export function CostBreakdown({
         assetIsZk={!deductionIsFromL1}
       />
       <CostBreakdownValueRow
-        label="Aztec Tx Fee"
+        label="PolyAztec Tx Fee"
         cost={maybeBulkPriceStr(feeBulkPrice)}
         asset={fee?.info}
         value={fee?.format({ layer: feeDeductionIsFromL1 ? 'L1' : 'L2' })}

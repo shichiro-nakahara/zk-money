@@ -16,13 +16,10 @@ import { useObs } from '../../app/util/index.js';
 function TooltipContent() {
   return (
     <p>
-      The total market value of assets held in zk.money, including illiquid DeFi positions.
+      The total market value of assets held in PolyAztec.
       <br />
       <br />
-      Funds may be unavailable while the rollup settles to Ethereum mainnet.
-      <br />
-      <br /> Learn how we query prices and assets values{' '}
-      <Hyperlink href="https://docs.aztec.network/zk-money/assetvaluation" label="here." />
+      Funds may be unavailable while the rollup settles to Polygon mainnet.
     </p>
   );
 }

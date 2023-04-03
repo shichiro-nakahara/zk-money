@@ -31,9 +31,9 @@ function getIcon(keyType: KeyType) {
 
 function getText(keyType: KeyType, checked: boolean) {
   if (checked) {
-    return keyType === 'account' ? 'Aztec Address' : 'Spending Key';
+    return keyType === 'account' ? 'PolyAztec Address' : 'Spending Key';
   }
-  return keyType === 'account' ? 'Retrieve\nAztec Address' : 'Retrieve\nSpending Key';
+  return keyType === 'account' ? 'Retrieve\nPolyAztec Address' : 'Retrieve\nSpending Key';
 }
 
 export function KeyGenerationInput(props: KeyGenerationInputProps) {

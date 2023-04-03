@@ -93,7 +93,7 @@ export function Holding({ assetValue, onSend, onShield, onGoToEarn }: HoldingPro
             <div className={style.holdingUnits}>
               {amount.format({ uniform: true })}
               <div className={style.holdingAmount}>
-                {bulkPrice ? `($${formatBulkPrice(bulkPrice)})` : <SkeletonRect sizingContent="$1000.00" />}
+                {bulkPrice ? `($${formatBulkPrice(bulkPrice)})` : ``}
               </div>
             </div>
             <div className={style.details}>
@@ -122,14 +122,6 @@ export function Holding({ assetValue, onSend, onShield, onGoToEarn }: HoldingPro
               size={ButtonSize.Medium}
               theme={ButtonTheme.Secondary}
               text={'Send'}
-              disabled={walletInteractionIsOngoing || !isSynced}
-            />
-            <Button
-              className={style.button}
-              onClick={() => onGoToEarn?.(asset)}
-              theme={ButtonTheme.Secondary}
-              size={ButtonSize.Medium}
-              text={'Earn'}
               disabled={walletInteractionIsOngoing || !isSynced}
             />
           </>

@@ -45,9 +45,7 @@ interface LinkItem {
   disabled?: boolean;
 }
 
-const LINKS: LinkItem[] = [
-  { url: Pages.EARN, label: 'Earn', mobileImage: <MobileNavbarEarn className={style.mobileImage} /> }
-];
+const LINKS: LinkItem[] = [];
 
 export function Navbar({
   theme,
