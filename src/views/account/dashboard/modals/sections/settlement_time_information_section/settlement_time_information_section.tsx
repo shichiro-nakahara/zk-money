@@ -70,8 +70,8 @@ export function SettlementTimeInformationSection(props: SettlementTimeInformatio
           progress={props.progress}
         />
       }
-      buttonLabel="Learn more"
-      helpLink="https://docs.aztec.network/zk-money/fees"
+      buttonLabel=""
+      helpLink=""
     />
   );
 }

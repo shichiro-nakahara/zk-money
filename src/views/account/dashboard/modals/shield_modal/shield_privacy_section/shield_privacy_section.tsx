@@ -51,7 +51,7 @@ export function ShieldPrivacySection() {
         {sameWallet}
         <div>Do not send to the same wallet you shielded from</div>
         {visibleOnChain}
-        <div>Deposits to Aztec are visible on-chain</div>
+        <div>Deposits to PolyAztec are visible on-chain</div>
       </div>
     </div>
   );

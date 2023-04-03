@@ -57,16 +57,16 @@ export function TxGasSection(props: TxGasSectionProps) {
         props.balanceType === 'L1',
       ),
     },
-    {
-      id: TxSettlementTime.INSTANT,
-      content: getParams(
-        'Fastest speed',
-        instantSettlementTime,
-        feeAmounts?.[TxSettlementTime.INSTANT],
-        feeBulkPriceInstant,
-        props.balanceType === 'L1',
-      ),
-    },
+    // {
+    //   id: TxSettlementTime.INSTANT,
+    //   content: getParams(
+    //     'Fastest speed',
+    //     instantSettlementTime,
+    //     feeAmounts?.[TxSettlementTime.INSTANT],
+    //     feeBulkPriceInstant,
+    //     props.balanceType === 'L1',
+    //   ),
+    // },
   ];
 
   return (

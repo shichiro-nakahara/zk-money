@@ -3,12 +3,14 @@ import { connectorsForWallets } from '@rainbow-me/rainbowkit';
 import { metaMaskWallet, walletConnectWallet, braveWallet } from '@rainbow-me/rainbowkit/wallets';
 
 import { configureChains, createClient, Chain } from 'wagmi';
-import { polygon, polygonMumbai } from 'wagmi/chains';
+import { polygon, polygonMumbai, localhost } from 'wagmi/chains';
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 import type { Config } from '../config.js';
 
 function getChain(config: Config): Chain {
   switch (config.chainId) {
+    case 1337:
+      return { ...localhost, id: config.chainId };
     case 80001:
       return polygonMumbai;
     default:
