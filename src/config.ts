@@ -3,10 +3,10 @@ import { AssetLabel } from './alt-model/known_assets/known_asset_display_data.js
 import { toBaseUnits } from './app/units.js';
 
 export const configuration = {
-  ethereumHost: 'http://136.244.98.226:8545',
-  explorerUrl: 'http://136.244.98.226:3000',
+  ethereumHost: 'https://polygon-mumbai.infura.io/v3/c42752f74b094eae8cfaa0e193d33801',
+  explorerUrl: 'https://block-explorer.dev.polyaztec.xyz',
   hostedSdkUrl: null,
-  rollupHost: 'http://136.244.98.226:8081',
+  rollupHost: 'https://falafel.dev.polyaztec.xyz',
 };
 
 export interface Config {
