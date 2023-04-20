@@ -50,9 +50,6 @@ function SettlementProgressBar(props: SettlementProgressBarProps) {
         feeAmount={props.feeAmounts?.[props.speed]}
         bridgeAddressId={props.bridgeCallData?.bridgeAddressId}
       />
-      {props.progress !== 1 && (
-        <div className={style.text}>Pay a Fast Track or Instant fee to send the batch more quickly.</div>
-      )}
     </div>
   );
 }

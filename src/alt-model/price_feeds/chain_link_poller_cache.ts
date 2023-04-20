@@ -15,11 +15,8 @@ function createChainLinkOracleFetcher(priceFeedContractAddressStr: string, provi
   const contract = new Contract(priceFeedContractAddressStr, ABI, provider);
   return async () => {
     try {
-      // TODO: Contract doesn't exist, not sure if this will be relevant in future.
-      console.log(`Skipping price fetch from ${priceFeedContractAddressStr} (not supported)`);
-      return 0n;
-      // const bigNum = await contract.latestAnswer();
-      // return bigNum.toBigInt() as bigint;
+      const bigNum = await contract.latestAnswer();
+      return bigNum.toBigInt() as bigint;
     } catch (err) {
       debug(`Price fetch failed for address ${priceFeedContractAddressStr}`, err);
       throw err;

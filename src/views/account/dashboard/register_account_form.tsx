@@ -117,7 +117,7 @@ export function RegisterAccountForm(props: RegisterAccountFormProps) {
         sublabel={
           <>
             Choose an alias in place of your account key so other users can find you more easily.{' '}
-            <span style={{ fontWeight: 450 }}>Warning: Aliases are case sensitive!</span>
+            <span style={{ fontWeight: 450 }}>Warning: Aliases must not contain special characters or uppercase letters!</span>
           </>
         }
         value={fields.alias}

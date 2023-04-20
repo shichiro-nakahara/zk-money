@@ -10,25 +10,20 @@ import { PhaseType } from '../account/dashboard/register_account_form.js';
 import style from './toast_configurations.module.scss';
 
 export enum Toasts {
-  TOS_PART_1 = 'TOS_PART_1',
-  TOS_PART_2 = 'TOS_PART_2',
+  TOS = 'TOS',
   COOKIES = 'COOKIES',
   REGISTER = 'REGISTER',
   WALLET_SELECTOR = 'WALLET_SELECTOR',
   WALLET_INTERACTION = 'WALLET_INTERACTION',
 }
 
-const acceptTos = () => {
-  Cookies.set('tos_accepted', 'true');
-};
-
 export const getTOSToastPartOne = (toastsObs: ToastsObs) => ({
-  key: Toasts.TOS_PART_1,
+  key: Toasts.TOS,
   heavy: true,
   primaryButton: {
     onClick: () => {
-      toastsObs.removeToastByKey(Toasts.TOS_PART_1);
-      toastsObs.addToast(getTOSToastPartTwo(toastsObs));
+      toastsObs.removeToastByKey(Toasts.TOS);
+      Cookies.set('tos_accepted', 'true');
     },
     text: 'Accept',
   },
@@ -42,45 +37,13 @@ export const getTOSToastPartOne = (toastsObs: ToastsObs) => ({
   components: (
     <div className={style.TOSToast}>
       <div>
-        By accessing or using PolyAztec, <b>I understand this code is unaudited and should be considered risky</b>. Please read and confirm you understand the following terms of service:
+        Please read and accept the following terms in order to access and use PolyAztec:
       </div>
       <ol>
-        <li>I am not a resident of, or located in the United States of America (including its territories: American Samoa, Guam, Puerto Rico, the Northern Mariana Islands and the U.S. Virgin Islands) or any other Restricted Jurisdiction (as defined in the Terms of Service).</li>
-        <li>I am not a Prohibited Person (as defined in the Terms of Service) nor acting on behalf of a Prohibited person.</li>
-        <li>I understand that the contracts are unaudited and should be considered risky.</li>
-        <li>I acknowledge that PolyAztec and related software are experimental, and that the use of experimental software may result in complete loss of my Funds.</li>
-      </ol>
-    </div>
-  ),
-});
-
-export const getTOSToastPartTwo = (toastsObs: ToastsObs) => ({
-  key: Toasts.TOS_PART_2,
-  heavy: true,
-  primaryButton: {
-    onClick: () => {
-      toastsObs.removeToastByKey(Toasts.TOS_PART_2);
-      acceptTos();
-    },
-    text: 'Accept',
-  },
-  secondaryButton: {
-    onClick: () => {
-      // TODO: What do we do here?
-      console.warn('NOT IMPLEMENTED!');
-    },
-    text: 'Reject',
-  },
-  components: (
-    <div className={style.TOSToast}>
-      <div>By proceeding to the application you acknowledge that:</div>
-      <ol>
-        <li>If you are acting as an individual then you are of legal age (as applicable in your jurisdiction in which you reside).</li>
-        <li>You are not a politically exposed person, that is, a person who is or has been entrusted with any prominent public function, or a politically exposed person who has stepped down.</li>
-        <li>You are not an immediate family member or a close associate of a politically exposed person or a politically exposed person who has stepped down.</li>
-        <li>You are not engaged in money laundering or the financing of terrorism.</li>
-        <li>Your access to PolyAztec does not violate any rule, law, regulation or directive of the country of your residence and the jurisdiction in which you reside.</li>
-        <li>You have not been arrested or convicted for any offence or crime.</li>
+        <li>I acknowledge that the <b>contracts are unaudited and may be considered risky.</b></li>
+        <li>I acknowledge that PolyAztec and related software are experimental and that the use of experimental software may result in loss of funds.</li>
+        <li>I am not a citizen or resident of the United States of America (including its territories: American Samoa, Guam, Puerto Rico, the Northern Mariana Islands, and the U.S. Virgin Islands) or any other Restricted Jurisdiction (as defined in the Terms of Service).</li>
+        <li>I am not a Prohibited Person (as defined in the Terms of Service) nor acting on behalf of a Prohibited Person.</li>
       </ol>
     </div>
   ),

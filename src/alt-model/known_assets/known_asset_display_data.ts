@@ -4,6 +4,8 @@ import daiGradientIcon from '../../images/dai_gradient.svg';
 import ethIcon from '../../images/ethereum.svg';
 import ethGradientIcon from '../../images/ethereum_gradient.svg';
 import ethWhiteIcon from '../../images/ethereum_white.svg';
+import maticIcon from '../../images/polygon-matic-logo.svg';
+import maticWhiteIcon from '../../images/polygon-matic-logo-white.svg';
 import stEthGradientIcon from '../../images/steth_gradient.svg';
 import stEthWhiteIcon from '../../images/steth_white.svg';
 import yearnGradientIcon from '../../images/yearn_gradient.svg';
@@ -23,10 +25,12 @@ export type AssetLabel = RegisteredAssetLabel | UnregisteredAssetLabel;
 
 export function getAssetIcon(label?: AssetLabel) {
   switch (label) {
-    case 'Eth':
-      return ethIcon;
+    case 'Eth': // MATIC
+      return maticIcon;
     case 'DAI':
       return daiIcon;
+    case 'WETH':
+      return ethIcon;
     default:
       return questionMarkBlackIcon;
   }
@@ -34,8 +38,10 @@ export function getAssetIcon(label?: AssetLabel) {
 
 export function getAssetIconWhite(label?: AssetLabel) {
   switch (label) {
-    case 'Eth':
+    case 'WETH':
       return ethWhiteIcon;
+    case 'Eth': // MATIC
+      return maticWhiteIcon;
     case 'DAI':
       return daiWhiteIcon;
     case 'wstETH':
@@ -53,8 +59,10 @@ export function getAssetIconWhite(label?: AssetLabel) {
 
 export function getAssetIconGradient(label?: AssetLabel) {
   switch (label) {
-    case 'Eth':
+    case 'WETH':
       return ethGradientIcon;
+    case 'Eth': // MATIC
+      return maticIcon;
     case 'DAI':
       return daiGradientIcon;
     case 'wstETH':
@@ -109,6 +117,7 @@ export function getAssetWithdrawShown(label?: AssetLabel) {
   switch (label) {
     case 'Eth':
     case 'DAI':
+    case 'WETH':
     case 'LUSD':
       return true;
     default:
