@@ -19,7 +19,7 @@ const staticHelpItems = [
 const socialItems = [
   {
     name: 'Twitter',
-    href: '#',
+    href: 'https://twitter.com/poly_aztec',
   }
 ];
 
