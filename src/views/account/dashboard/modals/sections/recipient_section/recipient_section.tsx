@@ -34,7 +34,7 @@ function getRecipientPlaceholder(type: RecipientType) {
 function getSubtitle(type: RecipientType) {
   switch (type) {
     case 'L2':
-      return 'Remember, aliases are case sensitive';
+      return 'Remember, aliases are lower case';
     default:
       return '';
   }

@@ -2,14 +2,17 @@ import { SDK_VERSION, getRollupProviderStatus } from '@aztec/sdk';
 import { AssetLabel } from './alt-model/known_assets/known_asset_display_data.js';
 import { toBaseUnits } from './app/units.js';
 
+const dev = window.location.hostname.includes('dev') || window.location.hostname.includes('localhost');
 export const configuration = {
-  ethereumHost: 'https://polygon-mumbai.infura.io/v3/c42752f74b094eae8cfaa0e193d33801',
-  explorerUrl: 'https://block-explorer.dev.polyaztec.xyz',
+  ethereumHostMainnet: 'https://polygon-mainnet.infura.io/v3/c42752f74b094eae8cfaa0e193d33801', // Used for chainlink oracles (see: createTopLevelContextValue.tsx:createTopLevelContextValue)
+  ethereumHost: dev ? 'https://polygon-mumbai.infura.io/v3/c42752f74b094eae8cfaa0e193d33801' : 'https://polygon-mainnet.infura.io/v3/c42752f74b094eae8cfaa0e193d33801',
+  explorerUrl: dev ? 'https://explorer.dev.polyaztec.xyz' : 'https://explorer.polyaztec.xyz',
   hostedSdkUrl: null,
-  rollupHost: 'https://falafel.dev.polyaztec.xyz',
+  rollupHost: dev ? 'https://falafel.dev.polyaztec.xyz' : 'https://falafel.polyaztec.xyz',
 };
 
 export interface Config {
+  ethereumHostMainnet: string;
   deployTag: string;
   hostedSdkUrl: string;
   rollupProviderUrl: string;
@@ -78,6 +81,7 @@ function getDeployConfig(deployTag: string, rollupProviderUrl: string, chainId: 
     explorerUrl: configuration.explorerUrl,
     chainId,
     ethereumHost: configuration.ethereumHost,
+    ethereumHostMainnet: configuration.ethereumHostMainnet
   };
 }
 
@@ -95,8 +99,8 @@ function assembleConfig(
   return {
     ...deployConfig,
     txAmountLimits: {
-      Eth: toBaseUnits('5', 18),
-      WETH: 0n, // unused
+      Eth: toBaseUnits('10000', 18),
+      WETH: toBaseUnits('5', 18),
       DAI: toBaseUnits('10000', 18),
       wstETH: toBaseUnits('6', 18),
       stETH: 0n, // unused

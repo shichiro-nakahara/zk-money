@@ -19,7 +19,7 @@ const staticHelpItems = [
 const socialItems = [
   {
     name: 'Twitter',
-    href: 'https://twitter.com/aztecnetwork',
+    href: '#',
   }
 ];
 

@@ -26,6 +26,14 @@ const aliasChecklist: ChecklistItem[] = [
     validate: (alias: string) => !alias.match(/\s/),
     error: 'Alias cannot contain spaces.',
   },
+  {
+    validate: (alias: string) => !alias.match(/[\W_]+/g),
+    error: 'Alias cannot contain special characters.',
+  },
+  {
+    validate: (alias: string) => !alias.match(/[A-Z]+/g),
+    error: 'Alias cannot contain uppercase characters.',
+  },
 ];
 
 export function validateAlias(alias: string) {

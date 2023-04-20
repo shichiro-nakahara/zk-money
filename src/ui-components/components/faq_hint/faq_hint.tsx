@@ -27,7 +27,7 @@ export function FaqHint({ className }: { className?: string }) {
   return (
     <Link
       className={`${style.link} ${className}`}
-      href="https://docs.aztec.network/how-aztec-works/faq"
+      href="#" // TODO
       target="_blank"
     >
       <span className={style.label}>Need help?</span>
