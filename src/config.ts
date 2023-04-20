@@ -4,8 +4,8 @@ import { toBaseUnits } from './app/units.js';
 
 const dev = window.location.hostname.includes('dev') || window.location.hostname.includes('localhost');
 export const configuration = {
-  ethereumHostMainnet: 'https://polygon-mainnet.infura.io/v3/c42752f74b094eae8cfaa0e193d33801', // Used for chainlink oracles (see: createTopLevelContextValue.tsx:createTopLevelContextValue)
-  ethereumHost: dev ? 'https://polygon-mumbai.infura.io/v3/c42752f74b094eae8cfaa0e193d33801' : 'https://polygon-mainnet.infura.io/v3/c42752f74b094eae8cfaa0e193d33801',
+  ethereumHostMainnet: 'https://polygon-rpc.com', // Used for chainlink oracles (see: createTopLevelContextValue.tsx:createTopLevelContextValue)
+  ethereumHost: dev ? 'https://matic-mumbai.chainstacklabs.com' : 'https://polygon-rpc.com',
   explorerUrl: dev ? 'https://explorer.dev.polyaztec.xyz' : 'https://explorer.polyaztec.xyz',
   hostedSdkUrl: null,
   rollupHost: dev ? 'https://falafel.dev.polyaztec.xyz' : 'https://falafel.polyaztec.xyz',
