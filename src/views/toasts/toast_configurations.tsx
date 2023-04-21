@@ -11,13 +11,14 @@ import style from './toast_configurations.module.scss';
 
 export enum Toasts {
   TOS = 'TOS',
+  TOS_REJECTED = 'TOS_REJECTED',
   COOKIES = 'COOKIES',
   REGISTER = 'REGISTER',
   WALLET_SELECTOR = 'WALLET_SELECTOR',
   WALLET_INTERACTION = 'WALLET_INTERACTION',
 }
 
-export const getTOSToastPartOne = (toastsObs: ToastsObs) => ({
+export const getTOSToast = (toastsObs: ToastsObs) => ({
   key: Toasts.TOS,
   heavy: true,
   primaryButton: {
@@ -29,8 +30,8 @@ export const getTOSToastPartOne = (toastsObs: ToastsObs) => ({
   },
   secondaryButton: {
     onClick: () => {
-      // TODO: What do we do here?
-      console.warn('NOT IMPLEMENTED!');
+      toastsObs.removeToastByKey(Toasts.TOS);
+      toastsObs.addToast(getTORejectedToast(toastsObs));
     },
     text: 'Reject',
   },
@@ -45,6 +46,18 @@ export const getTOSToastPartOne = (toastsObs: ToastsObs) => ({
         <li>I am not a citizen or resident of the United States of America (including its territories: American Samoa, Guam, Puerto Rico, the Northern Mariana Islands, and the U.S. Virgin Islands) or any other Restricted Jurisdiction (as defined in the Terms of Service).</li>
         <li>I am not a Prohibited Person (as defined in the Terms of Service) nor acting on behalf of a Prohibited Person.</li>
       </ol>
+    </div>
+  ),
+});
+
+export const getTORejectedToast = (toastsObs: ToastsObs) => ({
+  key: Toasts.TOS,
+  heavy: true,
+  components: (
+    <div className={style.TOSToast}>
+      <div>
+        <b>You may not use PolyAztec at this time.</b>
+      </div>
     </div>
   ),
 });

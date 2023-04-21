@@ -12,7 +12,7 @@ import { Template } from '../components/index.js';
 import { Config } from '../config.js';
 import { PageTransitionHandler } from '../page_transition_handler.js';
 import { Pages } from './views.js';
-import { getTOSToastPartOne } from './toasts/toast_configurations.js';
+import { getTOSToast } from './toasts/toast_configurations.js';
 import { Navbar, Theme } from '../ui-components/index.js';
 import { UserAccountMenu } from '../components/template/user_account_menu.js';
 import { Earn } from './account/dashboard/earn.js';
@@ -33,7 +33,7 @@ function useShowTOS() {
 
   useEffect(() => {
     if (!isTOSAccepted) {
-      toastsObs.addToast(getTOSToastPartOne(toastsObs));
+      toastsObs.addToast(getTOSToast(toastsObs));
     }
   }, [isTOSAccepted, toastsObs]);
 }
