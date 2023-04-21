@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie';
+
 import { Button } from '../ui-components/index.js';
 import privateUnderline from '../images/underline.svg';
 import arrow from '../images/arrow.svg';
@@ -102,7 +104,7 @@ function Banner({ onShieldNow, recipes }: { onShieldNow: () => void; recipes: De
         PolyAztec is your portal to private Polygon transactions. Shield
           funds to start accessing!
         </div>
-        <Button text="Shield Now" onClick={onShieldNow} className={style.shieldButton} />
+        <Button text="Shield Now" onClick={onShieldNow} className={style.shieldButton} disabled={Cookies.get('tos_accepted') !== 'true'}/>
       </div>
     </div>
   );

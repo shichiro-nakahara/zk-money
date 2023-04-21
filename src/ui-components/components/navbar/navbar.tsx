@@ -1,7 +1,5 @@
+import Cookies from 'js-cookie';
 import { Link, useLocation } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../../images/zk_money.svg';
-import { ReactComponent as MobileNavbarEarn } from '../../../images/mobile_navbar_earn.svg';
-import { ReactComponent as MobileNavbarTrade } from '../../../images/mobile_navbar_trade.svg';
 import { ReactComponent as MobileNavbarWallet } from '../../../images/mobile_navbar_wallet.svg';
 import { ReactComponent as Clock } from '../../images/clock.svg';
 import { bindStyle } from '../../util/classnames.js';
@@ -86,6 +84,10 @@ export function Navbar({
             white: theme === Theme.WHITE,
             gradient: theme === Theme.GRADIENT,
           })}
+          style={{
+            pointerEvents: Cookies.get('tos_accepted') === 'true' ? 'inherit' : 'none',
+            opacity: Cookies.get('tos_accepted') === 'true' ? 1 : 0.5
+          }}
         >
           <MobileNavbarWallet className={style.mobileImage} />
           {isUserRegistered ? 'Wallet' : 'Access'}
