@@ -3,7 +3,7 @@ import liquityLogo from '../../../images/liquity_logo_white.svg';
 import liquityMiniLogo from '../../../images/liquity_mini_logo.svg';
 import { AuxDataCustomisationComponentProps, CreateRecipeArgs, DefiRecipe } from '../types.js';
 import { useBridgeDataAdaptorsMethodCaches } from '../../top_level_context/index.js';
-import { AssetValue } from '@aztec/sdk';
+import { AssetValue } from '@polyaztec/sdk';
 import { createGatedSetter_noArrows, useMaybeObs } from '../../../app/util/index.js';
 import { bindInteractionPredictionHook_expectedOutput } from '../interaction_prediction_configs.js';
 import { createDefiPublishStatsCacheArgsBuilder } from '../defi_publish_stats_utils.js';

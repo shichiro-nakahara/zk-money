@@ -1,7 +1,7 @@
 import { UnderlyingAsset, AuxDataConfig, AztecAsset, SolidityType, BridgeDataFieldGetters } from '../bridge-data.js';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { BiDCABridge, BiDCABridge__factory, IERC20__factory } from '../../typechain-types/index.js';
-import { EthAddress, AssetValue } from '@aztec/sdk';
+import { EthAddress, AssetValue } from '@polyaztec/sdk';
 
 export class DCABridgeData implements BridgeDataFieldGetters {
   public scalingFactor: bigint = 1n * 10n ** 18n;

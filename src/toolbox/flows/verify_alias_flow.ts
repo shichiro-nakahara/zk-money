@@ -1,4 +1,4 @@
-import { AztecSdk, GrumpkinAddress } from '@aztec/sdk';
+import { AztecSdk, GrumpkinAddress } from '@polyaztec/sdk';
 import { isValidAliasInput } from '../../app/index.js';
 import { Fullfiller } from '../../app/util/index.js';
 import { Emit, ThrowIfCancelled } from './flows_utils.js';

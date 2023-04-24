@@ -1,4 +1,4 @@
-import type { AssetValue, EthAddress, GrumpkinAddress, UserTx } from '@aztec/sdk';
+import type { AssetValue, EthAddress, GrumpkinAddress, UserTx } from '@polyaztec/sdk';
 
 export interface AccountState {
   isRegistered: boolean;

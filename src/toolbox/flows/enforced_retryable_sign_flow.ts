@@ -1,5 +1,5 @@
 import { Signer } from '@ethersproject/abstract-signer';
-import { EthAddress } from '@aztec/sdk';
+import { EthAddress } from '@polyaztec/sdk';
 import { ActiveChainIdObs } from '../../alt-model/active_wallet_hooks.js';
 import { ActiveSignerObs } from '../../alt-model/defi/defi_form/correct_provider_hooks.js';
 import { Fullfiller } from '../../app/util/index.js';

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import moment from 'moment';
-import type { TxId, UserTx } from '@aztec/sdk';
+import type { TxId, UserTx } from '@polyaztec/sdk';
 import { useExplorerTxLink } from '../../../alt-model/explorer_link_hooks.js';
 import { Hyperlink, HyperlinkIcon, Tooltip } from '../../../ui-components/index.js';
 import oneTick from '../../../images/two_ticks_one.svg';

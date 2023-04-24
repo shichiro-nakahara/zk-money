@@ -1,4 +1,4 @@
-import { TxId } from '@aztec/sdk';
+import { TxId } from '@polyaztec/sdk';
 import { useConfig } from './top_level_context/index.js';
 
 export function useExplorerTxLink(txId: TxId) {

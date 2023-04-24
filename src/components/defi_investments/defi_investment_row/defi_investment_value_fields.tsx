@@ -7,7 +7,7 @@ import type {
 import { useInteractionPresentValue } from '../../../alt-model/defi/defi_info_hooks.js';
 import { useAmount } from '../../../alt-model/top_level_context/index.js';
 import { ShieldedAssetIcon } from '../../shielded_asset_icon.js';
-import { UserDefiInteractionResultState, UserDefiTx } from '@aztec/sdk';
+import { UserDefiInteractionResultState, UserDefiTx } from '@polyaztec/sdk';
 import { SkeletonRect } from '../../../ui-components/index.js';
 import style from './defi_investment_value_fields.module.scss';
 

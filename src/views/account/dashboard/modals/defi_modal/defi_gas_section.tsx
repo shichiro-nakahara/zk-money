@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { BridgeCallData, DefiSettlementTime } from '@aztec/sdk';
+import { BridgeCallData, DefiSettlementTime } from '@polyaztec/sdk';
 import type { Amount } from '../../../../../alt-model/assets/index.js';
 import type { DefiRecipe } from '../../../../../alt-model/defi/types.js';
 import { useAmountBulkPrice, useRollupProviderStatus } from '../../../../../alt-model/index.js';

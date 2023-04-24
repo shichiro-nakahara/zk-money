@@ -4,7 +4,7 @@ import { useWalletInteractionIsOngoing } from '../../../../../../alt-model/walle
 import { Field, FieldStatus } from '../../../../../../ui-components/index.js';
 import { getPrefixFromRecipient, removePrefixFromRecipient } from './helpers.js';
 import copy from '../../../../../../ui-components/images/copy.svg';
-import { GrumpkinAddress } from '@aztec/sdk';
+import { GrumpkinAddress } from '@polyaztec/sdk';
 import { TopLevelContext } from '../../../../../../alt-model/top_level_context/top_level_context.js';
 import style from './recipient_section.module.scss';
 

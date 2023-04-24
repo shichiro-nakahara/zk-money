@@ -1,5 +1,5 @@
 import createDebug from 'debug';
-import { BridgeCallData, DefiSettlementTime } from '@aztec/sdk';
+import { BridgeCallData, DefiSettlementTime } from '@polyaztec/sdk';
 import { useAmountFactory, useConfig, useSdk } from '../../top_level_context/index.js';
 import { useMemo, useState } from 'react';
 import { useTrackedFieldChangeHandlers } from '../../form_fields_hooks.js';

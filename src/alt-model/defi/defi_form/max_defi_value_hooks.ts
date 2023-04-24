@@ -1,4 +1,4 @@
-import { BridgeCallData, DefiSettlementTime } from '@aztec/sdk';
+import { BridgeCallData, DefiSettlementTime } from '@polyaztec/sdk';
 import { useSdk } from '../../top_level_context/index.js';
 import { useMemo } from 'react';
 import { FEE_SIG_FIGURES } from '../../forms/constants.js';

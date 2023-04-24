@@ -1,4 +1,4 @@
-import { AztecSdk } from '@aztec/sdk';
+import { AztecSdk } from '@polyaztec/sdk';
 
 export function formatError(error: unknown, messageOnly = false): string | undefined {
   if (error instanceof Error) {

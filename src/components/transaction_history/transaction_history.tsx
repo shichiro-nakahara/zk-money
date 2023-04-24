@@ -1,4 +1,4 @@
-import { ProofId, UserTx } from '@aztec/sdk';
+import { ProofId, UserTx } from '@polyaztec/sdk';
 import { Pagination } from '../pagination.js';
 import { useState } from 'react';
 import { TransactionHistoryRow } from './transaction_history_row/index.js';

@@ -1,7 +1,7 @@
 import type { AmountFactory } from '../assets/amount_factory.js';
 import type { Network } from '../../app/networks.js';
 import type { ShieldComposerPayload } from './shield_composer.js';
-import type { EthAddress, GrumpkinAddress, TxSettlementTime } from '@aztec/sdk';
+import type { EthAddress, GrumpkinAddress, TxSettlementTime } from '@polyaztec/sdk';
 import type { RemoteAsset } from '../types.js';
 import type { StrOrMax } from '../forms/constants.js';
 import { max, min } from '../../app/index.js';

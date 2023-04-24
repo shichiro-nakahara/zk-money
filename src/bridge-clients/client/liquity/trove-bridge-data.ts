@@ -1,4 +1,4 @@
-import { BridgeCallData, EthAddress, AssetValue } from '@aztec/sdk';
+import { BridgeCallData, EthAddress, AssetValue } from '@polyaztec/sdk';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { BigNumber } from 'ethers';
 import {

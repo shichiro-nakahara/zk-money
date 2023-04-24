@@ -11,7 +11,7 @@ const Template: ComponentStory<typeof SigningRequest> = args => <SigningRequest 
 export const MessageSigningWrongNetwork = Template.bind({});
 MessageSigningWrongNetwork.args = {
   messageToBeSigned:
-    'Sign this message to generate your Aztec Privacy Key. This key lets the application decrypt your balance on Aztec.\n\nIMPORTANT: Only sign this message if you trust the application.',
+    'Sign this message to generate your PolyAztec Privacy Key. This key lets the application decrypt your balance on Aztec.\n\nIMPORTANT: Only sign this message if you trust the application.',
   toastMessage: 'Please switch your network to mainnet',
   onRequest: () => {},
   requestButtonDisabled: true,

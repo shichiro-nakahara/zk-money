@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { TxSettlementTime } from '@aztec/sdk';
+import { TxSettlementTime } from '@polyaztec/sdk';
 import { FeeSelector, FeeSelectorStatus } from '../../../../../../ui-components/index.js';
 import { useAmountBulkPrice, useRollupProviderStatus } from '../../../../../../alt-model/index.js';
 import { estimateTxSettlementTimes } from '../../../../../../alt-model/estimate_settlement_times.js';

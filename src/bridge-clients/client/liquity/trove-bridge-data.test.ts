@@ -12,7 +12,7 @@ import {
 import { AztecAsset, AztecAssetType } from '../bridge-data.js';
 import { TroveBridgeData } from './trove-bridge-data.js';
 import { jest } from '@jest/globals';
-import { BridgeCallData, EthAddress, JsonRpcProvider } from '@aztec/sdk';
+import { BridgeCallData, EthAddress, JsonRpcProvider } from '@polyaztec/sdk';
 
 type Mockify<T> = {
   [P in keyof T]: jest.Mock | any;

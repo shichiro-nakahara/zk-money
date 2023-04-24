@@ -1,4 +1,4 @@
-import { AssetValue } from '@aztec/sdk';
+import { AssetValue } from '@polyaztec/sdk';
 import { useMemo } from 'react';
 import { useAmountFactory, useRemoteAssets } from './top_level_context/index.js';
 

@@ -1,4 +1,4 @@
-import { ProofId } from '@aztec/sdk';
+import { ProofId } from '@polyaztec/sdk';
 import { useState, useEffect } from 'react';
 import type { DefiRecipe } from '../../../alt-model/defi/types.js';
 import { useSdk } from '../../../alt-model/top_level_context/index.js';

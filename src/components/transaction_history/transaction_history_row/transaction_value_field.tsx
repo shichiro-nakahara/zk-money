@@ -1,4 +1,4 @@
-import { AssetValue, ProofId, UserTx } from '@aztec/sdk';
+import { AssetValue, ProofId, UserTx } from '@polyaztec/sdk';
 import { useAmount } from '../../../alt-model/asset_hooks.js';
 import { useHiddenAssets } from '../../../alt-model/defi/hidden_asset_hooks.js';
 import { ShieldedAssetIcon } from '../../shielded_asset_icon.js';

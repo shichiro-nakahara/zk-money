@@ -4,7 +4,7 @@ import { TopLevelContext } from '../../alt-model/top_level_context/top_level_con
 import { useSdk, useToasts, useWalletInteractionToasts } from '../../alt-model/top_level_context/index.js';
 import { GlobalErrorItem, useGlobalErrorItems } from '../../alt-model/errors/global_error_hooks.js';
 import { confirmAndSendErrorReport, shouldAllowErrorToBeReported } from '../../alt-model/errors/error_utils.js';
-import { AztecSdk } from '@aztec/sdk';
+import { AztecSdk } from '@polyaztec/sdk';
 import { getQuotaExceededErrorToast } from '../../alt-model/top_level_context/sdk_obs.js';
 
 async function getGlobalErrorItemToastContent(

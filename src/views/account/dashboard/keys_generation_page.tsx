@@ -1,7 +1,7 @@
 import createDebug from 'debug';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { useAccount, useSigner } from 'wagmi';
-import { AztecSdk, EthAddress, EthersAdapter } from '@aztec/sdk';
+import { AztecSdk, EthAddress, EthersAdapter } from '@polyaztec/sdk';
 import { Signer } from '@ethersproject/abstract-signer';
 import { RegisterFormFields } from '../../../alt-model/forms/register/register_form_fields.js';
 import { FieldSetters } from '../../../alt-model/form_fields_hooks.js';

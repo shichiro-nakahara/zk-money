@@ -1,4 +1,4 @@
-import { AztecSdk, EthAddress, EthereumProvider, Web3Signer } from '@aztec/sdk';
+import { AztecSdk, EthAddress, EthereumProvider, Web3Signer } from '@polyaztec/sdk';
 import type { Emit, ThrowIfCancelled } from './flows_utils.js';
 import { KeyPair } from './types.js';
 

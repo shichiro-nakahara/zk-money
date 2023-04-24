@@ -5,7 +5,7 @@ import {
   SdkEvent,
   SdkFlavour,
   ClientVersionMismatchError,
-} from '@aztec/sdk';
+} from '@polyaztec/sdk';
 import { chainIdToNetwork } from '../../app/networks.js';
 import { Obs } from '../../app/util/index.js';
 import createDebug from 'debug';

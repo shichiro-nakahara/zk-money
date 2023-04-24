@@ -9,7 +9,7 @@ import {
   InteractionPredictionInfoHook,
 } from '../../../../../../alt-model/defi/types.js';
 import { Amount } from '../../../../../../alt-model/assets/index.js';
-import { BridgeCallData } from '@aztec/sdk';
+import { BridgeCallData } from '@polyaztec/sdk';
 
 function InteractionPrediction(props: {
   useInteractionPredictionInfo: InteractionPredictionInfoHook;

@@ -1,4 +1,4 @@
-import { EthAddress } from '@aztec/sdk';
+import { EthAddress } from '@polyaztec/sdk';
 
 export function formatEthAddress(address: EthAddress) {
   const addressStr = address.toString();

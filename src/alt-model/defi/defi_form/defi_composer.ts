@@ -1,4 +1,4 @@
-import { GrumpkinAddress, AztecSdk, BridgeCallData, EthersAdapter, EthAddress } from '@aztec/sdk';
+import { GrumpkinAddress, AztecSdk, BridgeCallData, EthersAdapter, EthAddress } from '@polyaztec/sdk';
 import type { Signer } from '@ethersproject/abstract-signer';
 import type { Amount } from '../../assets/index.js';
 import createDebug from 'debug';

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { AssetValue } from '@aztec/sdk';
+import { AssetValue } from '@polyaztec/sdk';
 import { useNavigate } from 'react-router-dom';
 import { recipeFiltersToSearchStr } from '../../alt-model/defi/recipe_filters.js';
 import { RemoteAsset } from '../../alt-model/types.js';

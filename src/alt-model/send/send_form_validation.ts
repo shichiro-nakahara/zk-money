@@ -1,4 +1,4 @@
-import { AssetValue, ProofId, TxSettlementTime, UserTx } from '@aztec/sdk';
+import { AssetValue, ProofId, TxSettlementTime, UserTx } from '@polyaztec/sdk';
 import { Amount } from '../assets/index.js';
 import { AmountFactory } from '../assets/amount_factory.js';
 import { StrOrMax } from '../forms/constants.js';

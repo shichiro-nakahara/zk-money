@@ -1,7 +1,7 @@
 import { useObs } from '../../app/util/index.js';
 import { useRef } from 'react';
 import { SignerSubmit } from '../signer_submit/index.js';
-import type { AztecSdk } from '@aztec/sdk';
+import type { AztecSdk } from '@polyaztec/sdk';
 import { CachingRecoverAliasFlow, RecoverAliasFlowState } from '../flows/caching_recover_alias_flow.js';
 import { AliasChecker } from './alias_checker.js';
 import { FlowRunner, FlowRunnerState } from '../flows/flow_runner.js';

@@ -1,4 +1,4 @@
-import { RollupProviderStatus } from '@aztec/sdk';
+import { RollupProviderStatus } from '@polyaztec/sdk';
 import { Poller } from '../../app/util/poller.js';
 import { SdkObs } from './sdk_obs.js';
 

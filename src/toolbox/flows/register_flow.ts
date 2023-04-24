@@ -1,4 +1,4 @@
-import { TxSettlementTime, AztecSdk, GrumpkinAddress, AssetValue } from '@aztec/sdk';
+import { TxSettlementTime, AztecSdk, GrumpkinAddress, AssetValue } from '@polyaztec/sdk';
 import { depositAndSignFlow, DepositAndSignFlowState } from './deposit_and_sign_flow.js';
 import type { ThrowIfCancelled, Emit } from './flows_utils.js';
 import { requestSignerFlow, RequestSignerFlowState } from './request_signer_flow.js';

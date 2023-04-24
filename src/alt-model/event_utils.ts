@@ -1,4 +1,4 @@
-import { SdkEvent, AztecSdk, GrumpkinAddress } from '@aztec/sdk';
+import { SdkEvent, AztecSdk, GrumpkinAddress } from '@polyaztec/sdk';
 
 export function listenAccountUpdated(sdk: AztecSdk, userId: GrumpkinAddress, func: () => void) {
   const handleUpdatedUserState = (address: GrumpkinAddress) => {

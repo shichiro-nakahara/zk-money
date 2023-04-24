@@ -1,4 +1,4 @@
-import type { AssetValue } from '@aztec/sdk';
+import type { AssetValue } from '@polyaztec/sdk';
 import { ReactComponent as Clock } from '../../ui-components/images/clock.svg';
 import { SkeletonRect, Button, ButtonTheme, ButtonSize } from '../../ui-components/index.js';
 import { formatBulkPrice } from '../../app/index.js';

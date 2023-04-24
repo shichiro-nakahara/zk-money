@@ -1,4 +1,4 @@
-import type { EthAddress } from '@aztec/sdk';
+import type { EthAddress } from '@polyaztec/sdk';
 import type { RegisteredAssetLabel } from './registrations_data/registrations_data_types.js';
 
 export interface RemoteAsset {

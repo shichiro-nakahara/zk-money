@@ -1,4 +1,4 @@
-import { AssetValue, EthAddress } from '@aztec/sdk';
+import { AssetValue, EthAddress } from '@polyaztec/sdk';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import 'isomorphic-fetch';
 import { ICERC20__factory, ICompoundERC4626__factory, IERC20__factory } from '../../typechain-types/index.js';

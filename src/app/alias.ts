@@ -1,4 +1,4 @@
-import { EthAddress } from '@aztec/sdk';
+import { EthAddress } from '@polyaztec/sdk';
 
 interface ChecklistItem {
   validate(alias: string): boolean;

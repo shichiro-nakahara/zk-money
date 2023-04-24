@@ -1,5 +1,5 @@
 import { AztecAsset, BridgeDataFieldGetters, AuxDataConfig } from '../../../bridge-clients/client/bridge-data.js';
-import { AssetValue } from '@aztec/sdk';
+import { AssetValue } from '@polyaztec/sdk';
 
 export class BridgeDataFieldGettersMock implements BridgeDataFieldGetters {
   async getInteractionPresentValue(interactionNonce: number): Promise<AssetValue[]> {

@@ -1,4 +1,4 @@
-import { EthAddress } from '@aztec/sdk';
+import { EthAddress } from '@polyaztec/sdk';
 import { Amount } from '../assets/index.js';
 import { getAssetPreferredFractionalDigits } from '../known_assets/known_asset_display_data.js';
 import { formatBaseUnits } from '../../app/index.js';

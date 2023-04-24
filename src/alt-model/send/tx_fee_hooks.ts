@@ -1,4 +1,4 @@
-import type { AssetValue, AztecSdk, EthAddress, GrumpkinAddress } from '@aztec/sdk';
+import type { AssetValue, AztecSdk, EthAddress, GrumpkinAddress } from '@polyaztec/sdk';
 import { useMemo } from 'react';
 import { useSdk } from '../top_level_context/index.js';
 import { useAmounts } from '../asset_hooks.js';

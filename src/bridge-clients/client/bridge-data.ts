@@ -1,4 +1,4 @@
-import { AssetValue, EthAddress } from '@aztec/sdk';
+import { AssetValue, EthAddress } from '@polyaztec/sdk';
 
 export interface UnderlyingAsset {
   address: EthAddress;

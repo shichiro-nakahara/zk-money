@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TxId, UserDefiInteractionResultState, UserDefiTx } from '@aztec/sdk';
+import { TxId, UserDefiInteractionResultState, UserDefiTx } from '@polyaztec/sdk';
 import type { DefiRecipe } from '../../../alt-model/defi/types.js';
 import type {
   DefiPosition,

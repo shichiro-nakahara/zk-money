@@ -1,4 +1,4 @@
-import type { BridgeCallData } from '@aztec/sdk';
+import type { BridgeCallData } from '@polyaztec/sdk';
 import type { DefiRecipe } from './types.js';
 
 export function recipeMatcher(bridgeCallData: BridgeCallData) {

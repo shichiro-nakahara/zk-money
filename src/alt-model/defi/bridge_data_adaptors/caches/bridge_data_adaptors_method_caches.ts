@@ -1,5 +1,5 @@
 import type { Provider } from '@ethersproject/providers';
-import type { RollupProviderStatus } from '@aztec/sdk';
+import type { RollupProviderStatus } from '@polyaztec/sdk';
 import type { DefiRecipe } from '../../types.js';
 import { createAuxDataOptionsPollerCache } from './aux_data_options_poller_cache.js';
 import { createBridgeDataAdaptorCache } from './bridge_data_adaptor_cache.js';

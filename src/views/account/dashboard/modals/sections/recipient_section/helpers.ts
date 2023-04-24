@@ -1,4 +1,4 @@
-import { GrumpkinAddress } from '@aztec/sdk';
+import { GrumpkinAddress } from '@polyaztec/sdk';
 
 const GRUMPKIN_PREFIX_LENGTH = 'aztec:'.length;
 const GRUMPKIN_ADDRESS_LENGTH = 130;

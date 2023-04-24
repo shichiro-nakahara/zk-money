@@ -6,7 +6,7 @@ import {
   TransferController,
   WithdrawController,
   EthersAdapter,
-} from '@aztec/sdk';
+} from '@polyaztec/sdk';
 import createDebug from 'debug';
 import { SendComposerPhase, SendComposerStateObs } from './send_composer_state_obs.js';
 import { SendMode } from './send_mode.js';

@@ -15,7 +15,7 @@ import {
   ILidoOracle__factory,
   ICurvePool__factory,
 } from '../../typechain-types/index.js';
-import { EthAddress, AssetValue } from '@aztec/sdk';
+import { EthAddress, AssetValue } from '@polyaztec/sdk';
 
 export class LidoBridgeData implements BridgeDataFieldGetters {
   public scalingFactor: bigint = 1n * 10n ** 18n;

@@ -1,5 +1,5 @@
 import type { RemoteAsset } from '../../types.js';
-import { EthAddress } from '@aztec/sdk';
+import { EthAddress } from '@polyaztec/sdk';
 import { AztecAsset, AztecAssetType } from '../../../bridge-clients/client/bridge-data.js';
 import { BridgeInteractionAssets } from '../types.js';
 

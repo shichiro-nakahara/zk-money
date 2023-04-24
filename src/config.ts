@@ -1,4 +1,4 @@
-import { SDK_VERSION, getRollupProviderStatus } from '@aztec/sdk';
+import { SDK_VERSION, getRollupProviderStatus } from '@polyaztec/sdk';
 import { AssetLabel } from './alt-model/known_assets/known_asset_display_data.js';
 import { toBaseUnits } from './app/units.js';
 

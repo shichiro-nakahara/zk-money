@@ -1,7 +1,7 @@
 import { useContext, useMemo } from 'react';
 import { TopLevelContext } from './top_level_context.js';
 import { useObs } from '../../app/util/index.js';
-import { AssetValue } from '@aztec/sdk';
+import { AssetValue } from '@polyaztec/sdk';
 
 function useTopLevelContext() {
   return useContext(TopLevelContext);

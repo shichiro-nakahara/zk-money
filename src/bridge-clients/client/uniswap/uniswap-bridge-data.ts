@@ -1,5 +1,5 @@
 import { AuxDataConfig, AztecAsset, AztecAssetType, BridgeDataFieldGetters, SolidityType } from '../bridge-data.js';
-import { BridgeCallData, EthAddress } from '@aztec/sdk';
+import { BridgeCallData, EthAddress } from '@polyaztec/sdk';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import 'isomorphic-fetch';
 import {

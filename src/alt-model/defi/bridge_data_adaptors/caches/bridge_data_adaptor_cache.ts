@@ -2,7 +2,7 @@ import type { Provider, StaticJsonRpcProvider } from '@ethersproject/providers';
 import type { DefiRecipe } from '../../types.js';
 import createDebug from 'debug';
 import { LazyInitCacheMap } from '../../../../app/util/lazy_init_cache_map.js';
-import { RollupProviderStatus } from '@aztec/sdk';
+import { RollupProviderStatus } from '@polyaztec/sdk';
 import { SdkObs } from '../../../top_level_context/sdk_obs.js';
 
 const debug = createDebug('zm:bridge_data_adaptor_cache');

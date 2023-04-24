@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useAccount, useBalance } from 'wagmi';
-import { EthAddress } from '@aztec/sdk';
+import { EthAddress } from '@polyaztec/sdk';
 import { useRemoteAssets, useSdk } from '../top_level_context/index.js';
 import { createGatedSetter } from '../../app/util/gated_setter.js';
 import { RemoteAsset } from '../types.js';

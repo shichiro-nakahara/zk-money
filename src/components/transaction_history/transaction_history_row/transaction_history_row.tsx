@@ -1,4 +1,4 @@
-import type { UserTx } from '@aztec/sdk';
+import type { UserTx } from '@polyaztec/sdk';
 import { TransactionTypeField } from './transaction_type_field.js';
 import { TransactionTimeField } from './transaction_time_field.js';
 import { renderTransactionValueField } from './transaction_value_field.js';

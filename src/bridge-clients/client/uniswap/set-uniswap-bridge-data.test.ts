@@ -1,4 +1,4 @@
-import { EthAddress, JsonRpcProvider } from '@aztec/sdk';
+import { EthAddress, JsonRpcProvider } from '@polyaztec/sdk';
 import { jest } from '@jest/globals';
 import { BigNumber } from 'ethers';
 import { IERC20, IERC20__factory } from '../../typechain-types/index.js';

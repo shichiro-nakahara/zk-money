@@ -1,5 +1,5 @@
 import React from 'react';
-import { TxSettlementTime } from '@aztec/sdk';
+import { TxSettlementTime } from '@polyaztec/sdk';
 import { SplitSection } from '../sections/split_section/index.js';
 import { TxGasSection } from '../sections/gas_section/index.js';
 import { Toggle } from '../../../../../ui-components/index.js';

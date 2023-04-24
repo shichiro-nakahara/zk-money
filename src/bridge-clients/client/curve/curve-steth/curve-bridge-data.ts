@@ -17,7 +17,7 @@ import {
   IChainlinkOracle,
   IChainlinkOracle__factory,
 } from '../../../typechain-types/index.js';
-import { BridgeCallData, EthAddress, AssetValue } from '@aztec/sdk';
+import { BridgeCallData, EthAddress, AssetValue } from '@polyaztec/sdk';
 
 export class CurveStethBridgeData implements BridgeDataFieldGetters {
   public readonly scalingFactor: bigint = 1n * 10n ** 18n;

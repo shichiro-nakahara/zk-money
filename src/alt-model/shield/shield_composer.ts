@@ -7,7 +7,7 @@ import {
   TxId,
   TxSettlementTime,
   EthersAdapter,
-} from '@aztec/sdk';
+} from '@polyaztec/sdk';
 import createDebug from 'debug';
 import { Amount } from '../assets/index.js';
 import { retryUntil, withinTimeLimit, CachedStep } from '../../app/util/index.js';

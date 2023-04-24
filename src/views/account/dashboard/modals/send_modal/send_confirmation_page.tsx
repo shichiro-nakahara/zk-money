@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { EthAddress, GrumpkinAddress } from '@aztec/sdk';
+import { EthAddress, GrumpkinAddress } from '@polyaztec/sdk';
 import { Button } from '../../../../../ui-components/index.js';
 import { BorderBox } from '../../../../../components/border_box.js';
 import { CostBreakdown } from '../modal_molecules/cost_breakdown/index.js';

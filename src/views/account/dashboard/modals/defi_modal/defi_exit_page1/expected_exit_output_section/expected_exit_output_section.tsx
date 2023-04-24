@@ -6,7 +6,7 @@ import { useAmountBulkPrice } from '../../../../../../../alt-model/price_hooks.j
 import { DefiFormValidationResult } from '../../../../../../../alt-model/defi/defi_form/index.js';
 import style from './expected_exit_output_section.module.css';
 import { ExitExchangeRateInfo } from './exit_exchange_rate_info.js';
-import { AssetValue } from '@aztec/sdk';
+import { AssetValue } from '@polyaztec/sdk';
 
 interface ExpectedExitOutputSectionProps {
   recipe: DefiRecipe;

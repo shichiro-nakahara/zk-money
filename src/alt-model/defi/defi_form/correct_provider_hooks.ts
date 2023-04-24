@@ -1,7 +1,7 @@
 import type { Signer } from '@ethersproject/abstract-signer';
 import { useEffect, useRef } from 'react';
 import { useSigner, useAccount } from 'wagmi';
-import { EthAddress } from '@aztec/sdk';
+import { EthAddress } from '@polyaztec/sdk';
 import { Semaphore, Obs, ChainableInputObs } from '../../../app/util/index.js';
 import { useAccountState } from '../../account_state/account_state_hooks.js';
 

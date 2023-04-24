@@ -1,4 +1,4 @@
-import { AssetValue } from '@aztec/sdk';
+import { AssetValue } from '@polyaztec/sdk';
 import { AuxDataConfig, AztecAsset, BridgeDataFieldGetters, SolidityType } from '../bridge-data.js';
 
 export class ExampleBridgeData implements BridgeDataFieldGetters {

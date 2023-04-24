@@ -1,4 +1,4 @@
-import { EthAddress, AssetValue } from '@aztec/sdk';
+import { EthAddress, AssetValue } from '@polyaztec/sdk';
 import 'isomorphic-fetch';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { AztecAsset, AztecAssetType } from '../bridge-data.js';

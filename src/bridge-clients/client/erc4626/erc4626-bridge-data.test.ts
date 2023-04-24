@@ -3,7 +3,7 @@ import { IERC20Metadata, IERC20Metadata__factory, IERC4626, IERC4626__factory } 
 import { AztecAsset, AztecAssetType } from '../bridge-data.js';
 import { ERC4626BridgeData } from './erc4626-bridge-data.js';
 import { jest } from '@jest/globals';
-import { EthAddress, JsonRpcProvider } from '@aztec/sdk';
+import { EthAddress, JsonRpcProvider } from '@polyaztec/sdk';
 
 type Mockify<T> = {
   [P in keyof T]: jest.Mock | any;

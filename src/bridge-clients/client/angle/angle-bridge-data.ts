@@ -2,7 +2,7 @@ import 'isomorphic-fetch';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { IStableMaster, IStableMaster__factory } from '../../typechain-types/index.js';
 import { AuxDataConfig, AztecAsset, AztecAssetType, BridgeDataFieldGetters, SolidityType } from '../bridge-data.js';
-import { AssetValue, EthAddress } from '@aztec/sdk';
+import { AssetValue, EthAddress } from '@polyaztec/sdk';
 
 export class AngleBridgeData implements BridgeDataFieldGetters {
   readonly scalingFactor: bigint = 10n ** 18n;

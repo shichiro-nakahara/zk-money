@@ -1,4 +1,4 @@
-import { AztecSdk, GrumpkinAddress, AssetValue, EthAddress, EthereumProvider } from '@aztec/sdk';
+import { AztecSdk, GrumpkinAddress, AssetValue, EthAddress, EthereumProvider } from '@polyaztec/sdk';
 import { Emit, ThrowIfCancelled } from '../../../toolbox/flows/flows_utils.js';
 import { ActiveChainIdObs } from '../../active_wallet_hooks.js';
 import { ActiveSignerObs } from '../../defi/defi_form/correct_provider_hooks.js';

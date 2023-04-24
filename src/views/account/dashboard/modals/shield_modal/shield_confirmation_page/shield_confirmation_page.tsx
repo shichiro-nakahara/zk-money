@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { GrumpkinAddress } from '@aztec/sdk';
+import { GrumpkinAddress } from '@polyaztec/sdk';
 import { Button } from '../../../../../../ui-components/index.js';
 import {
   ShieldComposerPhase,

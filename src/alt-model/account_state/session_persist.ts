@@ -1,4 +1,4 @@
-import { EthAddress, GrumpkinAddress } from '@aztec/sdk';
+import { EthAddress, GrumpkinAddress } from '@polyaztec/sdk';
 
 const SESSION_STORAGE_KEY = 'SESSION_STORAGE_KEY';
 

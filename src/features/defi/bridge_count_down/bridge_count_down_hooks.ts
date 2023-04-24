@@ -1,4 +1,4 @@
-import { BridgeCallData, BridgeConfig, isVirtualAsset } from '@aztec/sdk';
+import { BridgeCallData, BridgeConfig, isVirtualAsset } from '@polyaztec/sdk';
 import { useRollupProviderStatus } from '../../../alt-model/index.js';
 import { DefiRecipe } from '../../../alt-model/defi/types.js';
 import { useDefiPulishStatsPollerCache } from '../../../alt-model/top_level_context/top_level_context_hooks.js';

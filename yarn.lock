@@ -29,9 +29,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aztec/barretenberg@npm:2.1.91":
-  version: 2.1.91
-  resolution: "@aztec/barretenberg@npm:2.1.91"
+"@aztec/barretenberg@npm:2.1.95":
+  version: 2.1.95
+  resolution: "@aztec/barretenberg@npm:2.1.95"
   dependencies:
     "@types/levelup": ^4.3.0
     browserify-cipher: ^1.0.1
@@ -47,15 +47,15 @@ __metadata:
     sha3: ^2.1.3
     supports-color: 7.2.0
     tslib: ^2.0.0
-  checksum: 0fef2396b264c7a1b5c1c6d45fda49b4e76c620982fc708471026b82d97f2952e38b29b95536c4ab795c0da8592b98e8dd50673a04d0f040c35d1e06463f1946
+  checksum: 27b0370db4c8e8916aa4f1c0b5f8516a2416793ad7b2ed23fc3f66884209057b2ed54bf82aa1d4ec6a0382c7234584c2077c423698eb6d806681ee9425ac78bd
   languageName: node
   linkType: hard
 
-"@aztec/blockchain@npm:2.1.91":
-  version: 2.1.91
-  resolution: "@aztec/blockchain@npm:2.1.91"
+"@aztec/blockchain@npm:2.1.95":
+  version: 2.1.95
+  resolution: "@aztec/blockchain@npm:2.1.95"
   dependencies:
-    "@aztec/barretenberg": 2.1.91
+    "@aztec/barretenberg": 2.1.95
     "@ethersproject/abi": 5.5.0
     "@ethersproject/abstract-provider": 5.5.1
     "@ethersproject/contracts": 5.5.0
@@ -66,30 +66,7 @@ __metadata:
     cross-fetch: ^3.1.5
     debug: ^4.3.4
     ethers: 5.5.1
-  checksum: 0d63db17ee32fbee8551f741921376342d6abf136e24a5d6a246992d5e1f3e4e9941b809c7cb5651d3a6fd3a84b4e8551f395ced3722a6bdbf1623ae1938a1ea
-  languageName: node
-  linkType: hard
-
-"@aztec/sdk@npm:2.1.91":
-  version: 2.1.91
-  resolution: "@aztec/sdk@npm:2.1.91"
-  dependencies:
-    "@aztec/barretenberg": 2.1.91
-    "@aztec/blockchain": 2.1.91
-    async-mutex: ^0.4.0
-    detect-node: ^2.1.0
-    dexie: 3.0.1
-    events: ^3.3.0
-    level-js: ^6.1.0
-    leveldown: ^6.1.1
-    levelup: ^5.1.1
-    memdown: ^6.1.1
-    serve: ^14.0.1
-    sqlite3: ^5.0.9
-    supports-color: 7.2.0
-    tslib: ^2.4.0
-    typeorm: ^0.3.10
-  checksum: 97a3e2f607349c9fadf4f96cfd1bfc7621306dbd19f7a088f82c2d2b9f9a4427f7cdca686d8b2329b0d0e210feb578e98a4a0805e4f12c364e5221ff16214392
+  checksum: ca6a271228baac6165a4613a3df00a8bd5b4cb25daa57d32af90e28f6baa6f7fba3068143ab160a97b884f04f41af39d2804943337afc58a2ce9af80f74abc68
   languageName: node
   linkType: hard
 
@@ -3594,6 +3571,29 @@ __metadata:
     webpack-plugin-serve:
       optional: true
   checksum: c45beded9c56fbbdc7213a2c36131ace5db360ed704d462cc39d6678f980173a91c9a3f691e6bd3a026f25486644cd0027e8a12a0a4eced8e8b886a0472e7d34
+  languageName: node
+  linkType: hard
+
+"@polyaztec/sdk@npm:2.1.13":
+  version: 2.1.13
+  resolution: "@polyaztec/sdk@npm:2.1.13"
+  dependencies:
+    "@aztec/barretenberg": 2.1.95
+    "@aztec/blockchain": 2.1.95
+    async-mutex: ^0.4.0
+    detect-node: ^2.1.0
+    dexie: 3.0.1
+    events: ^3.3.0
+    level-js: ^6.1.0
+    leveldown: ^6.1.1
+    levelup: ^5.1.1
+    memdown: ^6.1.1
+    serve: ^14.0.1
+    sqlite3: ^5.0.9
+    supports-color: 7.2.0
+    tslib: ^2.4.0
+    typeorm: ^0.3.10
+  checksum: 51580d9ab11dceb9140daf04b98851208f839c80c3758e933376e683dbfe84adda5273b8bbc34f2d051c0d0ba5ae64eafa59ddf018265fba5dc340cd434b78d8
   languageName: node
   linkType: hard
 
@@ -22025,12 +22025,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "zk.money@workspace:."
   dependencies:
-    "@aztec/sdk": 2.1.91
     "@ethersproject/abi": ^5.7.0
     "@ethersproject/abstract-signer": ^5.7.0
     "@ethersproject/contracts": ^5.7.0
     "@ethersproject/providers": ^5.7.1
     "@jest/globals": ^29.3.1
+    "@polyaztec/sdk": 2.1.13
     "@rainbow-me/rainbowkit": ^0.8.1
     "@rollup/plugin-inject": ^5.0.3
     "@storybook/addon-actions": ^6.4.14
