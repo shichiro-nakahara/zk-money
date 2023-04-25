@@ -32,4 +32,4 @@ type Debug_UnaddressedAssets = Exclude<KnownAssetAddressKey, RegisteredAssetLabe
 export const KNOWN_MAINNET_ASSET_ADDRESSES = mapObj(KNOWN_MAINNET_ASSET_ADDRESS_STRS, EthAddress.fromString);
 
 const ADDR = KNOWN_MAINNET_ASSET_ADDRESSES;
-export const SHIELDABLE_ASSET_ADDRESSES = [ADDR.Eth, ADDR.DAI];
+export const SHIELDABLE_ASSET_ADDRESSES = [ADDR.Eth, ADDR.DAI, ADDR.WETH];
