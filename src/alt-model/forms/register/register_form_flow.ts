@@ -28,7 +28,6 @@ export async function registerFormFlow(
   deposit: AssetValue,
   fee: AssetValue,
 ) {
-  if (deposit.assetId !== 0) throw new Error('TODO: support depositing other assets');
   const controller = sdk.createRegisterController(
     accountPublicKey,
     alias,

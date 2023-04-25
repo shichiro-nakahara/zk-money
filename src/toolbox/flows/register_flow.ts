@@ -8,6 +8,7 @@ export type RegisterFlowState =
   | { phase: 'fetching-fees' }
   | { phase: 'creating-proof' }
   | { phase: 'deposit-and-sign'; depositAndSignFlow: DepositAndSignFlowState }
+  | { phase: 'awaiting-l1-approve-signature'; requiredFunds: AssetValue }
   | { phase: 'awaiting-l1-deposit-signature'; requiredFunds: AssetValue }
   | { phase: 'awaiting-l1-deposit-settlement' }
   | { phase: 'awaiting-proof-signature'; proofDigest: string }

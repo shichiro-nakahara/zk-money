@@ -25,7 +25,8 @@ export function useL1DepositResources(
   const { ethAddress: depositor, ethSigner: depositorSigner } = useActiveWalletEthSigner();
   const l1Balance = useL1Balance(depositAsset);
   const config = useConfig();
-  const transactionLimit = depositAsset.label && config.txAmountLimits[depositAsset.label];
+  const depositAssetSymbol = depositAsset.label ? depositAsset.label : (depositAsset.symbol ? depositAsset.symbol : null);
+  const transactionLimit = depositAssetSymbol && config.txAmountLimits[depositAssetSymbol];
   const requiredChainId = config.chainId;
   const { approveProofGasCost, depositFundsGasCost } = useEstimatedShieldingGasCosts(depositor, depositAsset.id);
 

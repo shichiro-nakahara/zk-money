@@ -6,7 +6,9 @@ import { EnforcedRetryableSignInteractions } from '../../views/flow_interactions
 import { L1DepositAndSignFlowState } from '../../alt-model/forms/l1_deposit/l1_deposit_and_sign_flow.js';
 import { RegisterFormFlowRunnerState } from '../../alt-model/forms/register/register_form_flow_runner_hooks.js';
 import { SignDepositInteraction } from './sign_deposit_interaction.js';
+import { SignApproveInteraction } from './sign_approve_interaction.js';
 import style from './wallet_interaction_toast.module.scss';
+import { configuration } from '../../config.js';
 
 const cx = bindStyle(style);
 
@@ -66,18 +68,31 @@ export function WalletInteractionToast(props: WalletInteractionProps) {
 }
 
 export function L1DepositAndSignInteractions({ flowState, onCancel }: L1DepositAndSignInteractionsProps) {
+  const totalSteps = configuration.registerAssetId == 0 ? 2 : 3;
+  
   switch (flowState.phase) {
     case 'checking-pending-funds':
       return (
         <>
-          <ProgressIndicator steps={2} currentStep={1} />
+          <ProgressIndicator steps={totalSteps} currentStep={1} />
           <div className={style.textToast}>Checking for any previously transferred funds...</div>
+        </>
+      );
+    case 'awaiting-l1-approve-signature':
+      return (
+        <>
+          <ProgressIndicator steps={totalSteps} currentStep={1} />
+          <SignApproveInteraction
+            onCancel={onCancel}
+            requiredFunds={flowState.requiredFunds}
+            flowState={flowState.enforcedRetryableSignFlow}
+          />
         </>
       );
     case 'awaiting-l1-deposit-signature':
       return (
         <>
-          <ProgressIndicator steps={2} currentStep={1} />
+          <ProgressIndicator steps={totalSteps} currentStep={totalSteps - 1} />
           <SignDepositInteraction
             onCancel={onCancel}
             requiredFunds={flowState.requiredFunds}
@@ -88,14 +103,14 @@ export function L1DepositAndSignInteractions({ flowState, onCancel }: L1DepositA
     case 'awaiting-l1-deposit-settlement':
       return (
         <>
-          <ProgressIndicator steps={2} currentStep={1} />
-          <div className={style.textToast}>Waiting for L1 transfer to settle...</div>
+          <ProgressIndicator steps={totalSteps} currentStep={totalSteps - 1} />
+          <div className={style.textToast}>Waiting for transaction to settle...</div>
         </>
       );
     case 'awaiting-proof-signature':
       return (
         <>
-          <ProgressIndicator steps={2} currentStep={2} />
+          <ProgressIndicator steps={totalSteps} currentStep={totalSteps} />
           <EnforcedRetryableSignInteractions
             onCancel={onCancel}
             flowState={flowState.enforcedRetryableSignFlow}

@@ -6,10 +6,16 @@ import {
 import { Emit, ThrowIfCancelled } from '../../../toolbox/flows/flows_utils.js';
 import { ActiveChainIdObs } from '../../active_wallet_hooks.js';
 import { ActiveSignerObs } from '../../defi/defi_form/correct_provider_hooks.js';
+import { configuration } from '../../../config.js';
 
 export type L1DepositAndSignFlowState =
   | { phase: 'idle' }
   | { phase: 'checking-pending-funds' }
+  | {
+    phase: 'awaiting-l1-approve-signature';
+    requiredFunds: AssetValue;
+    enforcedRetryableSignFlow: EnforcedRetryableSignFlowState;
+  }
   | {
       phase: 'awaiting-l1-deposit-signature';
       requiredFunds: AssetValue;
@@ -37,7 +43,26 @@ export async function l1DepositAndSignFlow(
   const requiredFundsBaseUnits = await throwIfCancelled(controller.getRequiredFunds());
   if (requiredFundsBaseUnits) {
     // TODO: dynamically handle assetId
-    const requiredFunds: AssetValue = { assetId: 0, value: requiredFundsBaseUnits };
+    const requiredFunds: AssetValue = { assetId: configuration.registerAssetId, value: requiredFundsBaseUnits };
+
+    if (configuration.registerAssetId != 0) {
+      const allowance: bigint = await throwIfCancelled(controller.getPublicAllowance());
+      if (allowance < <bigint>requiredFundsBaseUnits) {
+        // Approve
+        await enforcedRetryableSignFlow(
+          enforcedRetryableSignFlow => {
+            emitState({ phase: 'awaiting-l1-approve-signature', requiredFunds, enforcedRetryableSignFlow });
+          },
+          throwIfCancelled,
+          () => controller.approve(),
+          activeSignerObs,
+          depositorEthAddress,
+          requiredChainId,
+          activeChainIdObs,
+        );
+      }
+    }
+
     await enforcedRetryableSignFlow(
       enforcedRetryableSignFlow => {
         emitState({ phase: 'awaiting-l1-deposit-signature', requiredFunds, enforcedRetryableSignFlow });

@@ -1,5 +1,6 @@
 import { TxSettlementTime } from '@aztec/sdk';
 import { StrOrMax } from '../constants.js';
+import { configuration } from '../../../config.js';
 
 export interface L1DepositFormFields {
   depositAssetId: number;
@@ -8,7 +9,7 @@ export interface L1DepositFormFields {
 }
 
 export const INTIAL_L1_DEPOSIT_FORM_FIELDS: L1DepositFormFields = {
-  depositAssetId: 0,
+  depositAssetId: configuration.registerAssetId,
   depositValueStrOrMax: '',
   speed: null,
 };
