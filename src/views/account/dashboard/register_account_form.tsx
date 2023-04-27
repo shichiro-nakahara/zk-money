@@ -147,7 +147,7 @@ export function RegisterAccountForm(props: RegisterAccountFormProps) {
         allowWalletSelection={true}
         amountStringOrMax={fields.depositValueStrOrMax}
         disabled={locked}
-        allowAssetSelection={false}
+        allowAssetSelection={true}
         onChangeAsset={setters.depositAssetId}
         message={feedback.deposit}
         onChangeAmountStringOrMax={setters.depositValueStrOrMax}

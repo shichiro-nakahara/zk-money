@@ -6,26 +6,28 @@ import {
 import { Emit, ThrowIfCancelled } from '../../../toolbox/flows/flows_utils.js';
 import { ActiveChainIdObs } from '../../active_wallet_hooks.js';
 import { ActiveSignerObs } from '../../defi/defi_form/correct_provider_hooks.js';
-import { configuration } from '../../../config.js';
 
 export type L1DepositAndSignFlowState =
-  | { phase: 'idle' }
-  | { phase: 'checking-pending-funds' }
+  | { phase: 'idle', assetId: number }
+  | { phase: 'checking-pending-funds', assetId: number }
   | {
     phase: 'awaiting-l1-approve-signature';
     requiredFunds: AssetValue;
     enforcedRetryableSignFlow: EnforcedRetryableSignFlowState;
+    assetId: number
   }
   | {
       phase: 'awaiting-l1-deposit-signature';
       requiredFunds: AssetValue;
       enforcedRetryableSignFlow: EnforcedRetryableSignFlowState;
+      assetId: number
     }
-  | { phase: 'awaiting-l1-deposit-settlement' }
+  | { phase: 'awaiting-l1-deposit-settlement', assetId: number }
   | {
       phase: 'awaiting-proof-signature';
       messageToSign: string;
       enforcedRetryableSignFlow: EnforcedRetryableSignFlowState;
+      assetId: number
     };
 
 type L1PayableController = RegisterController | DepositController | MigrateAccountController;
@@ -37,21 +39,22 @@ export async function l1DepositAndSignFlow(
   activeSignerObs: ActiveSignerObs,
   depositorEthAddress: EthAddress,
   requiredChainId: number,
-  activeChainIdObs: ActiveChainIdObs,
+  activeChainIdObs: ActiveChainIdObs
 ) {
-  emitState({ phase: 'checking-pending-funds' });
+  const assetId = controller.assetValue.assetId;
+  emitState({ phase: 'checking-pending-funds', assetId });
   const requiredFundsBaseUnits = await throwIfCancelled(controller.getRequiredFunds());
+  
   if (requiredFundsBaseUnits) {
-    // TODO: dynamically handle assetId
-    const requiredFunds: AssetValue = { assetId: configuration.registerAssetId, value: requiredFundsBaseUnits };
+    const requiredFunds: AssetValue = { assetId: assetId, value: requiredFundsBaseUnits };
 
-    if (configuration.registerAssetId != 0) {
+    if (assetId != 0) {
       const allowance: bigint = await throwIfCancelled(controller.getPublicAllowance());
       if (allowance < <bigint>requiredFundsBaseUnits) {
         // Approve
         await enforcedRetryableSignFlow(
           enforcedRetryableSignFlow => {
-            emitState({ phase: 'awaiting-l1-approve-signature', requiredFunds, enforcedRetryableSignFlow });
+            emitState({ phase: 'awaiting-l1-approve-signature', requiredFunds, enforcedRetryableSignFlow, assetId });
           },
           throwIfCancelled,
           () => controller.approve(),
@@ -65,7 +68,7 @@ export async function l1DepositAndSignFlow(
 
     await enforcedRetryableSignFlow(
       enforcedRetryableSignFlow => {
-        emitState({ phase: 'awaiting-l1-deposit-signature', requiredFunds, enforcedRetryableSignFlow });
+        emitState({ phase: 'awaiting-l1-deposit-signature', requiredFunds, enforcedRetryableSignFlow, assetId });
       },
       throwIfCancelled,
       () => controller.depositFundsToContract(),
@@ -75,7 +78,7 @@ export async function l1DepositAndSignFlow(
       activeChainIdObs,
     );
 
-    emitState({ phase: 'awaiting-l1-deposit-settlement' });
+    emitState({ phase: 'awaiting-l1-deposit-settlement', assetId });
     await throwIfCancelled(controller.awaitDepositFundsToContract());
   }
 
@@ -84,7 +87,7 @@ export async function l1DepositAndSignFlow(
   const messageToSign = new TextDecoder().decode(signingData);
   await enforcedRetryableSignFlow(
     enforcedRetryableSignFlow => {
-      emitState({ phase: 'awaiting-proof-signature', messageToSign, enforcedRetryableSignFlow });
+      emitState({ phase: 'awaiting-proof-signature', messageToSign, enforcedRetryableSignFlow, assetId });
     },
     throwIfCancelled,
     () => controller.sign(),

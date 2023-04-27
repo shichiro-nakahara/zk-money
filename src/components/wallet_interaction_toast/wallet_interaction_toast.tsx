@@ -8,7 +8,6 @@ import { RegisterFormFlowRunnerState } from '../../alt-model/forms/register/regi
 import { SignDepositInteraction } from './sign_deposit_interaction.js';
 import { SignApproveInteraction } from './sign_approve_interaction.js';
 import style from './wallet_interaction_toast.module.scss';
-import { configuration } from '../../config.js';
 
 const cx = bindStyle(style);
 
@@ -68,7 +67,7 @@ export function WalletInteractionToast(props: WalletInteractionProps) {
 }
 
 export function L1DepositAndSignInteractions({ flowState, onCancel }: L1DepositAndSignInteractionsProps) {
-  const totalSteps = configuration.registerAssetId == 0 ? 2 : 3;
+  const totalSteps = flowState?.assetId == 0 ? 2 : 3;
   
   switch (flowState.phase) {
     case 'checking-pending-funds':

@@ -9,7 +9,7 @@ export interface L1DepositFormFields {
 }
 
 export const INTIAL_L1_DEPOSIT_FORM_FIELDS: L1DepositFormFields = {
-  depositAssetId: configuration.registerAssetId,
+  depositAssetId: configuration.defaultRegisterAssetId,
   depositValueStrOrMax: '',
   speed: null,
 };

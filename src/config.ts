@@ -9,7 +9,7 @@ export const configuration = {
   explorerUrl: dev ? 'https://explorer.dev.polyaztec.xyz' : 'https://explorer.polyaztec.xyz',
   hostedSdkUrl: null,
   rollupHost: dev ? 'https://falafel.dev.polyaztec.xyz' : 'https://falafel.polyaztec.xyz',
-  registerAssetId: 2
+  defaultRegisterAssetId: 2
 };
 
 export interface Config {
