@@ -5,12 +5,12 @@ import privateUnderline from '../images/underline.svg';
 import arrow from '../images/arrow.svg';
 
 import sendReceive from '../images/send_receive.svg';
-import shieldFunds from '../images/shield_funds.svg';
+import shieldFunds from '../images/shield_funds.png';
 
 import whyZkMoney1 from '../images/why_zkmoney_1.svg';
 import whyZkMoney2 from '../images/why_zkmoney_2.svg';
 
-import polygonMaticLogo from '../images/polygon-matic-logo.svg';
+import polyAztecLogo from '../images/poly_aztec_logo.svg';
 
 import { bindStyle } from '../ui-components/util/classnames.js';
 import { DefiRecipe } from '../alt-model/defi/types.js';
@@ -87,8 +87,8 @@ function Banner({ onShieldNow, recipes }: { onShieldNow: () => void; recipes: De
   return (
     <div className={style.banner}>
       <div className={style.stack}>
-        <div className={style.polygonLogoWrapper}>
-          <img className={style.polygonLogo} src={polygonMaticLogo} alt="" />
+        <div className={style.polyAztecWrapper}>
+          <img className={style.polyAztecLogo} src={polyAztecLogo} alt="" />
         </div>
       </div>
       <img src={arrow} className={style.arrow} alt="" />
