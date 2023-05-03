@@ -27,7 +27,7 @@ export function FaqHint({ className }: { className?: string }) {
   return (
     <Link
       className={`${style.link} ${className}`}
-      href="#" // TODO
+      href="https://dev.docs.polyaztec.xyz"
       target="_blank"
     >
       <span className={style.label}>Need help?</span>

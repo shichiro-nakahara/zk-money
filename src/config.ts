@@ -6,9 +6,9 @@ const dev = window.location.hostname.includes('dev') || window.location.hostname
 export const configuration = {
   ethereumHostMainnet: 'https://polygon-rpc.com', // Used for chainlink oracles (see: createTopLevelContextValue.tsx:createTopLevelContextValue)
   ethereumHost: dev ? 'https://matic-mumbai.chainstacklabs.com' : 'https://polygon-rpc.com',
-  explorerUrl: dev ? 'https://explorer.dev.polyaztec.xyz' : 'https://explorer.polyaztec.xyz',
+  explorerUrl: dev ? 'https://dev.explorer.polyaztec.xyz' : 'https://explorer.polyaztec.xyz',
   hostedSdkUrl: null,
-  rollupHost: dev ? 'https://falafel.dev.polyaztec.xyz' : 'https://falafel.polyaztec.xyz',
+  rollupHost: dev ? 'https://dev.falafel.polyaztec.xyz' : 'https://falafel.polyaztec.xyz',
   defaultRegisterAssetId: 2
 };
 
