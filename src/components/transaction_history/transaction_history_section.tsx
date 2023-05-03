@@ -17,7 +17,7 @@ export function TransactionHistorySection() {
 
     const rows = [
       [
-        'Ethereum Account',
+        'Polygon Account',
         'Aztec Account Address',
         'Transaction ID',
         'Created',

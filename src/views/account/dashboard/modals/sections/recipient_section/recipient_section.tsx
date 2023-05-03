@@ -23,9 +23,9 @@ interface RecipientSectionProps {
 function getRecipientPlaceholder(type: RecipientType) {
   switch (type) {
     case 'L2':
-      return `Enter Alias or Aztec Address`;
+      return `Enter Alias or PolyAztec Address`;
     case 'L1':
-      return `Enter Ethereum Address`;
+      return `Enter Polygon Address`;
     default:
       return '';
   }

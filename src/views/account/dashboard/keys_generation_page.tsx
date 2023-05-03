@@ -59,8 +59,8 @@ function generateTextKeys(
   spendingKeyEthAddress: EthAddress,
 ) {
   return `Store the following information somewhere safe but accessible:\n
-  Aztec Account Address: aztec:${aztecWalletAddress}\n
-  Aztec Account Generator Address: eth:${accountKeyGeneratorAddress.toString()}\n
+  PolyAztec Account Address: aztec:${aztecWalletAddress}\n
+  PolyAztec Account Generator Address: eth:${accountKeyGeneratorAddress.toString()}\n
   Spending Key Generator Address: eth:${spendingKeyEthAddress.toString()}`;
 }
 
@@ -271,13 +271,13 @@ export function KeysGenerationPage(props: KeysGenerationPageProps) {
       {userChangedWalletError && (
         <FormWarning
           className={style.formWarning}
-          text={`You can't use two different wallets to generate your keys for the Aztec Network. Please switch your wallet back to ${fomattedAddress}.`}
+          text={`You can't use two different wallets to generate your keys for PolyAztec. Please switch your wallet back to ${fomattedAddress}.`}
         />
       )}
       {props.assessment.accountKey.issues.accountKeysDontMatch && (
         <FormWarning
           className={style.formWarning}
-          text={`Your Ethereum wallet is unable to to produce a stable Aztec address.`}
+          text={`Your Polygon wallet is unable to to produce a stable PolyAztec address.`}
         />
       )}
     </>

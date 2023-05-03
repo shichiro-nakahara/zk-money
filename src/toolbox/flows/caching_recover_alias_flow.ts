@@ -73,7 +73,7 @@ export class CachingRecoverAliasFlow {
       const isRegistered = await throwIfCancelled(sdk.isAccountRegistered(accountKeys.publicKey, true));
       if (isRegistered)
         throw new Error(
-          'This Ethereum wallet has already been used to register a different alias in the new system. Please "retry from failed" and select a different Ethereum wallet for deriving a fresh account to which your old alias will be recovered.',
+          'This Polygon wallet has already been used to register a different alias in the new system. Please "retry from failed" and select a different Polygon wallet for deriving a fresh account to which your old alias will be recovered.',
         );
       emitState({ phase: 'derive-new-spending-keys' });
       const spendingKeys = await throwIfCancelled(sdk.generateSpendingKeyPair(address, signer));

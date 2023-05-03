@@ -16,7 +16,7 @@ const aliasChecklist: ChecklistItem[] = [
   },
   {
     validate: (alias: string) => !EthAddress.isAddress(alias),
-    error: 'Alias cannot be an ethereum address.',
+    error: 'Alias cannot be a Polygon address.',
   },
   {
     validate: (alias: string) => alias.length <= 20,

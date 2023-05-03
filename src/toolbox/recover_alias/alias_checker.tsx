@@ -9,7 +9,7 @@ function getResultMessage(result: AliasCheckResult) {
     case 'matches':
       return "Alias matches - please press 'Next'";
     case 'different-account':
-      return "This alias belongs to a different public key. If you are sure that this is the alias that you need to recover, you are using the wrong ethereum wallet -- please press 'cancel', then press 'Retry from beginning' to try the process again with a different ethereum wallet.";
+      return "This alias belongs to a different public key. If you are sure that this is the alias that you need to recover, you are using the wrong Polygon wallet -- please press 'cancel', then press 'Retry from beginning' to try the process again with a different Polygon wallet.";
     case 'not-found':
       return 'This alias does not exist in this system. If you want to use it you can go ahead and register it.';
   }
