@@ -1,6 +1,7 @@
 import { Link } from '../../index.js';
 import { useUniqueId } from '../../util/index.js';
 import style from './faq_hint.module.scss';
+import { configuration } from '../../../config.js';
 
 function FaqIcon() {
   const id = useUniqueId();
@@ -27,7 +28,7 @@ export function FaqHint({ className }: { className?: string }) {
   return (
     <Link
       className={`${style.link} ${className}`}
-      href="https://dev.docs.polyaztec.xyz"
+      href={configuration.docsUrl}
       target="_blank"
     >
       <span className={style.label}>Need help?</span>

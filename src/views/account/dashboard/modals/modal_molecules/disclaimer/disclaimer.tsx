@@ -1,6 +1,7 @@
 import { Checkbox } from '../../../../../../components/index.js';
 import { Hyperlink, HyperlinkIcon } from '../../../../../../ui-components/index.js';
 import style from './disclaimer.module.scss';
+import { configuration } from '../../../../../../config.js';
 
 interface DisclaimerProps {
   accepted: boolean;
@@ -20,8 +21,8 @@ export function Disclaimer({ accepted, onChangeAccepted }: DisclaimerProps) {
           <Hyperlink
             theme="gradient"
             icon={HyperlinkIcon.Open}
-            href="https://medium.com/aztec-protocol/layer-by-layer-a-guide-to-aztecs-security-approach-87df087093c0"
-            label="Learn more about our approach to security here"
+            href={configuration.docsUrl}
+            label="Learn more about PolyAztec here"
           />
         </div>
       </div>
