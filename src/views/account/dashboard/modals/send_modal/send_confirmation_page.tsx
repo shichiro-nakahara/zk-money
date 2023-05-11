@@ -30,7 +30,7 @@ interface SendConfirmationPageProps {
 function formatRecipient(recipientStr: string, sendMode: SendMode) {
   if (sendMode === SendMode.SEND) {
     return GrumpkinAddress.isAddress(recipientStr)
-      ? `aztec:${GrumpkinAddress.fromString(recipientStr).toShortString()}`
+      ? `polyaztec:${GrumpkinAddress.fromString(recipientStr).toShortString()}`
       : `@${recipientStr}`;
   }
   return formatEthAddress(EthAddress.fromString(recipientStr));

@@ -38,13 +38,13 @@ async function deleteAllIndexesDB() {
 
 function getFormattedId(userId?: GrumpkinAddress) {
   if (!userId) return '';
-  return userId.toString().replace('0x', 'aztec:0x');
+  return userId.toString().replace('0x', 'polyaztec:0x');
 }
 
 function getCompactedId(userId?: GrumpkinAddress) {
   if (!userId) return '';
   const str = userId.toString().replace('0x', '');
-  return `aztec:0x${str.slice(0, 4)}...${str.slice(-4)}`;
+  return `polyaztec:0x${str.slice(0, 4)}...${str.slice(-4)}`;
 }
 
 function getCompactedAlias(alias: string) {

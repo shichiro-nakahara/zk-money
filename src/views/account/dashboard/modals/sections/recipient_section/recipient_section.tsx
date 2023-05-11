@@ -50,7 +50,7 @@ function Message({ message, publicKey }: { message?: string; publicKey?: Grumpki
       <div
         className={style.address}
         onClick={() => {
-          navigator.clipboard.writeText(`aztec:${publicKey.toString()}`);
+          navigator.clipboard.writeText(`polyaztec:${publicKey.toString()}`);
           toastsObs.addToast({
             text: 'Address copied to clipboard',
             autocloseInMs: 5e3,
@@ -58,7 +58,7 @@ function Message({ message, publicKey }: { message?: string; publicKey?: Grumpki
           });
         }}
       >
-        Account address: aztec:{publicKey.toShortString()} <img className={style.copy} alt="copy" src={copy} />
+        Account address: polyaztec:{publicKey.toShortString()} <img className={style.copy} alt="copy" src={copy} />
       </div>
     );
   }
