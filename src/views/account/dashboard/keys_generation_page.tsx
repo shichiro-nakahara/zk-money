@@ -59,9 +59,9 @@ function generateTextKeys(
   spendingKeyEthAddress: EthAddress,
 ) {
   return `Store the following information somewhere safe but accessible:\n
-  PolyAztec Account Address: aztec:${aztecWalletAddress}\n
-  PolyAztec Account Generator Address: eth:${accountKeyGeneratorAddress.toString()}\n
-  Spending Key Generator Address: eth:${spendingKeyEthAddress.toString()}`;
+  PolyAztec Account Address: ${aztecWalletAddress}\n
+  PolyAztec Account Generator Address: ${accountKeyGeneratorAddress.toString()}\n
+  Spending Key Generator Address: ${spendingKeyEthAddress.toString()}`;
 }
 
 async function generateKeys(
