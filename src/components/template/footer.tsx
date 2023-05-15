@@ -78,10 +78,10 @@ export function Footer(props: FooterProps) {
         <Foot>
           <Link
             className={style.techLink}
-            href="https://twitter.com/aztecnetwork"
+            href="https://github.com/shichiro-nakahara/aztec-connect"
             target="_blank"
           >
-            Technology developed by @aztecnetwork
+            Community run fork of Aztec Connect
           </Link>
         </Foot>
       </ContentWrapper>
