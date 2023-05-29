@@ -7,10 +7,11 @@ import { RegisterFormFields } from './register_form_fields.js';
 export function useRegisterFormResources(fields: RegisterFormFields): RegisterFormResources {
   const feeAmounts = useRegistrationFeeAmounts(fields.depositAssetId);
   const l1DepositResources = useL1DepositResources(fields, feeAmounts, true);
-  const { alias, spendingKeys, accountKeys, confirmationAccountKeys } = fields;
-  const aliasResult = useUserIdForRegistrationStr(alias, 200);
+  const { alias, spendingKeys, accountKeys, confirmationAccountKeys, depositAssetId } = fields;
+  const aliasResult = useUserIdForRegistrationStr(alias, depositAssetId, 200);
   const checkingAlias = aliasResult.isLoading;
   const aliasAlreadyTaken = !!aliasResult.isRegistered;
+  const aliasFee = aliasResult.aliasFee;
   return {
     ...l1DepositResources,
     accountKeys,
@@ -20,5 +21,6 @@ export function useRegisterFormResources(fields: RegisterFormFields): RegisterFo
     aliasAlreadyTaken,
     spendingKeys,
     feeAmounts,
+    aliasFee
   };
 }

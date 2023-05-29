@@ -3,6 +3,7 @@ import { KeyGenerationInputValue, KeyGenerationResult } from '../../../component
 import { Amount } from '../../assets/amount.js';
 import { hasIssues } from '../helpers.js';
 import { L1DepositResources, assessL1Deposit } from '../l1_deposit/assess_l1_deposit.js';
+import { AssetValue } from '@polyaztec/sdk';
 
 export type RegisterFormResources = L1DepositResources & {
   spendingKeys: KeyGenerationInputValue | null;
@@ -12,6 +13,7 @@ export type RegisterFormResources = L1DepositResources & {
   checkingAlias: boolean;
   aliasAlreadyTaken: boolean;
   feeAmounts: (Amount | undefined)[] | undefined;
+  aliasFee: AssetValue;
 };
 
 export function assessRegisterForm(resources: RegisterFormResources) {
@@ -23,6 +25,8 @@ export function assessRegisterForm(resources: RegisterFormResources) {
     spendingKeys,
     ethAddressOfWalletUsedToGenerateAccount,
     depositor,
+    aliasFee,
+    alias
   } = resources;
   const aliasValidation = validateAlias(resources.alias);
   const invalidAlias = !aliasValidation.valid;
@@ -39,9 +43,11 @@ export function assessRegisterForm(resources: RegisterFormResources) {
     !!depositor &&
     !depositor.equals(ethAddressOfWalletUsedToGenerateAccount);
 
-  const alias = {
+  const aliasResult = {
     info: {
       aliasValidationError,
+      aliasFee,
+      alias
     },
     issues: {
       aliasAlreadyTaken,
@@ -71,12 +77,12 @@ export function assessRegisterForm(resources: RegisterFormResources) {
     },
   };
 
-  const isValid = l1Deposit.isValid && !hasIssues(alias) && !hasIssues(spendingKey);
+  const isValid = l1Deposit.isValid && !hasIssues(aliasResult) && !hasIssues(spendingKey);
 
   return {
     ...l1Deposit,
     connectedWallet,
-    alias,
+    alias: aliasResult,
     accountKey,
     spendingKey,
     isValid,

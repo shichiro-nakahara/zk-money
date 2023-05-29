@@ -36,6 +36,12 @@ export function useRegisterFormFlowRunner(resources: RegisterFormResources, asse
       return;
     }
     setLocked(true);
+    const registerFee = resources.feeAmount?.toAssetValue();
+    const assetId = registerFee ? registerFee.assetId : resources.aliasFee.assetId;
+    const totalFee = {
+      assetId: assetId,
+      value: registerFee ? (registerFee.value + resources.aliasFee.value) : resources.aliasFee.value
+    };
     const args = [
       sdk,
       resources.accountKeys?.publicKey,
@@ -48,7 +54,7 @@ export function useRegisterFormFlowRunner(resources: RegisterFormResources, asse
       resources.requiredChainId,
       activeChainIdObs,
       assessment.balances?.info.targetL2OutputAmount.toAssetValue(),
-      resources.feeAmount?.toAssetValue(),
+      totalFee,
     ] as const;
     if (!areDefined(args)) {
       debug('Runner dependencies not ready');

@@ -9,6 +9,21 @@ import type { Config } from '../config.js';
 
 function getChain(config: Config): Chain {
   switch (config.chainId) {
+    case 8008:
+      return {
+        id: 8008,
+        name: 'Localhost 8544',
+        network: 'localhost',
+        nativeCurrency: {
+          decimals: 18,
+          name: 'MATIC',
+          symbol: 'MATIC',
+        },
+        rpcUrls: {
+          default: { http: ['http://127.0.0.1:8544'] },
+          public: { http: ['http://127.0.0.1:8544'] },
+        },
+      };
     case 1337:
       return { ...localhost, id: config.chainId };
     case 80001:

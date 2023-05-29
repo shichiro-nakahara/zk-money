@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { GrumpkinAddress } from '@polyaztec/sdk';
+import { GrumpkinAddress, AssetValue } from '@polyaztec/sdk';
 import { isValidAliasInput } from '../app/index.js';
 import { createGatedSetter, useObs } from '../app/util/index.js';
 import { useAccountState } from './account_state/index.js';
@@ -44,13 +44,15 @@ export function useUserIdForRecipientStr(recipientStr: string, debounceMs: numbe
   return userIdFetchState;
 }
 
-export function useUserIdForRegistrationStr(alias: string, debounceMs: number) {
+export function useUserIdForRegistrationStr(alias: string, assetId: number, debounceMs: number) {
   const sdk = useSdk();
   const [registrationFetchState, setRegistrationFetchState] = useState<{
     isRegistered?: boolean;
+    aliasFee: AssetValue | null;
     isLoading: boolean;
   }>({
     isLoading: false,
+    aliasFee: null
   });
 
   useEffect(() => {
@@ -62,10 +64,10 @@ export function useUserIdForRegistrationStr(alias: string, debounceMs: number) {
     const gatedSetter = createGatedSetter(setRegistrationFetchState);
     gatedSetter.set({ isLoading: true });
 
-    const task = setTimeout(() => {
-      sdk?.isAliasRegistered(alias, true).then((result: boolean) => {
-        setRegistrationFetchState({ isRegistered: result, isLoading: false });
-      });
+    const task = setTimeout(async () => {
+      const registered = await sdk?.isAliasRegistered(alias, true);
+      const aliasFee = await sdk?.getAliasFee(alias, assetId);
+      setRegistrationFetchState({ isRegistered: registered, aliasFee: aliasFee, isLoading: false });
     }, debounceMs);
 
     return () => {

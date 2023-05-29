@@ -19,6 +19,7 @@ export enum FieldStatus {
   Warning = 'Warning',
   Error = 'Error',
   Loading = 'Loading',
+  Info = 'Info'
 }
 
 interface Asset {
@@ -65,6 +66,7 @@ function renderStatusIcon(status?: FieldStatus) {
       return <img className={style.icon} alt="Error" src={errorIcon} />;
     case FieldStatus.Warning:
       return <img className={style.icon} alt="Warning" src={warningIcon} />;
+    case FieldStatus.Info:
     case FieldStatus.Success:
       return <img className={style.icon} alt="Success" src={successIcon} />;
     case FieldStatus.Loading:
@@ -200,6 +202,7 @@ export function Field(props: FieldProps) {
           style.message,
           props.status === FieldStatus.Warning && style.warningMessage,
           props.status === FieldStatus.Error && style.errorMessage,
+          props.status === FieldStatus.Info && style.infoMessage
         )}
       >
         {props.message}
