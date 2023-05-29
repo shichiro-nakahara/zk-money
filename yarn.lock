@@ -70,29 +70,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aztec/sdk@npm:2.1.95":
-  version: 2.1.95
-  resolution: "@aztec/sdk@npm:2.1.95"
-  dependencies:
-    "@aztec/barretenberg": 2.1.95
-    "@aztec/blockchain": 2.1.95
-    async-mutex: ^0.4.0
-    detect-node: ^2.1.0
-    dexie: 3.0.1
-    events: ^3.3.0
-    level-js: ^6.1.0
-    leveldown: ^6.1.1
-    levelup: ^5.1.1
-    memdown: ^6.1.1
-    serve: ^14.0.1
-    sqlite3: ^5.0.9
-    supports-color: 7.2.0
-    tslib: ^2.4.0
-    typeorm: ^0.3.10
-  checksum: c3f865f85417854787e710fe6e6e5fd2968a07588e65408dfc6a55cd8907357403a8be749ce3c98c9fb841a9737b20a41d4e806a55f8f05b71dd5105c154b675
-  languageName: node
-  linkType: hard
-
 "@babel/code-frame@npm:7.12.11":
   version: 7.12.11
   resolution: "@babel/code-frame@npm:7.12.11"
@@ -3594,6 +3571,29 @@ __metadata:
     webpack-plugin-serve:
       optional: true
   checksum: c45beded9c56fbbdc7213a2c36131ace5db360ed704d462cc39d6678f980173a91c9a3f691e6bd3a026f25486644cd0027e8a12a0a4eced8e8b886a0472e7d34
+  languageName: node
+  linkType: hard
+
+"@polyaztec/sdk@npm:2.3.1":
+  version: 2.3.1
+  resolution: "@polyaztec/sdk@npm:2.3.1"
+  dependencies:
+    "@aztec/barretenberg": 2.1.95
+    "@aztec/blockchain": 2.1.95
+    async-mutex: ^0.4.0
+    detect-node: ^2.1.0
+    dexie: 3.0.1
+    events: ^3.3.0
+    level-js: ^6.1.0
+    leveldown: ^6.1.1
+    levelup: ^5.1.1
+    memdown: ^6.1.1
+    serve: ^14.0.1
+    sqlite3: ^5.0.9
+    supports-color: 7.2.0
+    tslib: ^2.4.0
+    typeorm: ^0.3.10
+  checksum: babc2599f18a650cf2cc1a887f140374522e85d7733e9f17226ac997ecc0b9b1c40767ccfa4e50f455a43bdb2e4d3eb1c466d39adf046086304a0f885f8c27b5
   languageName: node
   linkType: hard
 
@@ -22025,12 +22025,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "zk.money@workspace:."
   dependencies:
-    "@aztec/sdk": 2.1.95
     "@ethersproject/abi": ^5.7.0
     "@ethersproject/abstract-signer": ^5.7.0
     "@ethersproject/contracts": ^5.7.0
     "@ethersproject/providers": ^5.7.1
     "@jest/globals": ^29.3.1
+    "@polyaztec/sdk": 2.3.1
     "@rainbow-me/rainbowkit": ^0.8.1
     "@rollup/plugin-inject": ^5.0.3
     "@storybook/addon-actions": ^6.4.14

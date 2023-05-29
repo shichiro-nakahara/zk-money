@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import type { AssetValue, BridgeCallData } from '@aztec/sdk';
+import type { AssetValue, BridgeCallData } from '@polyaztec/sdk';
 import { useAmounts, useSdk } from '../../top_level_context/index.js';
 import { usePolledCallback } from '../../../app/util/polling_hooks.js';
 import { useSpendableBalance } from '../../balance_hooks.js';

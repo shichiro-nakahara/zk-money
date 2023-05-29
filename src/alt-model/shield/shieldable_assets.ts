@@ -1,4 +1,4 @@
-import { EthAddress } from '@aztec/sdk';
+import { EthAddress } from '@polyaztec/sdk';
 import { KNOWN_MAINNET_ASSET_ADDRESSES as KMAA } from '../known_assets/known_asset_addresses.js';
 
 const SUPPORTED_FOR_SHIELDING = [KMAA.Eth, KMAA.DAI, KMAA.WETH];

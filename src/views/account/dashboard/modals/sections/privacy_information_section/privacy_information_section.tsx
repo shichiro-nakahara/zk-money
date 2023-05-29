@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { PrivacySet } from '@aztec/sdk';
+import { PrivacySet } from '@polyaztec/sdk';
 import { ProgressBar } from '../../../../../../ui-components/index.js';
 import { RemoteAsset } from '../../../../../../alt-model/types.js';
 import { InformationSection } from '../information_section/index.js';

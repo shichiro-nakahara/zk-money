@@ -1,5 +1,5 @@
 import download from '../../ui-components/images/download.svg';
-import { ProofId, UserPaymentTx } from '@aztec/sdk';
+import { ProofId, UserPaymentTx } from '@polyaztec/sdk';
 import { useAccountStateManager, useSdk } from '../../alt-model/top_level_context/top_level_context_hooks.js';
 import { useObs } from '../../app/util/index.js';
 import { Button, ButtonSize, ButtonTheme, Section, SectionTitle } from '../../ui-components/index.js';

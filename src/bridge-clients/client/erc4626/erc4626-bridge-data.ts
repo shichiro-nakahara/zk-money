@@ -1,4 +1,4 @@
-import { EthAddress } from '@aztec/sdk';
+import { EthAddress } from '@polyaztec/sdk';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { IERC20Metadata__factory, IERC4626__factory } from '../../typechain-types/index.js';
 import { AuxDataConfig, AztecAsset, BridgeDataFieldGetters, SolidityType, UnderlyingAsset } from '../bridge-data.js';

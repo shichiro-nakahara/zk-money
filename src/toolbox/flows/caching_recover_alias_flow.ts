@@ -1,4 +1,4 @@
-import type { AztecSdk } from '@aztec/sdk';
+import type { AztecSdk } from '@polyaztec/sdk';
 import { CachedStep } from '../../app/util/index.js';
 import { Emit, ThrowIfCancelled } from './flows_utils.js';
 import { legacyMigrateFlow, LegacyMigrateFlowState } from './legacy_migrate_flow.js';

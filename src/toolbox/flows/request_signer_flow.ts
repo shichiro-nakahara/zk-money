@@ -1,7 +1,7 @@
 import type { Emit, ThrowIfCancelled } from './flows_utils.js';
 import { Signer } from '@ethersproject/abstract-signer';
 import { Fullfiller } from '../../app/util/index.js';
-import { EthAddress, EthersAdapter } from '@aztec/sdk';
+import { EthAddress, EthersAdapter } from '@polyaztec/sdk';
 
 type SignerResolver = (signer: Signer) => void;
 

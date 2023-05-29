@@ -9,7 +9,7 @@ import { useVariableAprText } from '../position_key_stat_configs.js';
 import { createDefiPublishStatsCacheArgsBuilder } from '../defi_publish_stats_utils.js';
 import { createSimpleSwapFlowBinding } from '../flow_configs.js';
 import { LidoBridgeData } from '../../../bridge-clients/client/lido/lido-bridge-data.js';
-import { EthAddress } from '@aztec/sdk';
+import { EthAddress } from '@polyaztec/sdk';
 
 export const LIDO_CARD: CreateRecipeArgs = {
   id: 'lido-staking-x-curve.ETH-to-wStETH',

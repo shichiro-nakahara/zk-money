@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { AztecSdk, EthAddress, GrumpkinAddress, TxSettlementTime } from '@aztec/sdk';
+import { AztecSdk, EthAddress, GrumpkinAddress, TxSettlementTime } from '@polyaztec/sdk';
 import { useSdk } from '../top_level_context/index.js';
 import { FEE_SIG_FIGURES } from '../forms/constants.js';
 import { SendMode } from './send_mode.js';

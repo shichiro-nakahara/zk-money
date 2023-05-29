@@ -1,6 +1,6 @@
 import type { DefiPosition } from '../../../alt-model/defi/open_position_hooks.js';
 import { AssetValueBasedTextHook, DefiRecipe, TxBasedTextHook } from '../../../alt-model/defi/types.js';
-import { AssetValue, UserDefiInteractionResultState, UserDefiTx } from '@aztec/sdk';
+import { AssetValue, UserDefiInteractionResultState, UserDefiTx } from '@polyaztec/sdk';
 import { SkeletonRect } from '../../../ui-components/index.js';
 
 function TxBasedText(props: { recipe: DefiRecipe; tx: UserDefiTx; useText: TxBasedTextHook }) {

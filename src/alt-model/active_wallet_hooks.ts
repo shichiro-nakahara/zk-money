@@ -1,4 +1,4 @@
-import { EthAddress, EthereumProvider, EthersAdapter } from '@aztec/sdk';
+import { EthAddress, EthereumProvider, EthersAdapter } from '@polyaztec/sdk';
 import { useEffect, useMemo, useRef } from 'react';
 import { useAccount, useNetwork, useSigner } from 'wagmi';
 import { Obs, ChainableInputObs } from '../app/util/index.js';

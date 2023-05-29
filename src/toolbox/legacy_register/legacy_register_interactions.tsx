@@ -1,7 +1,7 @@
 import { useObs } from '../../app/util/index.js';
 import { useRef, useState } from 'react';
 import { SignerSubmit } from '../signer_submit/index.js';
-import type { AztecSdk } from '@aztec/sdk';
+import type { AztecSdk } from '@polyaztec/sdk';
 import style from './legacy_register_interactions.module.css';
 import {
   CachingLegacyAccountRegisterFlow,

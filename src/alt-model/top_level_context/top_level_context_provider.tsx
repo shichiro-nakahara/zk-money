@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { RollupProviderStatus } from '@aztec/sdk';
+import { RollupProviderStatus } from '@polyaztec/sdk';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { createBridgeDataAdaptorsMethodCaches } from '../defi/bridge_data_adaptors/caches/bridge_data_adaptors_method_caches.js';
 import { createDefiRecipes } from '../defi/recipes.js';

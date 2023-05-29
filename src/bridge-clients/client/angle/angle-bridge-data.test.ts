@@ -3,7 +3,7 @@ import { IStableMaster, IStableMaster__factory } from '../../typechain-types/ind
 import { AztecAsset, AztecAssetType } from '../bridge-data.js';
 import { utils } from 'ethers';
 import { jest } from '@jest/globals';
-import { EthAddress, JsonRpcProvider } from '@aztec/sdk';
+import { EthAddress, JsonRpcProvider } from '@polyaztec/sdk';
 
 type Mockify<T> = {
   [P in keyof T]: jest.Mock | any;

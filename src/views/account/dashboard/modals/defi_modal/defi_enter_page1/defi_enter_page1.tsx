@@ -1,4 +1,4 @@
-import { DefiSettlementTime } from '@aztec/sdk';
+import { DefiSettlementTime } from '@polyaztec/sdk';
 import type { StrOrMax } from '../../../../../../alt-model/forms/constants.js';
 import {
   DefiFormFeedback,

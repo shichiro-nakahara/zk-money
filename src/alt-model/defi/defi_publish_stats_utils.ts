@@ -1,4 +1,4 @@
-import { BridgeCallData } from '@aztec/sdk';
+import { BridgeCallData } from '@polyaztec/sdk';
 import { DefiPublishStatsCacheArgs } from './types.js';
 
 export function createDefiPublishStatsCacheArgsBuilder(opts: { ignoreAuxData: boolean }) {

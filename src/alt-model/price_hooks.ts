@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { AssetValue } from '@aztec/sdk';
+import { AssetValue } from '@polyaztec/sdk';
 import { convertToBulkPrice } from '../app/index.js';
 import { Obs, useMaybeObs } from '../app/util/index.js';
 import { mapToObj } from '../app/util/objects.js';

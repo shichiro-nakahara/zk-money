@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import createDebug from 'debug';
-import { GrumpkinAddress, EthAddress, TxSettlementTime } from '@aztec/sdk';
+import { GrumpkinAddress, EthAddress, TxSettlementTime } from '@polyaztec/sdk';
 import { useAsset } from '../asset_hooks.js';
 import { useMaxSpendableValue } from '../balance_hooks.js';
 import { useAwaitCorrectProvider } from '../defi/defi_form/correct_provider_hooks.js';

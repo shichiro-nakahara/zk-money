@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AztecSdk } from '@aztec/sdk';
+import { AztecSdk } from '@polyaztec/sdk';
 
 interface AliasCollision {
   alias: string; // The alias (case sensitive)

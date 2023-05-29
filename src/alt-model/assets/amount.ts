@@ -1,4 +1,4 @@
-import { AssetValue, toBaseUnits } from '@aztec/sdk';
+import { AssetValue, toBaseUnits } from '@polyaztec/sdk';
 import { getAssetPreferredFractionalDigits } from '../known_assets/known_asset_display_data.js';
 import { RemoteAsset } from '../types.js';
 import { baseUnitsToFloat, convertToBulkPrice, formatBaseUnits } from '../../app/index.js';

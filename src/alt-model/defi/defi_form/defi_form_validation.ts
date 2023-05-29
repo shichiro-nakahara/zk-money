@@ -1,4 +1,4 @@
-import { DefiSettlementTime, BridgeCallData, AssetValue } from '@aztec/sdk';
+import { DefiSettlementTime, BridgeCallData, AssetValue } from '@polyaztec/sdk';
 import type { AmountFactory } from '../../assets/amount_factory.js';
 import type { DefiComposerPayload } from './defi_composer.js';
 import type { RemoteAsset } from '../../types.js';

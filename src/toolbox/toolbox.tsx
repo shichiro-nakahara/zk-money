@@ -3,7 +3,7 @@ import { LegacyRegisterInteractions } from './legacy_register/index.js';
 import { useEffect, useRef, useState } from 'react';
 import { getWagmiRainbowConfig } from './wagmi_rainbow_config.js';
 import type { Config } from '../config.js';
-import { AztecSdk, createAztecSdk, JsonRpcProvider, SdkFlavour } from '@aztec/sdk';
+import { AztecSdk, createAztecSdk, JsonRpcProvider, SdkFlavour } from '@polyaztec/sdk';
 import { WagmiConfig } from 'wagmi';
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { chainIdToNetwork } from '../app/networks.js';

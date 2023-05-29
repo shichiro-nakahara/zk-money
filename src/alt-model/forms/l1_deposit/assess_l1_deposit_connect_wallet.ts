@@ -1,4 +1,4 @@
-import { EthAddress, EthereumProvider } from '@aztec/sdk';
+import { EthAddress, EthereumProvider } from '@polyaztec/sdk';
 import { Amount } from '../../assets/amount.js';
 import { RemoteAsset } from '../../types.js';
 

@@ -1,4 +1,4 @@
-import { ProofId, UserDefiClaimTx, UserDefiTx, UserTx } from '@aztec/sdk';
+import { ProofId, UserDefiClaimTx, UserDefiTx, UserTx } from '@polyaztec/sdk';
 import { useDefiRecipes } from '../../../alt-model/top_level_context/index.js';
 import { exitingRecipeMatcher, recipeMatcher } from '../../../alt-model/defi/recipe_matchers.js';
 import style from './transaction_type_field.module.scss';

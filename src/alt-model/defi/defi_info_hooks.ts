@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { BridgeCallData, UserDefiTx } from '@aztec/sdk';
+import { BridgeCallData, UserDefiTx } from '@polyaztec/sdk';
 import { DefiRecipe, FlowDirection } from './types.js';
 import { useAmount, useBridgeDataAdaptorsMethodCaches, useDefiRecipes } from '../top_level_context/index.js';
 import { useMaybeObs } from '../../app/util/index.js';

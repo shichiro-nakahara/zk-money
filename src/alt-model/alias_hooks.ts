@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { GrumpkinAddress } from '@aztec/sdk';
+import { GrumpkinAddress } from '@polyaztec/sdk';
 import { isValidAliasInput } from '../app/index.js';
 import { createGatedSetter, useObs } from '../app/util/index.js';
 import { useAccountState } from './account_state/index.js';

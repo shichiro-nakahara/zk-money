@@ -1,4 +1,4 @@
-import { EthAddress } from '@aztec/sdk';
+import { EthAddress } from '@polyaztec/sdk';
 import { Network } from '../../app/networks.js';
 import { delay } from '../../app/util/index.js';
 import { ActiveSignerObs } from '../defi/defi_form/correct_provider_hooks.js';

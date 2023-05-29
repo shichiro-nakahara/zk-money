@@ -1,4 +1,4 @@
-import { AssetValue, EthAddress } from '@aztec/sdk';
+import { AssetValue, EthAddress } from '@polyaztec/sdk';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { IChainlinkOracle__factory, IERC20__factory, UniswapBridge__factory } from '../../typechain-types/index.js';
 import { AztecAsset } from '../bridge-data.js';

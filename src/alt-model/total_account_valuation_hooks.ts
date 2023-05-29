@@ -1,4 +1,4 @@
-import { AssetValue, UserDefiInteractionResultState } from '@aztec/sdk';
+import { AssetValue, UserDefiInteractionResultState } from '@polyaztec/sdk';
 import { useMemo } from 'react';
 import { useAggregatedAssetsBulkPrice } from './price_hooks.js';
 import { useBridgeDataAdaptorsMethodCaches, useDefiRecipes, usePendingBalances } from './top_level_context/index.js';

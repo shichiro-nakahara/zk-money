@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { GrumpkinAddress } from '@aztec/sdk';
+import { GrumpkinAddress } from '@polyaztec/sdk';
 import { useCachedAlias } from '../../alt-model/alias_hooks.js';
 import { TopLevelContext } from '../../alt-model/top_level_context/top_level_context.js';
 import { useWalletInteractionIsOngoing } from '../../alt-model/wallet_interaction_hooks.js';

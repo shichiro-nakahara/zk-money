@@ -1,4 +1,4 @@
-import { GrumpkinAddress } from '@aztec/sdk';
+import { GrumpkinAddress } from '@polyaztec/sdk';
 import { Obs } from '../../app/util/index.js';
 
 type UserIdStringToAliasMap = Record<string, string>;

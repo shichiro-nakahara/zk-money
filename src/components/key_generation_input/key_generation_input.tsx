@@ -1,4 +1,4 @@
-import { EthAddress, GrumpkinAddress } from '@aztec/sdk';
+import { EthAddress, GrumpkinAddress } from '@polyaztec/sdk';
 import { ImageButton, ImageButtonIcon } from '../../ui-components/index.js';
 import { bindStyle } from '../../ui-components/util/classnames.js';
 import { formatEthAddress } from '../../app/util/helpers.js';

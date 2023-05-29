@@ -1,5 +1,5 @@
 import createDebug from 'debug';
-import { EthAddress, TxSettlementTime } from '@aztec/sdk';
+import { EthAddress, TxSettlementTime } from '@polyaztec/sdk';
 import { useState } from 'react';
 import { useAccount, useNetwork } from 'wagmi';
 import { useL1Balance } from '../assets/l1_balance_hooks.js';

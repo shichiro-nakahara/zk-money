@@ -1,6 +1,6 @@
 import type { Signer } from '@ethersproject/abstract-signer';
 import createDebug from 'debug';
-import { AztecSdk, EthAddress, EthersAdapter, GrumpkinAddress } from '@aztec/sdk';
+import { AztecSdk, EthAddress, EthersAdapter, GrumpkinAddress } from '@polyaztec/sdk';
 import { Obs } from '../../app/util/index.js';
 import { listenAccountUpdated } from '../event_utils.js';
 import { SdkObs } from '../top_level_context/sdk_obs.js';

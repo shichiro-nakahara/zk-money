@@ -2,7 +2,7 @@ import { registerFlow, RegisterFlowState } from './register_flow.js';
 import { deriveLegacyAccountKeysFlow, DeriveLegacyAccountKeysFlowState } from './derive_legacy_account_keys_flow.js';
 import type { ThrowIfCancelled, Emit } from './flows_utils.js';
 import { CachedStep } from '../../app/util/index.js';
-import { AztecSdk } from '@aztec/sdk';
+import { AztecSdk } from '@polyaztec/sdk';
 import { RegistrationKeys } from './types.js';
 import { requestSignerFlow, RequestSignerFlowState } from './request_signer_flow.js';
 

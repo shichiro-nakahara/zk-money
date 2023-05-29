@@ -4,7 +4,7 @@ import { BridgeInteraction, CreateRecipeArgs, DefiRecipe } from '../types.js';
 import { formatDate_short, formatPercentage_1dp } from '../../../app/util/formatters.js';
 import { useCurrentAssetYield, useDefaultAuxDataOption, useDefaultTermApr, useTermApr } from '../defi_info_hooks.js';
 import { keyStatConfig_averageWait } from '../key_stat_configs.js';
-import { EthAddress, UserDefiTx } from '@aztec/sdk';
+import { EthAddress, UserDefiTx } from '@polyaztec/sdk';
 import { Amount } from '../../assets/index.js';
 import { createDefiPublishStatsCacheArgsBuilder } from '../defi_publish_stats_utils.js';
 import { ElementBridgeData } from '../../../bridge-clients/client/element/element-bridge-data.js';

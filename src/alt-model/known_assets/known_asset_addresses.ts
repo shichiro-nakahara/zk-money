@@ -1,4 +1,4 @@
-import { EthAddress } from '@aztec/sdk';
+import { EthAddress } from '@polyaztec/sdk';
 import { mapObj } from '../../app/util/objects.js';
 import { RegisteredAssetLabel } from '../registrations_data/registrations_data_types.js';
 

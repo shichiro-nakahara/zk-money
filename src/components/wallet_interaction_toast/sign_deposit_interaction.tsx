@@ -1,4 +1,4 @@
-import { AssetValue } from '@aztec/sdk';
+import { AssetValue } from '@polyaztec/sdk';
 import { useAmount } from '../../alt-model/top_level_context/top_level_context_hooks.js';
 import { EnforcedRetryableSignFlowState } from '../../toolbox/flows/enforced_retryable_sign_flow.js';
 import { EnforcedRetryableSignInteractions } from '../../views/flow_interactions/enforced_retryable_sign_interactions.js';

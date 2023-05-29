@@ -1,4 +1,4 @@
-import { TxSettlementTime } from '@aztec/sdk';
+import { TxSettlementTime } from '@polyaztec/sdk';
 import { KeyGenerationInputValue, KeyGenerationResult } from '../../../components/index.js';
 import { L1DepositFormFields, INTIAL_L1_DEPOSIT_FORM_FIELDS } from '../l1_deposit/l1_deposit_form_fields.js';
 

@@ -1,6 +1,6 @@
 import createDebug from 'debug';
 import { useCallback, useMemo } from 'react';
-import { EthAddress, TxId } from '@aztec/sdk';
+import { EthAddress, TxId } from '@polyaztec/sdk';
 import { Contract } from '@ethersproject/contracts';
 import { useStableEthereumProvider, useGasUnitPrice } from '../top_level_context/index.js';
 import { usePolledCallback } from '../../app/util/polling_hooks.js';

@@ -10,7 +10,7 @@ import {
 import { AztecAsset, AztecAssetType } from '../bridge-data.js';
 import { CompoundBridgeData } from './compound-bridge-data.js';
 import { jest } from '@jest/globals';
-import { EthAddress, JsonRpcProvider } from '@aztec/sdk';
+import { EthAddress, JsonRpcProvider } from '@polyaztec/sdk';
 
 type Mockify<T> = {
   [P in keyof T]: jest.Mock | any;

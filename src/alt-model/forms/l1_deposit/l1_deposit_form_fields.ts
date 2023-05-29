@@ -1,4 +1,4 @@
-import { TxSettlementTime } from '@aztec/sdk';
+import { TxSettlementTime } from '@polyaztec/sdk';
 import { StrOrMax } from '../constants.js';
 import { configuration } from '../../../config.js';
 

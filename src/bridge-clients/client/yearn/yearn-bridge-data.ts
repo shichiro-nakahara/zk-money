@@ -17,7 +17,7 @@ import {
   SolidityType,
   UnderlyingAsset,
 } from '../bridge-data.js';
-import { EthAddress, AssetValue } from '@aztec/sdk';
+import { EthAddress, AssetValue } from '@polyaztec/sdk';
 
 export class YearnBridgeData implements BridgeDataFieldGetters {
   allYvETH?: EthAddress[];

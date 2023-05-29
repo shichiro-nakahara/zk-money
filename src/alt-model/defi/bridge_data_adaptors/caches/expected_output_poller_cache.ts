@@ -5,7 +5,7 @@ import { Obs } from '../../../../app/util/index.js';
 import { Poller } from '../../../../app/util/poller.js';
 import { LazyInitDeepCacheMap } from '../../../../app/util/lazy_init_cache_map.js';
 import { toAdaptorArgs } from '../bridge_adaptor_util.js';
-import { AssetValue } from '@aztec/sdk';
+import { AssetValue } from '@polyaztec/sdk';
 
 const debug = createDebug('zm:expected_output_poller_cache');
 

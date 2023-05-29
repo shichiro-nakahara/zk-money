@@ -1,4 +1,4 @@
-import type { AssetValue, BridgeCallData, EthAddress, UserDefiTx } from '@aztec/sdk';
+import type { AssetValue, BridgeCallData, EthAddress, UserDefiTx } from '@polyaztec/sdk';
 import React from 'react';
 import type { RemoteAsset } from '../types.js';
 import { RegisteredAssetLabel, RegisteredBridgeLabel } from '../registrations_data/index.js';

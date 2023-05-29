@@ -1,4 +1,4 @@
-import { BridgeCallData, DefiSettlementTime, TxSettlementTime } from '@aztec/sdk';
+import { BridgeCallData, DefiSettlementTime, TxSettlementTime } from '@polyaztec/sdk';
 import { ProgressBar } from '../../../../../../ui-components/index.js';
 import { useRollupProviderStatus } from '../../../../../../alt-model/index.js';
 import { InformationSection } from '../information_section/index.js';

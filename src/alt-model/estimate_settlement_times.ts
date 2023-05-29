@@ -1,4 +1,4 @@
-import type { RollupProviderStatus } from '@aztec/sdk';
+import type { RollupProviderStatus } from '@polyaztec/sdk';
 
 const APPROX_ROLLUP_PROOF_DURATION_MS = 1000 * 60 * 7;
 

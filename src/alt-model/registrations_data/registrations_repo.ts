@@ -1,4 +1,4 @@
-import { BlockchainAsset, BlockchainBridge, EthAddress } from '@aztec/sdk';
+import { BlockchainAsset, BlockchainBridge, EthAddress } from '@polyaztec/sdk';
 import { RemoteAsset } from '../types.js';
 import { registrationsDataRaw } from './registrations_data_raw.js';
 import createDebug from 'debug';

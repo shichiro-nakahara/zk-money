@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { ProofId, UserDefiTx } from '@aztec/sdk';
+import { ProofId, UserDefiTx } from '@polyaztec/sdk';
 import { useAccountState } from './account_state/index.js';
 
 export function useDefiTxs() {

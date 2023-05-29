@@ -1,4 +1,4 @@
-import { BridgeCallData, EthAddress, JsonRpcProvider } from '@aztec/sdk';
+import { BridgeCallData, EthAddress, JsonRpcProvider } from '@polyaztec/sdk';
 import { BigNumber } from 'ethers';
 import {
   IChainlinkOracle,

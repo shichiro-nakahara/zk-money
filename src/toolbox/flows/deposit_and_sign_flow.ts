@@ -1,4 +1,4 @@
-import { AssetValue, DepositController, MigrateAccountController, RegisterController } from '@aztec/sdk';
+import { AssetValue, DepositController, MigrateAccountController, RegisterController } from '@polyaztec/sdk';
 import { Emit, ThrowIfCancelled } from './flows_utils.js';
 
 export type DepositAndSignFlowState =

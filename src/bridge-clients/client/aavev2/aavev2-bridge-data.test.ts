@@ -2,7 +2,7 @@ import { IERC4626, IERC4626__factory } from '../../typechain-types/index.js';
 import { AztecAsset, AztecAssetType } from '../bridge-data.js';
 import { AaveV2BridgeData } from './aavev2-bridge-data.js';
 import { jest } from '@jest/globals';
-import { EthAddress, JsonRpcProvider } from '@aztec/sdk';
+import { EthAddress, JsonRpcProvider } from '@polyaztec/sdk';
 
 type Mockify<T> = {
   [P in keyof T]: jest.Mock | any;

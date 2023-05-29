@@ -1,4 +1,4 @@
-import { AssetValue } from '@aztec/sdk';
+import { AssetValue } from '@polyaztec/sdk';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { IRollupProcessor, IRollupProcessor__factory } from '../../typechain-types/index.js';
 import { AuxDataConfig, AztecAsset, AztecAssetType, BridgeDataFieldGetters, SolidityType } from '../bridge-data.js';

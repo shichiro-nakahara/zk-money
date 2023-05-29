@@ -1,4 +1,4 @@
-import type { AssetValue } from '@aztec/sdk';
+import type { AssetValue } from '@polyaztec/sdk';
 import type { RemoteAsset } from '../types.js';
 import { Amount } from './amount.js';
 

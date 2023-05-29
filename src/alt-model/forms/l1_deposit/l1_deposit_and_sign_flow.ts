@@ -1,4 +1,4 @@
-import { AssetValue, DepositController, EthAddress, MigrateAccountController, RegisterController } from '@aztec/sdk';
+import { AssetValue, DepositController, EthAddress, MigrateAccountController, RegisterController } from '@polyaztec/sdk';
 import {
   EnforcedRetryableSignFlowState,
   enforcedRetryableSignFlow,

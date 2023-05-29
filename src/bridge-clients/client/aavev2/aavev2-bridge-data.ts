@@ -1,6 +1,6 @@
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import 'isomorphic-fetch';
-import { AssetValue } from '@aztec/sdk';
+import { AssetValue } from '@polyaztec/sdk';
 import { AztecAsset, AztecAssetType } from '../bridge-data.js';
 
 import { ERC4626BridgeData } from '../erc4626/erc4626-bridge-data.js';

@@ -1,4 +1,4 @@
-import { AssetValue, UserDefiInteractionResultState, UserDefiTx } from '@aztec/sdk';
+import { AssetValue, UserDefiInteractionResultState, UserDefiTx } from '@polyaztec/sdk';
 import { useSpendableBalances } from '../balance_hooks.js';
 import { useDefiTxs } from '../defi_txs_hooks.js';
 import { useDefiRecipes } from '../top_level_context/index.js';
