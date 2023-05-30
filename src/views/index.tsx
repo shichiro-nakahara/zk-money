@@ -1,4 +1,3 @@
-import Cookie from 'js-cookie';
 import { useContext, useEffect, useState } from 'react';
 import { Location, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -15,7 +14,6 @@ import { Pages } from './views.js';
 import { getTOSToast } from './toasts/toast_configurations.js';
 import { Navbar, Theme } from '../ui-components/index.js';
 import { UserAccountMenu } from '../components/template/user_account_menu.js';
-import { Earn } from './account/dashboard/earn.js';
 import { Balance } from './account/dashboard/balance.js';
 import { DefiModal, DefiModalProps } from './account/dashboard/modals/defi_modal/defi_modal.js';
 import { Home } from './home.js';
@@ -25,17 +23,14 @@ import { useValidRecipesOnly } from './account/dashboard/defi_cards_list.js';
 import { useL1PendingBalances } from '../alt-model/assets/l1_balance_hooks.js';
 import './app.css';
 
-const getIsTOSAccepted = () => Cookie.get('tos_accepted') === 'true';
-
-function useShowTOS() {
+function useShowTOS(config: Config) {
   const { toastsObs } = useContext(TopLevelContext);
-  const isTOSAccepted = getIsTOSAccepted();
 
   useEffect(() => {
-    if (!isTOSAccepted) {
-      toastsObs.addToast(getTOSToast(toastsObs));
+    if (config && !config.tosAccepted) {
+      toastsObs.addToast(getTOSToast(toastsObs, config));
     }
-  }, [isTOSAccepted, toastsObs]);
+  }, [config, toastsObs]);
 }
 
 function getTheme(location: Location) {
@@ -73,7 +68,7 @@ export function Views({ config }: ViewsProps) {
     setDefiModalProps({ recipe, flowDirection: 'exit', onClose: handleCloseDefiModal });
   };
 
-  useShowTOS();
+  useShowTOS(config);
 
   const isInAccessPage = location.pathname === Pages.BALANCE && (!isLoggedIn || accountState?.isSyncing);
   const shouldCenterContent = location.pathname === Pages.TRADE || isInAccessPage;

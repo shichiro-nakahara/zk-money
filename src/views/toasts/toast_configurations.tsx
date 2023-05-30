@@ -8,6 +8,7 @@ import { WalletInteractionStep, WalletInteractionToast } from '../../components/
 import { FlowRunnerState } from '../../toolbox/flows/flow_runner.js';
 import { PhaseType } from '../account/dashboard/register_account_form.js';
 import style from './toast_configurations.module.scss';
+import { Config } from '../../config.js';
 
 export enum Toasts {
   TOS = 'TOS',
@@ -18,13 +19,14 @@ export enum Toasts {
   WALLET_INTERACTION = 'WALLET_INTERACTION',
 }
 
-export const getTOSToast = (toastsObs: ToastsObs) => ({
+export const getTOSToast = (toastsObs: ToastsObs, config: Config) => ({
   key: Toasts.TOS,
   heavy: true,
   primaryButton: {
     onClick: () => {
       toastsObs.removeToastByKey(Toasts.TOS);
       Cookies.set('tos_accepted', 'true');
+      config.tosAccepted = true;
     },
     text: 'Accept',
   },

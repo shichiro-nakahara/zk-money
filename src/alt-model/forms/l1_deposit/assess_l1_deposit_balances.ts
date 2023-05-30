@@ -1,6 +1,7 @@
 import { Amount } from '../../assets/amount.js';
 import { RemoteAsset } from '../../types.js';
 import { roundDownToPreferedFractionalDigits, getPrecisionIsTooHigh } from '../helpers.js';
+import { AssetValue } from '@polyaztec/sdk';
 
 function max(x1: bigint, x2: bigint) {
   return x1 < x2 ? x2 : x1;
@@ -22,6 +23,7 @@ export interface AssessL1DepositBalancesResources {
   depositMaxEnabled: boolean;
   depositValueStr: string;
   allowZeroDeposit: boolean;
+  aliasFee: AssetValue
 }
 
 export function assessL1DepositBalances({
@@ -36,6 +38,7 @@ export function assessL1DepositBalances({
   depositMaxEnabled,
   depositValueStr,
   allowZeroDeposit,
+  aliasFee
 }: AssessL1DepositBalancesResources) {
   if (feeAmount === undefined) return;
   if (l1Balance === undefined) return;
@@ -55,7 +58,9 @@ export function assessL1DepositBalances({
   // Accounting for both L1 gas and L2 fees
   const depositAssetIsEth = depositAsset.id === 0;
   const ethReservedForGas = approveProofGasCost + depositFundsGasCost;
-  const totalDepositAssetCost = feeInDepositAsset + (depositAssetIsEth ? ethReservedForGas : 0n);
+  const totalDepositAssetCost = feeInDepositAsset + 
+    (depositAssetIsEth ? ethReservedForGas : 0n) +
+    (aliasFee ? aliasFee.value : 0n);
 
   const maxL2Output = max(min(totalL1Balance - totalDepositAssetCost, transactionLimit), 0n);
   const targetL2OutputAmount = depositMaxEnabled

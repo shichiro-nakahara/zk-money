@@ -20,6 +20,10 @@ const socialItems = [
   {
     name: 'Twitter',
     href: 'https://twitter.com/poly_aztec',
+  },
+  {
+    name: 'Matrix',
+    href: 'https://matrix.to/#/%23polyaztec:matrix.org'
   }
 ];
 

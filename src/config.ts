@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import { SDK_VERSION, getRollupProviderStatus } from '@polyaztec/sdk';
 import { AssetLabel } from './alt-model/known_assets/known_asset_display_data.js';
 import { toBaseUnits } from './app/units.js';
@@ -23,6 +24,7 @@ export interface Config {
   ethereumHost: string;
   txAmountLimits: Record<AssetLabel, bigint>;
   debugFilter: string;
+  tosAccepted: boolean;
 }
 
 interface ConfigVars {
@@ -83,7 +85,8 @@ function getDeployConfig(deployTag: string, rollupProviderUrl: string, chainId: 
     explorerUrl: configuration.explorerUrl,
     chainId,
     ethereumHost: configuration.ethereumHost,
-    ethereumHostMainnet: configuration.ethereumHostMainnet
+    ethereumHostMainnet: configuration.ethereumHostMainnet,
+    tosAccepted: Cookies.get('tos_accepted') === 'true'
   };
 }
 

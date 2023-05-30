@@ -38,22 +38,24 @@ export function getL1DepositAmountInputFeedback(
     return `Amount must be non-zero`;
   }
   if (issues.mustAllowForFee && issues.mustAllowForGas) {
+    const aliasFee = resources.aliasFee ? resources.aliasFee.value : 0n;
     const fee = resources.feeAmount;
-    const cost = fee?.add(info.ethReservedForGas);
+    const cost = fee?.add(info.ethReservedForGas).add(aliasFee);
     return `Please allow ${cost?.format({
       layer: 'L1',
-    })} from your L1 balance for paying the transaction fee and covering gas costs.`;
+    })} from your L1 balance for paying fees and covering gas costs.`;
   }
   if (issues.mustAllowForGas) {
     const gas = info.targetL2OutputAmount.withBaseUnits(info.ethReservedForGas);
     return `Please allow ${gas.format({ layer: 'L1', uniform: true })} from your L1 balance for covering gas costs.`;
   }
   if (issues.mustAllowForFee) {
+    const aliasFee = resources.aliasFee ? resources.aliasFee.value : 0n;
     const fee = resources.feeAmount;
-    return `Please allow ${fee?.format({
+    return `Please allow ${fee?.add(aliasFee).format({
       layer: 'L1',
       uniform: true,
-    })} from your L1 balance for paying the transaction fee.`;
+    })} from your L1 balance for paying fees.`;
   }
   if (issues.beyondTransactionLimit) {
     // this is a duplicate of the same check in getL1DepositAccountFeedback

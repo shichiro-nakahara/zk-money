@@ -1,10 +1,10 @@
-import Cookies from 'js-cookie';
 import { Link, useLocation } from 'react-router-dom';
 import { ReactComponent as MobileNavbarWallet } from '../../../images/mobile_navbar_wallet.svg';
 import { ReactComponent as Clock } from '../../images/clock.svg';
 import { bindStyle } from '../../util/classnames.js';
 import { PendingBalances } from '../../../alt-model/top_level_context/pending_balances_obs.js';
 import style from './navbar.module.scss';
+import { useConfig } from '../../../alt-model/top_level_context/top_level_context_hooks.js';
 
 const cx = bindStyle(style);
 
@@ -53,6 +53,7 @@ export function Navbar({
   onChange,
 }: NavbarProps): JSX.Element {
   const location = useLocation();
+  const config = useConfig();
 
   return (
     <div className={style.headerRoot}>
@@ -85,8 +86,8 @@ export function Navbar({
             gradient: theme === Theme.GRADIENT,
           })}
           style={{
-            pointerEvents: Cookies.get('tos_accepted') === 'true' ? 'inherit' : 'none',
-            opacity: Cookies.get('tos_accepted') === 'true' ? 1 : 0.5
+            pointerEvents: config.tosAccepted ? 'inherit' : 'none',
+            opacity: config.tosAccepted ? 1 : 0.5
           }}
         >
           <MobileNavbarWallet className={style.mobileImage} />

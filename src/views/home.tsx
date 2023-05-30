@@ -1,5 +1,3 @@
-import Cookies from 'js-cookie';
-
 import { Button } from '../ui-components/index.js';
 import privateUnderline from '../images/underline.svg';
 import arrow from '../images/arrow.svg';
@@ -15,6 +13,7 @@ import polyAztecLogo from '../images/poly_aztec_logo.svg';
 import { bindStyle } from '../ui-components/util/classnames.js';
 import { DefiRecipe } from '../alt-model/defi/types.js';
 import style from './home.module.scss';
+import { useConfig } from '../alt-model/top_level_context/top_level_context_hooks.js';
 
 const cx = bindStyle(style);
 
@@ -84,6 +83,8 @@ export function Home({ onSignup, recipes }: HomeProps) {
 }
 
 function Banner({ onShieldNow, recipes }: { onShieldNow: () => void; recipes: DefiRecipe[] | undefined }) {
+  const config = useConfig();
+  
   return (
     <div className={style.banner}>
       <div className={style.stack}>
@@ -104,7 +105,7 @@ function Banner({ onShieldNow, recipes }: { onShieldNow: () => void; recipes: De
         PolyAztec is your portal to private Polygon transactions. Shield
           funds to start accessing!
         </div>
-        <Button text="Shield Now" onClick={onShieldNow} className={style.shieldButton} disabled={Cookies.get('tos_accepted') !== 'true'}/>
+        <Button text="Shield Now" onClick={onShieldNow} className={style.shieldButton} disabled={!config.tosAccepted}/>
       </div>
     </div>
   );

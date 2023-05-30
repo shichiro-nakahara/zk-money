@@ -74,7 +74,7 @@ export function useUserIdForRegistrationStr(alias: string, assetId: number, debo
       gatedSetter.close();
       clearTimeout(task);
     };
-  }, [sdk, alias, debounceMs]);
+  }, [sdk, alias, debounceMs, assetId]);
 
   return registrationFetchState;
 }
