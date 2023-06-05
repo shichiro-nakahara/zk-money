@@ -28,6 +28,8 @@ function getChain(config: Config): Chain {
       return { ...localhost, id: config.chainId };
     case 80001:
       return polygonMumbai;
+    case 137:
+      return polygon;
     default:
       throw new Error(`Unknown chainId: ${config.chainId}`);
   }
