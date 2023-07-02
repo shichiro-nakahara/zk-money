@@ -11,7 +11,6 @@ import whyZkMoney2 from '../images/why_zkmoney_2.svg';
 import polyAztecLogo from '../images/poly_aztec_logo.svg';
 
 import { bindStyle } from '../ui-components/util/classnames.js';
-import { DefiRecipe } from '../alt-model/defi/types.js';
 import style from './home.module.scss';
 import { useConfig } from '../alt-model/top_level_context/top_level_context_hooks.js';
 
@@ -19,13 +18,12 @@ const cx = bindStyle(style);
 
 interface HomeProps {
   onSignup: () => void;
-  recipes?: DefiRecipe[];
 }
 
-export function Home({ onSignup, recipes }: HomeProps) {
+export function Home({ onSignup }: HomeProps) {
   return (
     <div className={style.homeWrapper}>
-      <Banner onShieldNow={onSignup} recipes={recipes} />
+      <Banner onShieldNow={onSignup} />
       <div className={style.section}>
         <div className={style.sectionTitle}>How do I use PolyAztec?</div>
         <div className={style.steps}>
@@ -82,7 +80,7 @@ export function Home({ onSignup, recipes }: HomeProps) {
   );
 }
 
-function Banner({ onShieldNow, recipes }: { onShieldNow: () => void; recipes: DefiRecipe[] | undefined }) {
+function Banner({ onShieldNow }: { onShieldNow: () => void; }) {
   const config = useConfig();
   
   return (

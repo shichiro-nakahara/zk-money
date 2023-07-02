@@ -5,18 +5,11 @@ import { bindStyle } from '../../util/classnames.js';
 import { PendingBalances } from '../../../alt-model/top_level_context/pending_balances_obs.js';
 import style from './navbar.module.scss';
 import { useConfig } from '../../../alt-model/top_level_context/top_level_context_hooks.js';
+import { Pages } from '../../../views/views.js';
 
 const cx = bindStyle(style);
 
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-enum Pages {
-  HOME = '/',
-  EARN = '/earn',
-  SEND = '/send',
-  TRADE = '/trade',
-  BALANCE = '/balance',
-}
 
 export enum Theme {
   GRADIENT = 'GRADIENT',
@@ -64,20 +57,36 @@ export function Navbar({
       </div>
 
       <div className={style.accountRoot}>
-        {LINKS.map(link => (
-          <Link
-            key={link.url}
-            to={link.url}
-            className={cx(style.link, isSafari && style.noLetterSpacing, style.navLink, link.label == 'Earn' && style.disabledLink, {
-              active: link.url === location.pathname,
-              white: theme === Theme.WHITE,
-              gradient: theme === Theme.GRADIENT,
-            })}
-          >
-            {link.mobileImage}
-            {link.label}
-          </Link>
-        ))}
+        <Link
+          to={Pages.AIRDROP}
+          className={cx(style.link, isSafari && style.noLetterSpacing, style.navLink, {
+            active: Pages.AIRDROP === location.pathname,
+            white: theme === Theme.WHITE,
+            gradient: theme === Theme.GRADIENT,
+          })}
+          style={{
+            pointerEvents: config.tosAccepted ? 'inherit' : 'none',
+            opacity: config.tosAccepted ? 1 : 0.5
+          }}
+        >
+          <MobileNavbarWallet className={style.mobileImage} />
+          Airdrop
+        </Link>
+        <Link
+          to={Pages.EARN}
+          className={cx(style.link, isSafari && style.noLetterSpacing, style.navLink, {
+            active: Pages.EARN === location.pathname,
+            white: theme === Theme.WHITE,
+            gradient: theme === Theme.GRADIENT,
+          })}
+          style={{
+            pointerEvents: config.tosAccepted && isUserRegistered ? 'inherit' : 'none',
+            opacity: config.tosAccepted && isUserRegistered ? 1 : 0.5
+          }}
+        >
+          <MobileNavbarWallet className={style.mobileImage} />
+          Earn
+        </Link>
         <Link
           to={Pages.BALANCE}
           className={cx(style.link, isSafari && style.noLetterSpacing, style.navLink, {

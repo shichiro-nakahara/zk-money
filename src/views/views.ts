@@ -4,4 +4,5 @@ export enum Pages {
   SEND = '/send',
   TRADE = '/trade',
   BALANCE = '/balance',
+  AIRDROP = '/airdrop'
 }

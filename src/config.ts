@@ -3,15 +3,14 @@ import { SDK_VERSION, getRollupProviderStatus } from '@polyaztec/sdk';
 import { AssetLabel } from './alt-model/known_assets/known_asset_display_data.js';
 import { toBaseUnits } from './app/units.js';
 
-const dev = window.location.hostname.includes('dev') || window.location.hostname.includes('localhost');
 export const configuration = {
   ethereumHostMainnet: 'https://polygon-rpc.com', // Used for chainlink oracles (see: createTopLevelContextValue.tsx:createTopLevelContextValue)
-  ethereumHost: dev ? 'https://matic-mumbai.chainstacklabs.com' : 'https://polygon-rpc.com',
-  explorerUrl: dev ? 'https://dev.explorer.polyaztec.xyz' : 'https://explorer.polyaztec.xyz',
+  ethereumHost: 'https://polygon-rpc.com',
+  explorerUrl: 'https://explorer.polyaztec.xyz',
   hostedSdkUrl: null,
-  rollupHost: dev ? 'https://dev.falafel.polyaztec.xyz' : 'https://falafel.polyaztec.xyz',
+  rollupHost: 'https://falafel.polyaztec.xyz',
   defaultRegisterAssetId: 2,
-  docsUrl: dev ? 'https://dev.docs.polyaztec.xyz' : 'https://docs.polyaztec.xyz'
+  docsUrl: 'https://docs.polyaztec.xyz'
 };
 
 export interface Config {

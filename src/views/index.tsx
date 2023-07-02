@@ -15,13 +15,13 @@ import { getTOSToast } from './toasts/toast_configurations.js';
 import { Navbar, Theme } from '../ui-components/index.js';
 import { UserAccountMenu } from '../components/template/user_account_menu.js';
 import { Balance } from './account/dashboard/balance.js';
+import { Earn } from './account/dashboard/earn.js';
 import { DefiModal, DefiModalProps } from './account/dashboard/modals/defi_modal/defi_modal.js';
 import { Home } from './home.js';
 import { Toasts } from './toasts/toasts.js';
-import { useDefiRecipes } from '../alt-model/top_level_context/index.js';
-import { useValidRecipesOnly } from './account/dashboard/defi_cards_list.js';
 import { useL1PendingBalances } from '../alt-model/assets/l1_balance_hooks.js';
 import './app.css';
+import { Airdrop } from './account/dashboard/airdrop.js';
 
 function useShowTOS(config: Config) {
   const { toastsObs } = useContext(TopLevelContext);
@@ -48,8 +48,6 @@ export function Views({ config }: ViewsProps) {
   const pendingBalances = useL1PendingBalances();
   const accountState = useAccountState();
   const location = useLocation();
-  const uncheckedRecipes = useDefiRecipes();
-  const recipes = useValidRecipesOnly(uncheckedRecipes);
   const theme = getTheme(location);
   const hasAccountState = !!accountState;
   const isLoggedIn = !!accountState?.isRegistered;
@@ -95,18 +93,10 @@ export function Views({ config }: ViewsProps) {
         >
           <CSSTransition key={location.pathname} classNames="fade" timeout={250}>
             <Routes location={location.pathname}>
-              {/* <Route
-                path={Pages.EARN}
-                element={
-                  <Earn
-                    isLoggedIn={isLoggedIn}
-                    onOpenDefiEnterModal={handleOpenDefiEnterModal}
-                    onOpenDefiExitModal={handleOpenDefiExitModal}
-                  />
-                }
-              /> */}
+              <Route path={Pages.AIRDROP} element={<Airdrop />} />
+              <Route path={Pages.EARN} element={<Earn isLoggedIn={isLoggedIn} />} />
               <Route path={Pages.BALANCE} element={<Balance onOpenDefiExitModal={handleOpenDefiExitModal} />} />
-              <Route path={Pages.HOME} element={<Home onSignup={() => navigate(Pages.BALANCE)} recipes={recipes} />} />
+              <Route path={Pages.HOME} element={<Home onSignup={() => navigate(Pages.BALANCE)} />} />
               <Route
                 path="*"
                 element={
