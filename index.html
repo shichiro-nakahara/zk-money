@@ -35,6 +35,21 @@
     -->
     <link rel="manifest" href="/manifest.webmanifest" />
     <title>PolyAztec</title>
+
+    <script>
+      const script = document.createElement('script');
+      const apiKey = '572b67e4796cff9db0818b0a70626c910932276648cd3b072c91983f1096a058'
+      // Add any configuration parameters you'd like here
+      const config = {} 
+      script.src = 'https://unpkg.com/@arcxmoney/analytics'
+      script.onload = function () {
+        ArcxAnalyticsSdk.init(apiKey, config)
+          .then(function (sdk) {
+            window.arcx = sdk
+          })
+      }
+      document.head.appendChild(script)
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
