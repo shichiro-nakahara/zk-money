@@ -1,6 +1,6 @@
 import { GrumpkinAddress } from '@polyaztec/sdk';
 
-const GRUMPKIN_PREFIX_LENGTH = 'polyaztec:'.length;
+const GRUMPKIN_PREFIX_LENGTH = 'natanetwork:'.length;
 const GRUMPKIN_ADDRESS_LENGTH = 130;
 
 export const removePrefixFromRecipient = (recipient: string) => {
@@ -17,6 +17,6 @@ export const removePrefixFromRecipient = (recipient: string) => {
 
 export const getPrefixFromRecipient = (recipientType: string, recipientStr: string) => {
   if (recipientType === 'L2') {
-    return GrumpkinAddress.isAddress(recipientStr) ? 'polyaztec:' : '@';
+    return GrumpkinAddress.isAddress(recipientStr) ? 'natanetwork:' : '@';
   }
 };

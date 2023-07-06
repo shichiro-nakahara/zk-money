@@ -16,7 +16,7 @@ import { useObs } from '../../app/util/index.js';
 function TooltipContent() {
   return (
     <p>
-      The total market value of assets held in PolyAztec.
+      The total market value of assets held in Nata Network.
       <br />
       <br />
       Funds may be unavailable while the rollup settles to Polygon mainnet.

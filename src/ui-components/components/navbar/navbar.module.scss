@@ -16,13 +16,13 @@
 
 .logoRoot {
   align-items: center;
-  width: 245px;
+  width: 375px;
   cursor: pointer;
 
   @media (max-width: 768px) {
     transform-origin: center left;
     transform: scale(0.66);
-    width: calc(245px * 0.66);
+    width: calc(375px * 0.66);
   }
 }
 

@@ -40,11 +40,11 @@ export const getTOSToast = (toastsObs: ToastsObs, config: Config) => ({
   components: (
     <div className={style.TOSToast}>
       <div>
-        Please read and accept the following terms in order to access and use PolyAztec:
+        Please read and accept the following terms in order to access and use Nata Network:
       </div>
       <ol>
         <li>I acknowledge that the <b>contracts are unaudited and may be considered risky.</b></li>
-        <li>I acknowledge that PolyAztec and related software are experimental and that the use of experimental software may result in loss of funds.</li>
+        <li>I acknowledge that Nata Network and related software are experimental and that the use of experimental software may result in loss of funds.</li>
         <li>I am not a citizen or resident of the United States of America (including its territories: American Samoa, Guam, Puerto Rico, the Northern Mariana Islands, and the U.S. Virgin Islands) or any other Restricted Jurisdiction (as defined in the Terms of Service).</li>
         <li>I am not a Prohibited Person (as defined in the Terms of Service) nor acting on behalf of a Prohibited Person.</li>
       </ol>
@@ -58,7 +58,7 @@ export const getTORejectedToast = (toastsObs: ToastsObs) => ({
   components: (
     <div className={style.TOSToast}>
       <div>
-        <b>You may not use PolyAztec at this time.</b>
+        <b>You may not use Nata Network at this time.</b>
       </div>
     </div>
   ),
@@ -106,7 +106,7 @@ export const getWalletSelectorToast = (closeModal: () => void) => ({
     <div className={style.signatureToast}>
       Do you wish to switch the wallet you're signing with?
       <div className={style.note}>
-        Please note, this has no effect on the PolyAztec account you're currently signed in with.
+        Please note, this has no effect on the Nata Network account you're currently signed in with.
       </div>
       <div className={style.interactions}>
         <ConnectButton accountStatus="address" showBalance={false} />

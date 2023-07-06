@@ -30,12 +30,12 @@ interface KeysGenerationPageProps {
 function getTitle(userHasConfirmationKey: boolean, userHasSpendingKeys: boolean) {
   if (!userHasConfirmationKey)
     return {
-      title: 'Sign a message from your Polygon wallet to retrieve your PolyAztec address',
+      title: 'Sign a message from your Polygon wallet to retrieve your Nata Network address',
       subtitle: 'Remember which Polygon address you used to sign up!',
     };
   if (!userHasSpendingKeys)
     return {
-      title: 'Sign a message to retrieve a Spending Key for your PolyAztec account',
+      title: 'Sign a message to retrieve a Spending Key for your Nata Network account',
       subtitle: 'You will use your Polygon wallet for this action.',
     };
   return {
@@ -59,8 +59,8 @@ function generateTextKeys(
   spendingKeyEthAddress: EthAddress,
 ) {
   return `Store the following information somewhere safe but accessible:\n
-  PolyAztec Account Address: ${aztecWalletAddress}\n
-  PolyAztec Account Generator Address: ${accountKeyGeneratorAddress.toString()}\n
+  Nata Network Account Address: ${aztecWalletAddress}\n
+  Nata Network Account Generator Address: ${accountKeyGeneratorAddress.toString()}\n
   Spending Key Generator Address: ${spendingKeyEthAddress.toString()}`;
 }
 
@@ -271,13 +271,13 @@ export function KeysGenerationPage(props: KeysGenerationPageProps) {
       {userChangedWalletError && (
         <FormWarning
           className={style.formWarning}
-          text={`You can't use two different wallets to generate your keys for PolyAztec. Please switch your wallet back to ${fomattedAddress}.`}
+          text={`You can't use two different wallets to generate your keys for Nata Network. Please switch your wallet back to ${fomattedAddress}.`}
         />
       )}
       {props.assessment.accountKey.issues.accountKeysDontMatch && (
         <FormWarning
           className={style.formWarning}
-          text={`Your Polygon wallet is unable to to produce a stable PolyAztec address.`}
+          text={`Your Polygon wallet is unable to to produce a stable Nata Network address.`}
         />
       )}
     </>

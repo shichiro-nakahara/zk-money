@@ -52,7 +52,7 @@ export function Navbar({
     <div className={style.headerRoot}>
       <div className={cx(style.logoRoot, { enabled: !!onChange })}>
         <Link to={Pages.HOME} className={style.headerTitle}>
-          PolyAztec
+          Nata Network
         </Link>
       </div>
 

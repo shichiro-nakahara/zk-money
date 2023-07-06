@@ -33,7 +33,7 @@ export const main = async function (event: any, ctx: any, callback: any) {
     );
     response.body = response.body.replace(
       '$TEXT_CONTENT',
-      `Checkout PolyAztec, build on technology by @aztecnetwork. Private DeFi is here. Send me crypto privately @${alias} 🕵️.`,
+      `Checkout Nata Network, build on technology by @aztecnetwork. Private DeFi is here. Send me crypto privately @${alias} 🕵️.`,
     );
     response.headers['content-type'] = [
       {
@@ -48,7 +48,7 @@ export const main = async function (event: any, ctx: any, callback: any) {
     );
     response.body = response.body.replace(
       '$TEXT_CONTENT',
-      `Checkout PolyAztec, build on technology by @aztecnetwork. Private DeFi is here. 🕵️.`,
+      `Checkout Nata Network, build on technology by @aztecnetwork. Private DeFi is here. 🕵️.`,
     );
 
     response.headers['content-type'] = [

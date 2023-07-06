@@ -38,13 +38,13 @@ async function deleteAllIndexesDB() {
 
 function getFormattedId(userId?: GrumpkinAddress) {
   if (!userId) return '';
-  return userId.toString().replace('0x', 'polyaztec:0x');
+  return userId.toString().replace('0x', 'natanetwork:0x');
 }
 
 function getCompactedId(userId?: GrumpkinAddress) {
   if (!userId) return '';
   const str = userId.toString().replace('0x', '');
-  return `polyaztec:0x${str.slice(0, 4)}...${str.slice(-4)}`;
+  return `natanetwork:0x${str.slice(0, 4)}...${str.slice(-4)}`;
 }
 
 function getCompactedAlias(alias: string) {
@@ -144,8 +144,8 @@ export function UserAccountMenu() {
                     )}
                   </div>
                   <Field
-                    label="PolyAztec Account Alias"
-                    sublabel="This is the alias for your PolyAztec account"
+                    label="Nata Network Account Alias"
+                    sublabel="This is the alias for your Nata Network account"
                     value={hasAlias ? cachedAlias : alias}
                     onChangeValue={value => setAlias(value)}
                     disabled={hasAlias || walletInteractionIsOngoing}
@@ -169,8 +169,8 @@ export function UserAccountMenu() {
                     }}
                   />
                   <Field
-                    label="PolyAztec Account Address"
-                    sublabel="This is your address in the PolyAztec Network"
+                    label="Nata Network Account Address"
+                    sublabel="This is your address in the Nata Network Network"
                     value={formattedAddress}
                     disabled={true}
                     onClick={() => {

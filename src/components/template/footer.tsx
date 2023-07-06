@@ -14,6 +14,10 @@ interface MenuItem {
 }
 
 const staticHelpItems = [
+  {
+    name: 'Docs',
+    href: 'https://docs.natanetwork.io',
+  },
 ];
 
 const socialItems = [

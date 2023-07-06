@@ -6,11 +6,11 @@ import { toBaseUnits } from './app/units.js';
 export const configuration = {
   ethereumHostMainnet: 'https://polygon-rpc.com', // Used for chainlink oracles (see: createTopLevelContextValue.tsx:createTopLevelContextValue)
   ethereumHost: 'https://polygon-rpc.com',
-  explorerUrl: 'https://explorer.polyaztec.xyz',
+  explorerUrl: 'https://explorer.natanetwork.io',
   hostedSdkUrl: null,
-  rollupHost: 'https://falafel.polyaztec.xyz',
+  rollupHost: 'https://falafel.natanetwork.io',
   defaultRegisterAssetId: 2,
-  docsUrl: 'https://docs.polyaztec.xyz'
+  docsUrl: 'https://docs.natanetwork.io'
 };
 
 export interface Config {

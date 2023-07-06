@@ -65,7 +65,7 @@ interface BalanceProps {
 
 function getFormattedId(userId) {
   if (!userId) return '';
-  return userId.toString().replace('0x', 'polyaztec:0x');
+  return userId.toString().replace('0x', 'natanetwork:0x');
 }
 
 export function Balance(props: BalanceProps) {

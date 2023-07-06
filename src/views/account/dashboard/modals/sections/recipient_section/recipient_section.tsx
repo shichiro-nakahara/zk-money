@@ -23,7 +23,7 @@ interface RecipientSectionProps {
 function getRecipientPlaceholder(type: RecipientType) {
   switch (type) {
     case 'L2':
-      return `Enter Alias or PolyAztec Address`;
+      return `Enter Alias or Nata Network Address`;
     case 'L1':
       return `Enter Polygon Address`;
     default:
@@ -50,7 +50,7 @@ function Message({ message, publicKey }: { message?: string; publicKey?: Grumpki
       <div
         className={style.address}
         onClick={() => {
-          navigator.clipboard.writeText(`polyaztec:${publicKey.toString()}`);
+          navigator.clipboard.writeText(`natanetwork:${publicKey.toString()}`);
           toastsObs.addToast({
             text: 'Address copied to clipboard',
             autocloseInMs: 5e3,
@@ -58,7 +58,7 @@ function Message({ message, publicKey }: { message?: string; publicKey?: Grumpki
           });
         }}
       >
-        Account address: polyaztec:{publicKey.toShortString()} <img className={style.copy} alt="copy" src={copy} />
+        Account address: natanetwork:{publicKey.toShortString()} <img className={style.copy} alt="copy" src={copy} />
       </div>
     );
   }

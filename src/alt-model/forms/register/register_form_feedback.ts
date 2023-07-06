@@ -14,7 +14,7 @@ function getRegisterFormWalletAccountFeedback(resources: RegisterFormResources, 
   if (feedback) return feedback;
 
   if (assessment.connectedWallet.warnings.depositingFromDifferentWallet) {
-    return 'You are depositing from a different Polygon wallet to the one you used for retrieving your PolyAztec account keys. This is allowed, but it is vitally important that you remember which Polygon wallet you used when you retrieved your account keys.';
+    return 'You are depositing from a different Polygon wallet to the one you used for retrieving your Nata Network account keys. This is allowed, but it is vitally important that you remember which Polygon wallet you used when you retrieved your account keys.';
   }
 }
 

@@ -140,7 +140,7 @@ export function AccessAccountForm() {
   return (
     <Card
       className={cx(page === Pages.RegisterKeys && style.registerKeysForm)}
-      cardHeader={'Access the PolyAztec Network'}
+      cardHeader={'Access the Nata Network Network'}
       cardContent={
         <div className={style.accessAccountForm}>
           {renderPage(page, registerForm, hasDownloadedKeys, handleAccessAccount, setHasDownloadedKeys)}

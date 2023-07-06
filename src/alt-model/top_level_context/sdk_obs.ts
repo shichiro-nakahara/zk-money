@@ -123,7 +123,7 @@ export async function getQuotaExceededErrorToast(err) {
 function handleVersionMismatch() {
   if (
     window.confirm(
-      'Version mismatch between PolyAztec and rollup server.\n\n' +
+      'Version mismatch between Nata Network and rollup server.\n\n' +
         'Press OK to refresh the page!\n\n' +
         '(If this issue persists it may be a problem with your ISP)',
     )

@@ -27,7 +27,7 @@ interface ShieldConfirmationPageProps {
 
 function formatRecipient(recipientStr: string) {
   return GrumpkinAddress.isAddress(recipientStr)
-    ? `polyaztec:${GrumpkinAddress.fromString(recipientStr).toShortString()}`
+    ? `natanetwork:${GrumpkinAddress.fromString(recipientStr).toShortString()}`
     : `@${recipientStr}`;
 }
 

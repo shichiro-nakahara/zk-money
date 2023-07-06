@@ -11,7 +11,7 @@ interface SignDepositInteractionProps {
 
 export function SignApproveInteraction(props: SignDepositInteractionProps) {
   const amount = useAmount(props.requiredFunds);
-  const prompt = `Please allow the PolyAztec contract to transfer ${amount?.format({ layer: 'L1' })} of your funds`;
+  const prompt = `Please allow the Nata Network contract to transfer ${amount?.format({ layer: 'L1' })} of your funds`;
   return (
     <EnforcedRetryableSignInteractions
       onCancel={props.onCancel}

@@ -22,7 +22,7 @@ export function Disclaimer({ accepted, onChangeAccepted }: DisclaimerProps) {
             theme="gradient"
             icon={HyperlinkIcon.Open}
             href={configuration.docsUrl}
-            label="Learn more about PolyAztec here"
+            label="Learn more about Nata Network here"
           />
         </div>
       </div>
