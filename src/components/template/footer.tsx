@@ -18,6 +18,10 @@ const staticHelpItems = [
     name: 'Docs',
     href: 'https://docs.natanetwork.io',
   },
+  {
+    name: 'Github',
+    href: 'https://github.com/shichiro-nakahara',
+  },
 ];
 
 const socialItems = [
