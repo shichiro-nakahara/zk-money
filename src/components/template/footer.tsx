@@ -31,7 +31,7 @@ const socialItems = [
   },
   {
     name: 'Matrix',
-    href: 'https://matrix.to/#/%23polyaztec:matrix.org'
+    href: 'https://matrix.to/#/!EiAngTwTXkkAWgdYIJ:matrix.org'
   }
 ];
 
