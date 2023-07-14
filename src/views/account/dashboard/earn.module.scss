@@ -1,0 +1,78 @@
+.cardWrapper {
+  display: flex;
+  letter-spacing: 0.03em;
+  padding: 30px;
+  gap: 20px;
+  line-height: 150%;
+  background-color: white;
+  overflow: initial;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    padding: 20px;
+    gap: 15px;
+  }
+}
+
+.cardRow {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 30px;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
+}
+
+.subTitle {
+  font-size: 0.75em;
+  color: grey;
+}
+
+.paragraphText {
+  font-size: 0.75em;
+  line-height: 1.5em;
+}
+
+.arrowButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 2px solid #2f1f49;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0px 4px 10px rgb(0 0 0 / 15%);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    box-shadow: 0px 4px 10px rgb(0 0 0 / 15%);
+    transform: translateY(0px);
+  }
+
+  svg {
+    width: 14px;
+    height: 14px;
+    fill: #2f1f49;
+  }
+}
+
+.arrowButtonDisabled {
+  cursor: unset;
+  pointer-events: none;
+  border: 2px solid #cdcdcd;
+
+  svg {
+    fill: #cdcdcd;
+  }
+}
+
+.tokenSymbol {
+  color: grey;
+  font-size: 0.9em;
+}
