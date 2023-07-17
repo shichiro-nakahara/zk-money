@@ -170,7 +170,7 @@ export function UserAccountMenu() {
                   />
                   <Field
                     label="Nata Network Account Address"
-                    sublabel="This is your address in the Nata Network Network"
+                    sublabel="This is your Nata Network address"
                     value={formattedAddress}
                     disabled={true}
                     onClick={() => {

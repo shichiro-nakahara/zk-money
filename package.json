@@ -11,6 +11,7 @@
     "@rainbow-me/rainbowkit": "^0.8.1",
     "@types/jsan": "^3.1.2",
     "broadcast-channel": "^4.2.0",
+    "dayjs": "^1.11.9",
     "debug": "^4.3.1",
     "dexie": "^3.2.2",
     "ethers": "^5.7.0",

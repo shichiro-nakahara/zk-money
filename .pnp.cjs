@@ -2904,6 +2904,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:2.30.0"\
       ],\
       [\
+        "dayjs",\
+        "npm:1.11.9"\
+      ],\
+      [\
         "debug",\
         "virtual:071d471ccd267160a6f0ec15e4cdc2874728a012db8f34521faf9e64a516aa918ee9ebab3c4c084d955ab74aaac5b8be9afb7a168813c9f210acdb7d88754ab9#npm:4.3.4"\
       ],\
@@ -6761,6 +6765,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["babel-eslint", "virtual:8f191641e0cdbd84e4a01ad170addc78a653eb7d13970d70246cdf4fc7af71c72aeec720060e6c99ced82e4f2806f7b8a3f121e32b5c16b21c5c6088ca42bdc1#npm:10.1.0"],\
             ["broadcast-channel", "npm:4.20.2"],\
             ["buffer", "npm:6.0.3"],\
+            ["dayjs", "npm:1.11.9"],\
             ["debug", "virtual:071d471ccd267160a6f0ec15e4cdc2874728a012db8f34521faf9e64a516aa918ee9ebab3c4c084d955ab74aaac5b8be9afb7a168813c9f210acdb7d88754ab9#npm:4.3.4"],\
             ["dexie", "npm:3.2.4"],\
             ["eslint", "npm:7.32.0"],\
@@ -21720,6 +21725,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["dayjs", [\
+        ["npm:1.11.9", {\
+          "packageLocation": "./.yarn/cache/dayjs-npm-1.11.9-c47d327b7c-a4844d83dc.zip/node_modules/dayjs/",\
+          "packageDependencies": [\
+            ["dayjs", "npm:1.11.9"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["debug", [\
         ["npm:2.6.9", {\
           "packageLocation": "./.yarn/cache/debug-npm-2.6.9-7d4cb597dc-d2f51589ca.zip/node_modules/debug/",\
@@ -35722,6 +35736,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["babel-eslint", "virtual:8f191641e0cdbd84e4a01ad170addc78a653eb7d13970d70246cdf4fc7af71c72aeec720060e6c99ced82e4f2806f7b8a3f121e32b5c16b21c5c6088ca42bdc1#npm:10.1.0"],\
             ["broadcast-channel", "npm:4.20.2"],\
             ["buffer", "npm:6.0.3"],\
+            ["dayjs", "npm:1.11.9"],\
             ["debug", "virtual:071d471ccd267160a6f0ec15e4cdc2874728a012db8f34521faf9e64a516aa918ee9ebab3c4c084d955ab74aaac5b8be9afb7a168813c9f210acdb7d88754ab9#npm:4.3.4"],\
             ["dexie", "npm:3.2.4"],\
             ["eslint", "npm:7.32.0"],\

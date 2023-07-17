@@ -10,7 +10,8 @@ export const configuration = {
   hostedSdkUrl: null,
   rollupHost: 'https://falafel.natanetwork.io',
   defaultRegisterAssetId: 2,
-  docsUrl: 'https://docs.natanetwork.io'
+  docsUrl: 'https://docs.natanetwork.io',
+  tokenDropUrl: 'http://localhost:3737'
 };
 
 export interface Config {
