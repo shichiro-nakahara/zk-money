@@ -22,6 +22,10 @@ const staticHelpItems = [
     name: 'Github',
     href: 'https://github.com/shichiro-nakahara',
   },
+  {
+    name: 'Dune Analytics',
+    href: 'https://dune.com/polyaztec/natanetwork'
+  }
 ];
 
 const socialItems = [
