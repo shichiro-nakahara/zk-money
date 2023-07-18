@@ -1468,6 +1468,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:7.20.1"\
       ],\
       [\
+        "@types/bn.js",\
+        "npm:5.1.1"\
+      ],\
+      [\
         "@types/connect",\
         "npm:3.4.35"\
       ],\
@@ -1596,6 +1600,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:5.0.3"\
       ],\
       [\
+        "@types/pbkdf2",\
+        "npm:3.1.0"\
+      ],\
+      [\
         "@types/prettier",\
         "npm:2.7.3"\
       ],\
@@ -1626,6 +1634,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       [\
         "@types/scheduler",\
         "npm:0.16.3"\
+      ],\
+      [\
+        "@types/secp256k1",\
+        "npm:4.0.3"\
       ],\
       [\
         "@types/semver",\
@@ -2376,6 +2388,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:1.1.5"\
       ],\
       [\
+        "bignumber.js",\
+        "npm:9.1.1"\
+      ],\
+      [\
         "binary-extensions",\
         "npm:2.2.0"\
       ],\
@@ -2388,12 +2404,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:1.5.0"\
       ],\
       [\
+        "blakejs",\
+        "npm:1.2.1"\
+      ],\
+      [\
         "bluebird",\
         "npm:3.7.2"\
       ],\
       [\
         "bn.js",\
-        "npm:4.12.0"\
+        "npm:5.2.1"\
       ],\
       [\
         "body-parser",\
@@ -2476,6 +2496,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:4.0.1"\
       ],\
       [\
+        "bs58check",\
+        "npm:2.1.2"\
+      ],\
+      [\
         "bser",\
         "npm:2.1.1"\
       ],\
@@ -2498,6 +2522,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       [\
         "buffer-from",\
         "npm:1.1.2"\
+      ],\
+      [\
+        "buffer-reverse",\
+        "npm:1.0.1"\
       ],\
       [\
         "buffer-xor",\
@@ -2846,6 +2874,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       [\
         "crypto-browserify",\
         "npm:3.12.0"\
+      ],\
+      [\
+        "crypto-js",\
+        "npm:3.3.0"\
       ],\
       [\
         "css-color-keywords",\
@@ -3364,8 +3396,24 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:4.0.3"\
       ],\
       [\
+        "ethereum-bloom-filters",\
+        "npm:1.0.10"\
+      ],\
+      [\
+        "ethereum-cryptography",\
+        "npm:0.1.3"\
+      ],\
+      [\
+        "ethereumjs-util",\
+        "npm:7.1.5"\
+      ],\
+      [\
         "ethers",\
         "npm:5.7.2"\
+      ],\
+      [\
+        "ethjs-unit",\
+        "npm:0.1.6"\
       ],\
       [\
         "eventemitter3",\
@@ -4060,6 +4108,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:4.0.3"\
       ],\
       [\
+        "is-hex-prefixed",\
+        "npm:1.0.0"\
+      ],\
+      [\
         "is-hexadecimal",\
         "npm:1.0.4"\
       ],\
@@ -4688,6 +4740,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:1.4.1"\
       ],\
       [\
+        "merkletreejs",\
+        "npm:0.3.10"\
+      ],\
+      [\
         "methods",\
         "npm:1.1.2"\
       ],\
@@ -4861,7 +4917,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ],\
       [\
         "node-addon-api",\
-        "npm:4.3.0"\
+        "npm:2.0.2"\
       ],\
       [\
         "node-dir",\
@@ -4926,6 +4982,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       [\
         "num2fraction",\
         "npm:1.2.2"\
+      ],\
+      [\
+        "number-to-bn",\
+        "npm:1.7.0"\
       ],\
       [\
         "nwsapi",\
@@ -5668,6 +5728,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:2.0.2"\
       ],\
       [\
+        "rlp",\
+        "npm:2.2.7"\
+      ],\
+      [\
         "rollup",\
         "npm:3.26.0"\
       ],\
@@ -5746,6 +5810,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       [\
         "scrypt-js",\
         "npm:3.0.1"\
+      ],\
+      [\
+        "secp256k1",\
+        "npm:4.0.3"\
       ],\
       [\
         "semver",\
@@ -6054,6 +6122,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:2.0.0"\
       ],\
       [\
+        "strip-hex-prefix",\
+        "npm:1.0.0"\
+      ],\
+      [\
         "strip-indent",\
         "npm:3.0.0"\
       ],\
@@ -6200,6 +6272,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       [\
         "tr46",\
         "npm:0.0.3"\
+      ],\
+      [\
+        "treeify",\
+        "npm:1.1.0"\
       ],\
       [\
         "trim",\
@@ -6450,6 +6526,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:5.0.10"\
       ],\
       [\
+        "utf8",\
+        "npm:3.0.0"\
+      ],\
+      [\
         "util",\
         "npm:0.12.5"\
       ],\
@@ -6560,6 +6640,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       [\
         "web-namespaces",\
         "npm:1.1.4"\
+      ],\
+      [\
+        "web3-utils",\
+        "npm:1.10.0"\
       ],\
       [\
         "webidl-conversions",\
@@ -6785,6 +6869,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jsan", "npm:3.1.14"],\
             ["lit-html", "npm:2.7.4"],\
             ["lodash", "npm:4.17.21"],\
+            ["merkletreejs", "npm:0.3.10"],\
             ["moment", "npm:2.29.4"],\
             ["node-stdlib-browser", "npm:1.2.0"],\
             ["polished", "npm:4.2.2"],\
@@ -16399,6 +16484,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@types/bn.js", [\
+        ["npm:5.1.1", {\
+          "packageLocation": "./.yarn/cache/@types-bn.js-npm-5.1.1-346449981b-e50ed2dd3a.zip/node_modules/@types/bn.js/",\
+          "packageDependencies": [\
+            ["@types/bn.js", "npm:5.1.1"],\
+            ["@types/node", "npm:20.3.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@types/connect", [\
         ["npm:3.4.35", {\
           "packageLocation": "./.yarn/cache/@types-connect-npm-3.4.35-7337eee0a3-fe81351470.zip/node_modules/@types/connect/",\
@@ -16749,6 +16844,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@types/pbkdf2", [\
+        ["npm:3.1.0", {\
+          "packageLocation": "./.yarn/cache/@types-pbkdf2-npm-3.1.0-9fa74ff7fb-d15024b195.zip/node_modules/@types/pbkdf2/",\
+          "packageDependencies": [\
+            ["@types/pbkdf2", "npm:3.1.0"],\
+            ["@types/node", "npm:20.3.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@types/prettier", [\
         ["npm:2.7.3", {\
           "packageLocation": "./.yarn/cache/@types-prettier-npm-2.7.3-497316f37c-705384209c.zip/node_modules/@types/prettier/",\
@@ -16832,6 +16937,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-scheduler-npm-0.16.3-887bfc0086-2b0aec39c2.zip/node_modules/@types/scheduler/",\
           "packageDependencies": [\
             ["@types/scheduler", "npm:0.16.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/secp256k1", [\
+        ["npm:4.0.3", {\
+          "packageLocation": "./.yarn/cache/@types-secp256k1-npm-4.0.3-945d1c398e-1bd10b9afa.zip/node_modules/@types/secp256k1/",\
+          "packageDependencies": [\
+            ["@types/secp256k1", "npm:4.0.3"],\
+            ["@types/node", "npm:20.3.3"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -19927,6 +20042,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["bignumber.js", [\
+        ["npm:9.1.1", {\
+          "packageLocation": "./.yarn/cache/bignumber.js-npm-9.1.1-5929e8d8dc-ad243b7e2f.zip/node_modules/bignumber.js/",\
+          "packageDependencies": [\
+            ["bignumber.js", "npm:9.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["binary-extensions", [\
         ["npm:1.13.1", {\
           "packageLocation": "./.yarn/cache/binary-extensions-npm-1.13.1-fb81dec2b0-ad7747f33c.zip/node_modules/binary-extensions/",\
@@ -19962,6 +20086,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["blakejs", [\
+        ["npm:1.2.1", {\
+          "packageLocation": "./.yarn/cache/blakejs-npm-1.2.1-b1ff783529-d699ba116c.zip/node_modules/blakejs/",\
+          "packageDependencies": [\
+            ["blakejs", "npm:1.2.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["bluebird", [\
         ["npm:3.7.2", {\
           "packageLocation": "./.yarn/cache/bluebird-npm-3.7.2-6a54136ee3-869417503c.zip/node_modules/bluebird/",\
@@ -19972,6 +20105,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["bn.js", [\
+        ["npm:4.11.6", {\
+          "packageLocation": "./.yarn/cache/bn.js-npm-4.11.6-34a3bf8e02-db23047bf0.zip/node_modules/bn.js/",\
+          "packageDependencies": [\
+            ["bn.js", "npm:4.11.6"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
         ["npm:4.11.8", {\
           "packageLocation": "./.yarn/cache/bn.js-npm-4.11.8-296affce9a-80d4709cd5.zip/node_modules/bn.js/",\
           "packageDependencies": [\
@@ -20278,6 +20418,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["bs58check", [\
+        ["npm:2.1.2", {\
+          "packageLocation": "./.yarn/cache/bs58check-npm-2.1.2-4e87e40195-43bdf08a5d.zip/node_modules/bs58check/",\
+          "packageDependencies": [\
+            ["bs58check", "npm:2.1.2"],\
+            ["bs58", "npm:4.0.1"],\
+            ["create-hash", "npm:1.2.0"],\
+            ["safe-buffer", "npm:5.2.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["bser", [\
         ["npm:2.1.1", {\
           "packageLocation": "./.yarn/cache/bser-npm-2.1.1-cc902055ce-9ba4dc58ce.zip/node_modules/bser/",\
@@ -20352,6 +20504,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/buffer-from-npm-1.1.2-03d2f20d7e-0448524a56.zip/node_modules/buffer-from/",\
           "packageDependencies": [\
             ["buffer-from", "npm:1.1.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["buffer-reverse", [\
+        ["npm:1.0.1", {\
+          "packageLocation": "./.yarn/cache/buffer-reverse-npm-1.0.1-2224e35393-e350872a89.zip/node_modules/buffer-reverse/",\
+          "packageDependencies": [\
+            ["buffer-reverse", "npm:1.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -21541,6 +21702,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["public-encrypt", "npm:4.0.3"],\
             ["randombytes", "npm:2.1.0"],\
             ["randomfill", "npm:1.0.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["crypto-js", [\
+        ["npm:3.3.0", {\
+          "packageLocation": "./.yarn/cache/crypto-js-npm-3.3.0-5b307000b5-193923143a.zip/node_modules/crypto-js/",\
+          "packageDependencies": [\
+            ["crypto-js", "npm:3.3.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -23438,6 +23608,54 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["ethereum-bloom-filters", [\
+        ["npm:1.0.10", {\
+          "packageLocation": "./.yarn/cache/ethereum-bloom-filters-npm-1.0.10-5a486457fa-4019cc6f92.zip/node_modules/ethereum-bloom-filters/",\
+          "packageDependencies": [\
+            ["ethereum-bloom-filters", "npm:1.0.10"],\
+            ["js-sha3", "npm:0.8.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["ethereum-cryptography", [\
+        ["npm:0.1.3", {\
+          "packageLocation": "./.yarn/cache/ethereum-cryptography-npm-0.1.3-ab43fc624b-54bae7a4a9.zip/node_modules/ethereum-cryptography/",\
+          "packageDependencies": [\
+            ["ethereum-cryptography", "npm:0.1.3"],\
+            ["@types/pbkdf2", "npm:3.1.0"],\
+            ["@types/secp256k1", "npm:4.0.3"],\
+            ["blakejs", "npm:1.2.1"],\
+            ["browserify-aes", "npm:1.2.0"],\
+            ["bs58check", "npm:2.1.2"],\
+            ["create-hash", "npm:1.2.0"],\
+            ["create-hmac", "npm:1.1.7"],\
+            ["hash.js", "npm:1.1.7"],\
+            ["keccak", "npm:3.0.3"],\
+            ["pbkdf2", "npm:3.1.2"],\
+            ["randombytes", "npm:2.1.0"],\
+            ["safe-buffer", "npm:5.2.1"],\
+            ["scrypt-js", "npm:3.0.1"],\
+            ["secp256k1", "npm:4.0.3"],\
+            ["setimmediate", "npm:1.0.5"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["ethereumjs-util", [\
+        ["npm:7.1.5", {\
+          "packageLocation": "./.yarn/cache/ethereumjs-util-npm-7.1.5-5bb4d00000-27a3c79d6e.zip/node_modules/ethereumjs-util/",\
+          "packageDependencies": [\
+            ["ethereumjs-util", "npm:7.1.5"],\
+            ["@types/bn.js", "npm:5.1.1"],\
+            ["bn.js", "npm:5.2.1"],\
+            ["create-hash", "npm:1.2.0"],\
+            ["ethereum-cryptography", "npm:0.1.3"],\
+            ["rlp", "npm:2.2.7"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["ethers", [\
         ["npm:5.5.1", {\
           "packageLocation": "./.yarn/cache/ethers-npm-5.5.1-abb6c1e2d0-ee004e3e2f.zip/node_modules/ethers/",\
@@ -23510,6 +23728,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@ethersproject/wallet", "npm:5.7.0"],\
             ["@ethersproject/web", "npm:5.7.1"],\
             ["@ethersproject/wordlists", "npm:5.7.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["ethjs-unit", [\
+        ["npm:0.1.6", {\
+          "packageLocation": "./.yarn/cache/ethjs-unit-npm-0.1.6-fb3575f27f-df6b4752ff.zip/node_modules/ethjs-unit/",\
+          "packageDependencies": [\
+            ["ethjs-unit", "npm:0.1.6"],\
+            ["bn.js", "npm:4.11.6"],\
+            ["number-to-bn", "npm:1.7.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -25898,6 +26127,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["is-hex-prefixed", [\
+        ["npm:1.0.0", {\
+          "packageLocation": "./.yarn/cache/is-hex-prefixed-npm-1.0.0-676e6251c7-5ac58e6e52.zip/node_modules/is-hex-prefixed/",\
+          "packageDependencies": [\
+            ["is-hex-prefixed", "npm:1.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["is-hexadecimal", [\
         ["npm:1.0.4", {\
           "packageLocation": "./.yarn/cache/is-hexadecimal-npm-1.0.4-b4091da09e-a452e04758.zip/node_modules/is-hexadecimal/",\
@@ -28111,6 +28349,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["merkletreejs", [\
+        ["npm:0.3.10", {\
+          "packageLocation": "./.yarn/cache/merkletreejs-npm-0.3.10-5b380d15d7-5a2222ca2c.zip/node_modules/merkletreejs/",\
+          "packageDependencies": [\
+            ["merkletreejs", "npm:0.3.10"],\
+            ["bignumber.js", "npm:9.1.1"],\
+            ["buffer-reverse", "npm:1.0.1"],\
+            ["crypto-js", "npm:3.3.0"],\
+            ["treeify", "npm:1.1.0"],\
+            ["web3-utils", "npm:1.10.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["methods", [\
         ["npm:1.1.2", {\
           "packageLocation": "./.yarn/cache/methods-npm-1.1.2-92f6fdb39b-0917ff4041.zip/node_modules/methods/",\
@@ -29010,6 +29262,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/num2fraction-npm-1.2.2-dc0a0a80ad-1da9c6797b.zip/node_modules/num2fraction/",\
           "packageDependencies": [\
             ["num2fraction", "npm:1.2.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["number-to-bn", [\
+        ["npm:1.7.0", {\
+          "packageLocation": "./.yarn/cache/number-to-bn-npm-1.7.0-dce8575cfb-5b8c9dbe7b.zip/node_modules/number-to-bn/",\
+          "packageDependencies": [\
+            ["number-to-bn", "npm:1.7.0"],\
+            ["bn.js", "npm:4.11.6"],\
+            ["strip-hex-prefix", "npm:1.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -31593,6 +31856,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["rlp", [\
+        ["npm:2.2.7", {\
+          "packageLocation": "./.yarn/cache/rlp-npm-2.2.7-4cb283b8fe-3db4dfe5c7.zip/node_modules/rlp/",\
+          "packageDependencies": [\
+            ["rlp", "npm:2.2.7"],\
+            ["bn.js", "npm:5.2.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["rollup", [\
         ["npm:3.26.0", {\
           "packageLocation": "./.yarn/cache/rollup-npm-3.26.0-7e02e81c27-2d00f1ec8f.zip/node_modules/rollup/",\
@@ -31858,6 +32131,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/scrypt-js-npm-3.0.1-fd2d3fa606-b7c7d1a68d.zip/node_modules/scrypt-js/",\
           "packageDependencies": [\
             ["scrypt-js", "npm:3.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["secp256k1", [\
+        ["npm:4.0.3", {\
+          "packageLocation": "./.yarn/unplugged/secp256k1-npm-4.0.3-b4e9ce065b/node_modules/secp256k1/",\
+          "packageDependencies": [\
+            ["secp256k1", "npm:4.0.3"],\
+            ["elliptic", "npm:6.5.4"],\
+            ["node-addon-api", "npm:2.0.2"],\
+            ["node-gyp", "npm:9.4.0"],\
+            ["node-gyp-build", "npm:4.6.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -32869,6 +33155,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["strip-hex-prefix", [\
+        ["npm:1.0.0", {\
+          "packageLocation": "./.yarn/cache/strip-hex-prefix-npm-1.0.0-bf941e622d-4cafe7caee.zip/node_modules/strip-hex-prefix/",\
+          "packageDependencies": [\
+            ["strip-hex-prefix", "npm:1.0.0"],\
+            ["is-hex-prefixed", "npm:1.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["strip-indent", [\
         ["npm:1.0.1", {\
           "packageLocation": "./.yarn/cache/strip-indent-npm-1.0.1-dabb780da0-81ad9a0b8a.zip/node_modules/strip-indent/",\
@@ -33461,6 +33757,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["tr46", "npm:3.0.0"],\
             ["punycode", "npm:2.3.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["treeify", [\
+        ["npm:1.1.0", {\
+          "packageLocation": "./.yarn/cache/treeify-npm-1.1.0-abf9292333-aa00dded22.zip/node_modules/treeify/",\
+          "packageDependencies": [\
+            ["treeify", "npm:1.1.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -34462,6 +34767,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["utf8", [\
+        ["npm:3.0.0", {\
+          "packageLocation": "./.yarn/cache/utf8-npm-3.0.0-7c39b5994a-cb89a69ad9.zip/node_modules/utf8/",\
+          "packageDependencies": [\
+            ["utf8", "npm:3.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["util", [\
         ["npm:0.10.3", {\
           "packageLocation": "./.yarn/cache/util-npm-0.10.3-f43de5ccbb-bd800f5d23.zip/node_modules/util/",\
@@ -34914,6 +35228,22 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/web-namespaces-npm-1.1.4-a6dfacb865-5149842ccb.zip/node_modules/web-namespaces/",\
           "packageDependencies": [\
             ["web-namespaces", "npm:1.1.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["web3-utils", [\
+        ["npm:1.10.0", {\
+          "packageLocation": "./.yarn/cache/web3-utils-npm-1.10.0-a52718e66a-c6b7662359.zip/node_modules/web3-utils/",\
+          "packageDependencies": [\
+            ["web3-utils", "npm:1.10.0"],\
+            ["bn.js", "npm:5.2.1"],\
+            ["ethereum-bloom-filters", "npm:1.0.10"],\
+            ["ethereumjs-util", "npm:7.1.5"],\
+            ["ethjs-unit", "npm:0.1.6"],\
+            ["number-to-bn", "npm:1.7.0"],\
+            ["randombytes", "npm:2.1.0"],\
+            ["utf8", "npm:3.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -35756,6 +36086,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jsan", "npm:3.1.14"],\
             ["lit-html", "npm:2.7.4"],\
             ["lodash", "npm:4.17.21"],\
+            ["merkletreejs", "npm:0.3.10"],\
             ["moment", "npm:2.29.4"],\
             ["node-stdlib-browser", "npm:1.2.0"],\
             ["polished", "npm:4.2.2"],\

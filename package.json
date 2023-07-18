@@ -19,6 +19,7 @@
     "js-cookie": "^2.2.1",
     "jsan": "^3.1.14",
     "lodash": "^4.17.20",
+    "merkletreejs": "^0.3.10",
     "moment": "^2.29.1",
     "polished": "^4.1.0",
     "process": "^0.11.10",
