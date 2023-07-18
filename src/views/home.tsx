@@ -8,7 +8,7 @@ import shieldFunds from '../images/shield_funds.png';
 import whyZkMoney1 from '../images/why_zkmoney_1.svg';
 import whyZkMoney2 from '../images/why_zkmoney_2.svg';
 
-import polyAztecLogo from '../images/poly_aztec_logo.svg';
+import nataNetworkLogo from '../images/nata_network_logo.svg';
 
 import { bindStyle } from '../ui-components/util/classnames.js';
 import style from './home.module.scss';
@@ -87,7 +87,7 @@ function Banner({ onShieldNow }: { onShieldNow: () => void; }) {
     <div className={style.banner}>
       <div className={style.stack}>
         <div className={style.polyAztecWrapper}>
-          <img className={style.polyAztecLogo} src={polyAztecLogo} alt="" />
+          <img className={style.nataNetworkLogo} src={nataNetworkLogo} alt="" />
         </div>
       </div>
       <img src={arrow} className={style.arrow} alt="" />
