@@ -24,7 +24,6 @@ async function getProvider() {
   if (!prov) {
     const { config } = await getEnvironment();
     const { wagmiClient } = getWagmiRainbowConfig(config);
-    console.log(wagmiClient);
     prov = wagmiClient.provider;
   }
   return prov;
@@ -42,15 +41,18 @@ async function getConfig(): Promise<any> {
 export async function getTree(uid: string) {
   if (!trees[uid]) {
     const result = await fetch(`${configuration.tokenDropUrl}/drop/${uid}/tree`);
-    const tree = (await result.json()).data;
-    trees[uid] = tree;
-    return tree;
+    const json = await result.json();
+    if (json.status != 200 || json.error) {
+      return null;
+    }
+    trees[uid] = json.data;
+    return trees[uid];
   }
 
   return trees[uid];
 }
 
-export async function claim(address: string, uid: string) {
+export async function claim(address: string, id: number, uid: string) {
   const tree = await getTree(uid);
   const amount = tree.recipients[address];
   if (!amount) {
@@ -84,16 +86,27 @@ export async function claim(address: string, uid: string) {
   if (!config) {
     console.error(`Could not get config from server`);
     return;
-  }
-  const provider = await getProvider();
-  const dropContract = new ethers.Contract(config.drop.contract.address, config.drop.contract.abi, provider);
+  }  
+  //console.log(provider);
+
+  const provider = new ethers.providers.Web3Provider((<any>window).ethereum);
+  const signer = provider.getSigner();
+
+  // const fuck = await provider.getSigner().signMessage("fuck");
+  // console.log(fuck);
+  
+  const dropContract = new ethers.Contract(config.drop.contract.address, config.drop.contract.abi, signer);
   try {
-    console.log(`Sending claim ${address} for amount ${amount}`);
-    // const tx = await dropContract.claim(address, amount, proof);
-    // console.log(tx);
+    console.log(id);
+    console.log(address);
+    console.log(amount);
+    console.log(proof);
+    const tx = await dropContract.claim(id, address, amount, proof, { gasLimit: '250000'});
+    console.log(tx);
   }
   catch (e) {
-
+    console.error('Could not call claim() on Drop contract');
+    console.error(e);
   }
 }
 

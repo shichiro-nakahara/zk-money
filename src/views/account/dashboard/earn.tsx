@@ -76,6 +76,14 @@ export function Earn(props: EarnProps) {
     }
 
     const tree = await drop.getTree(viewDrop.uid);
+    if (!tree) {
+      setClaim({
+        error: (<div>Claims for this epoch are still being finalized. Please return later to claim your
+          rewards.</div>),
+        amount: null
+      });
+      return;
+    }
 
     const amount = tree.recipients[accountState.ethAddressUsedForAccountKey.toString()];
     if (!amount) {
@@ -147,7 +155,7 @@ export function Earn(props: EarnProps) {
       return;
     }
 
-    await drop.claim(accountState.ethAddressUsedForAccountKey.toString(), viewDrop.uid);
+    await drop.claim(accountState.ethAddressUsedForAccountKey.toString(), viewDrop.id, viewDrop.uid);
   }
   
   return (
