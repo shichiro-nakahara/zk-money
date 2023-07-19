@@ -46,7 +46,14 @@ function getPublicProvider(config: Config) {
 export function getWagmiRainbowConfig(config: Config) {
   const { chains, provider, webSocketProvider } = configureChains([getChain(config)], [getPublicProvider(config)]);
 
-  const wallets = [metaMaskWallet({ chains }), walletConnectWallet({ chains }), braveWallet({ chains })];
+  console.log(chains);
+  console.log(provider);
+  console.log(webSocketProvider);
+
+  const wallets = [braveWallet({ chains })];
+
+  console.log(wallets);
+
   const connectors = connectorsForWallets([{ groupName: 'Supported', wallets }]);
   const wagmiClient = createClient({
     autoConnect: true,

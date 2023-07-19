@@ -39,14 +39,23 @@ export const getTOSToast = (toastsObs: ToastsObs, config: Config) => ({
   },
   components: (
     <div className={style.TOSToast}>
-      <div>
-        Please read and accept the following terms in order to access and use Nata Network:
-      </div>
+      <div>Please read and accept the following terms in order to access and use Nata Network:</div>
       <ol>
-        <li>I acknowledge that the <b>contracts are unaudited and may be considered risky.</b></li>
-        <li>I acknowledge that Nata Network and related software are experimental and that the use of experimental software may result in loss of funds.</li>
-        <li>I am not a citizen or resident of the United States of America (including its territories: American Samoa, Guam, Puerto Rico, the Northern Mariana Islands, and the U.S. Virgin Islands) or any other Restricted Jurisdiction (as defined in the Terms of Service).</li>
-        <li>I am not a Prohibited Person (as defined in the Terms of Service) nor acting on behalf of a Prohibited Person.</li>
+        <li>
+          I acknowledge that the <b>contracts are unaudited and may be considered risky.</b>
+        </li>
+        <li>
+          I acknowledge that Nata Network and related software are experimental and that the use of experimental
+          software may result in loss of funds.
+        </li>
+        <li>
+          I am not a citizen or resident of the United States of America (including its territories: American Samoa,
+          Guam, Puerto Rico, the Northern Mariana Islands, and the U.S. Virgin Islands) or any other Restricted
+          Jurisdiction (as defined in the Terms of Service).
+        </li>
+        <li>
+          I am not a Prohibited Person (as defined in the Terms of Service) nor acting on behalf of a Prohibited Person.
+        </li>
       </ol>
     </div>
   ),

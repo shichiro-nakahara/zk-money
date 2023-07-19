@@ -1,4 +1,10 @@
-import { AssetValue, DepositController, EthAddress, MigrateAccountController, RegisterController } from '@polyaztec/sdk';
+import {
+  AssetValue,
+  DepositController,
+  EthAddress,
+  MigrateAccountController,
+  RegisterController,
+} from '@polyaztec/sdk';
 import {
   EnforcedRetryableSignFlowState,
   enforcedRetryableSignFlow,
@@ -8,26 +14,26 @@ import { ActiveChainIdObs } from '../../active_wallet_hooks.js';
 import { ActiveSignerObs } from '../../defi/defi_form/correct_provider_hooks.js';
 
 export type L1DepositAndSignFlowState =
-  | { phase: 'idle', assetId: number }
-  | { phase: 'checking-pending-funds', assetId: number }
+  | { phase: 'idle'; assetId: number }
+  | { phase: 'checking-pending-funds'; assetId: number }
   | {
-    phase: 'awaiting-l1-approve-signature';
-    requiredFunds: AssetValue;
-    enforcedRetryableSignFlow: EnforcedRetryableSignFlowState;
-    assetId: number
-  }
+      phase: 'awaiting-l1-approve-signature';
+      requiredFunds: AssetValue;
+      enforcedRetryableSignFlow: EnforcedRetryableSignFlowState;
+      assetId: number;
+    }
   | {
       phase: 'awaiting-l1-deposit-signature';
       requiredFunds: AssetValue;
       enforcedRetryableSignFlow: EnforcedRetryableSignFlowState;
-      assetId: number
+      assetId: number;
     }
-  | { phase: 'awaiting-l1-deposit-settlement', assetId: number }
+  | { phase: 'awaiting-l1-deposit-settlement'; assetId: number }
   | {
       phase: 'awaiting-proof-signature';
       messageToSign: string;
       enforcedRetryableSignFlow: EnforcedRetryableSignFlowState;
-      assetId: number
+      assetId: number;
     };
 
 type L1PayableController = RegisterController | DepositController | MigrateAccountController;
@@ -39,12 +45,12 @@ export async function l1DepositAndSignFlow(
   activeSignerObs: ActiveSignerObs,
   depositorEthAddress: EthAddress,
   requiredChainId: number,
-  activeChainIdObs: ActiveChainIdObs
+  activeChainIdObs: ActiveChainIdObs,
 ) {
   const assetId = controller.assetValue.assetId;
   emitState({ phase: 'checking-pending-funds', assetId });
   const requiredFundsBaseUnits = await throwIfCancelled(controller.getRequiredFunds());
-  
+
   if (requiredFundsBaseUnits) {
     const requiredFunds: AssetValue = { assetId: assetId, value: requiredFundsBaseUnits };
 

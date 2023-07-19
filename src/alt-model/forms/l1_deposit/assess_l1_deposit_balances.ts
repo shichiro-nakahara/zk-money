@@ -23,7 +23,7 @@ export interface AssessL1DepositBalancesResources {
   depositMaxEnabled: boolean;
   depositValueStr: string;
   allowZeroDeposit: boolean;
-  aliasFee: AssetValue
+  aliasFee: AssetValue;
 }
 
 export function assessL1DepositBalances({
@@ -38,7 +38,7 @@ export function assessL1DepositBalances({
   depositMaxEnabled,
   depositValueStr,
   allowZeroDeposit,
-  aliasFee
+  aliasFee,
 }: AssessL1DepositBalancesResources) {
   if (feeAmount === undefined) return;
   if (l1Balance === undefined) return;
@@ -58,9 +58,8 @@ export function assessL1DepositBalances({
   // Accounting for both L1 gas and L2 fees
   const depositAssetIsEth = depositAsset.id === 0;
   const ethReservedForGas = approveProofGasCost + depositFundsGasCost;
-  const totalDepositAssetCost = feeInDepositAsset + 
-    (depositAssetIsEth ? ethReservedForGas : 0n) +
-    (aliasFee ? aliasFee.value : 0n);
+  const totalDepositAssetCost =
+    feeInDepositAsset + (depositAssetIsEth ? ethReservedForGas : 0n) + (aliasFee ? aliasFee.value : 0n);
 
   const maxL2Output = max(min(totalL1Balance - totalDepositAssetCost, transactionLimit), 0n);
   const targetL2OutputAmount = depositMaxEnabled

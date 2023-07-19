@@ -2,9 +2,6 @@
   "name": "zk.money",
   "version": "0.1.0",
   "private": true,
-  "installConfig": {
-    "pnp": true
-  },
   "type": "module",
   "dependencies": {
     "@polyaztec/sdk": "2.3.1",
@@ -36,11 +33,8 @@
     "start": "serve -p 8080 ./dest",
     "start:dev": "PORT=8080 vite",
     "clean": "rm -rf ./dest",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
     "formatting": "prettier --check ./src && eslint --max-warnings 0 ./src",
     "format": "prettier -w .",
-    "build:lambda": "cd lambda && yarn build",
     "test": "NODE_OPTIONS=--experimental-vm-modules yarn jest"
   },
   "jest": {
@@ -85,12 +79,6 @@
     "@ethersproject/providers": "^5.7.1",
     "@jest/globals": "^29.3.1",
     "@rollup/plugin-inject": "^5.0.3",
-    "@storybook/addon-actions": "^6.4.14",
-    "@storybook/addon-essentials": "^6.4.14",
-    "@storybook/addon-links": "^6.4.14",
-    "@storybook/node-logger": "^6.4.14",
-    "@storybook/preset-create-react-app": "^3.2.0",
-    "@storybook/react": "^6.4.14",
     "@types/debug": "^4.1.5",
     "@types/jest": "^29.2.3",
     "@types/js-cookie": "^2.2.6",
@@ -132,6 +120,5 @@
     "vite-plugin-svgr": "^2.4.0",
     "vite-preset-react": "^2.3.0",
     "vite-tsconfig-paths": "^4.0.5"
-  },
-  "packageManager": "yarn@3.4.0"
+  }
 }

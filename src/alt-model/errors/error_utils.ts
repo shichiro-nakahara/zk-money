@@ -51,7 +51,9 @@ const CONFIRMATION_MESSAGE =
   '  - Any logs produced by the Aztec SDK since the page loaded';
 
 export function confirmAndSendErrorReport(sdk: AztecSdk, errorDetail: string) {
-  alert('This feature has not been implemented on Nata Network (yet). Please reach out via our social channels for help.');
+  alert(
+    'This feature has not been implemented on Nata Network (yet). Please reach out via our social channels for help.',
+  );
   return false;
   // const confirmed = window.confirm(CONFIRMATION_MESSAGE);
   // if (!confirmed) return false;
@@ -62,7 +64,7 @@ export function confirmAndSendErrorReport(sdk: AztecSdk, errorDetail: string) {
   //     'Content-Type': 'application/json'
   //   },
   //   body: JSON.stringify({
-  //     'chat_id': '-860602177', 
+  //     'chat_id': '-860602177',
   //     'text': errorDetail
   //   })
   // })

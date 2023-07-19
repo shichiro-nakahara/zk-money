@@ -92,9 +92,7 @@ export function Holding({ assetValue, onSend, onShield, onGoToEarn }: HoldingPro
           <div className={style.assetWrapper}>
             <div className={style.holdingUnits}>
               {amount.format({ uniform: true })}
-              <div className={style.holdingAmount}>
-                {bulkPrice ? `($${formatBulkPrice(bulkPrice)})` : ``}
-              </div>
+              <div className={style.holdingAmount}>{bulkPrice ? `($${formatBulkPrice(bulkPrice)})` : ``}</div>
             </div>
             <div className={style.details}>
               <div className={style.spendableBalance}>{`${spendableFormatted} available`}</div>

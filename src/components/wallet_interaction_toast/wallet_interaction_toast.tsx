@@ -68,7 +68,7 @@ export function WalletInteractionToast(props: WalletInteractionProps) {
 
 export function L1DepositAndSignInteractions({ flowState, onCancel }: L1DepositAndSignInteractionsProps) {
   const totalSteps = flowState?.assetId == 0 ? 2 : 3;
-  
+
   switch (flowState.phase) {
     case 'checking-pending-funds':
       return (

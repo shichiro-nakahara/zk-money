@@ -19,7 +19,7 @@ export enum FieldStatus {
   Warning = 'Warning',
   Error = 'Error',
   Loading = 'Loading',
-  Info = 'Info'
+  Info = 'Info',
 }
 
 interface Asset {
@@ -202,7 +202,7 @@ export function Field(props: FieldProps) {
           style.message,
           props.status === FieldStatus.Warning && style.warningMessage,
           props.status === FieldStatus.Error && style.errorMessage,
-          props.status === FieldStatus.Info && style.infoMessage
+          props.status === FieldStatus.Info && style.infoMessage,
         )}
       >
         {props.message}

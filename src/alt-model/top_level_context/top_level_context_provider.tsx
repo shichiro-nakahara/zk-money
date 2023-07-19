@@ -47,7 +47,7 @@ function createTopLevelContextValue(
     sdkObs,
   );
   // Force chainLinkPollerCache to mainnet no matter the environment
-  const chainLinkPollerCache = createChainLinkPollerCache(new StaticJsonRpcProvider(config.ethereumHostMainnet)); 
+  const chainLinkPollerCache = createChainLinkPollerCache(new StaticJsonRpcProvider(config.ethereumHostMainnet));
   const priceFeedObsCache = createPriceFeedObsCache(
     stableEthereumProvider,
     chainLinkPollerCache,

@@ -26,11 +26,7 @@ function FaqIcon() {
 
 export function FaqHint({ className }: { className?: string }) {
   return (
-    <Link
-      className={`${style.link} ${className}`}
-      href={configuration.docsUrl}
-      target="_blank"
-    >
+    <Link className={`${style.link} ${className}`} href={configuration.docsUrl} target="_blank">
       <span className={style.label}>Need help?</span>
       <FaqIcon />
     </Link>

@@ -66,7 +66,7 @@ export function Navbar({
           })}
           style={{
             pointerEvents: config.tosAccepted ? 'inherit' : 'none',
-            opacity: config.tosAccepted ? 1 : 0.5
+            opacity: config.tosAccepted ? 1 : 0.5,
           }}
         >
           <MobileNavbarWallet className={style.mobileImage} />
@@ -81,7 +81,7 @@ export function Navbar({
           })}
           style={{
             pointerEvents: config.tosAccepted && isUserRegistered ? 'inherit' : 'none',
-            opacity: config.tosAccepted && isUserRegistered ? 1 : 0.5
+            opacity: config.tosAccepted && isUserRegistered ? 1 : 0.5,
           }}
         >
           <MobileNavbarWallet className={style.mobileImage} />
@@ -96,7 +96,7 @@ export function Navbar({
           })}
           style={{
             pointerEvents: config.tosAccepted ? 'inherit' : 'none',
-            opacity: config.tosAccepted ? 1 : 0.5
+            opacity: config.tosAccepted ? 1 : 0.5,
           }}
         >
           <MobileNavbarWallet className={style.mobileImage} />

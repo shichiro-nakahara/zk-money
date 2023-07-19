@@ -17,7 +17,7 @@ export function InformationSection(props: InformationSectionProps) {
         <div className={style.subtitle}>{props.subtitle}</div>
       </div>
       <div className={style.content}>{props.content}</div>
-      { props.helpLink ? <Hyperlink label={props.buttonLabel} icon={HyperlinkIcon.Info} href={props.helpLink} /> : '' }
+      {props.helpLink ? <Hyperlink label={props.buttonLabel} icon={HyperlinkIcon.Info} href={props.helpLink} /> : ''}
     </div>
   );
 }

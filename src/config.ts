@@ -11,7 +11,7 @@ export const configuration = {
   rollupHost: 'https://falafel.natanetwork.io',
   defaultRegisterAssetId: 2,
   docsUrl: 'https://docs.natanetwork.io',
-  tokenDropUrl: 'http://localhost:3737'
+  tokenDropUrl: 'http://localhost:3737',
 };
 
 export interface Config {
@@ -86,7 +86,7 @@ function getDeployConfig(deployTag: string, rollupProviderUrl: string, chainId: 
     chainId,
     ethereumHost: configuration.ethereumHost,
     ethereumHostMainnet: configuration.ethereumHostMainnet,
-    tosAccepted: Cookies.get('tos_accepted') === 'true'
+    tosAccepted: Cookies.get('tos_accepted') === 'true',
   };
 }
 

@@ -21,6 +21,6 @@ export function useRegisterFormResources(fields: RegisterFormFields): RegisterFo
     aliasAlreadyTaken,
     spendingKeys,
     feeAmounts,
-    aliasFee
+    aliasFee,
   };
 }

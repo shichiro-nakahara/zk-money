@@ -119,8 +119,9 @@ export function RegisterAccountForm(props: RegisterAccountFormProps) {
 
     const asset = assets[resources.aliasFee.assetId].symbol;
     const feeReadable = sdk?.fromBaseUnits(resources.aliasFee);
-    setAliasFeeMessage(`Additional ${feeReadable} ${asset} fee to register a ${resources.alias.length} character alias`);
-
+    setAliasFeeMessage(
+      `Additional ${feeReadable} ${asset} fee to register a ${resources.alias.length} character alias`,
+    );
   }, [resources]);
 
   const handleUsePendingFunds = () => {
@@ -143,7 +144,9 @@ export function RegisterAccountForm(props: RegisterAccountFormProps) {
         sublabel={
           <>
             Choose an alias in place of your account key so other users can find you more easily.{' '}
-            <span style={{ fontWeight: 450 }}>Warning: Aliases must not contain special characters or uppercase letters!</span>
+            <span style={{ fontWeight: 450 }}>
+              Warning: Aliases must not contain special characters or uppercase letters!
+            </span>
           </>
         }
         value={fields.alias}

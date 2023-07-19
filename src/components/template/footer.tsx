@@ -24,8 +24,8 @@ const staticHelpItems = [
   },
   {
     name: 'Dune Analytics',
-    href: 'https://dune.com/polyaztec/natanetwork'
-  }
+    href: 'https://dune.com/polyaztec/natanetwork',
+  },
 ];
 
 const socialItems = [
@@ -35,8 +35,8 @@ const socialItems = [
   },
   {
     name: 'Matrix',
-    href: 'https://matrix.to/#/!EiAngTwTXkkAWgdYIJ:matrix.org'
-  }
+    href: 'https://matrix.to/#/!EiAngTwTXkkAWgdYIJ:matrix.org',
+  },
 ];
 
 const Col = styled.div`
@@ -92,11 +92,7 @@ export function Footer(props: FooterProps) {
           <FooterMenu title="Community" menuItems={socialItems} />
         </div>
         <Foot>
-          <Link
-            className={style.techLink}
-            href="https://github.com/shichiro-nakahara/aztec-connect"
-            target="_blank"
-          >
+          <Link className={style.techLink} href="https://github.com/shichiro-nakahara/aztec-connect" target="_blank">
             Community run fork of Aztec Connect
           </Link>
         </Foot>

@@ -40,7 +40,7 @@ export function useRegisterFormFlowRunner(resources: RegisterFormResources, asse
     const assetId = registerFee ? registerFee.assetId : resources.aliasFee.assetId;
     const totalFee = {
       assetId: assetId,
-      value: registerFee ? (registerFee.value + resources.aliasFee.value) : resources.aliasFee.value
+      value: registerFee ? registerFee.value + resources.aliasFee.value : resources.aliasFee.value,
     };
     const args = [
       sdk,

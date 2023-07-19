@@ -52,7 +52,7 @@ export function useUserIdForRegistrationStr(alias: string, assetId: number, debo
     isLoading: boolean;
   }>({
     isLoading: false,
-    aliasFee: null
+    aliasFee: null,
   });
 
   useEffect(() => {

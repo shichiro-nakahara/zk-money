@@ -43,8 +43,8 @@ export function Home({ onSignup }: HomeProps) {
             <div className={style.content}>
               <div className={style.title}>Send and receive privately</div>
               <div className={style.description}>
-                Funds within Nata Network can be sent fully privately to another Nata Network alias or sent to Layer 1. Remember to
-                follow privacy best practices!
+                Funds within Nata Network can be sent fully privately to another Nata Network alias or sent to Layer 1.
+                Remember to follow privacy best practices!
               </div>
             </div>
             <img src={sendReceive} className={style.stepImage} alt="" />
@@ -60,8 +60,8 @@ export function Home({ onSignup }: HomeProps) {
             <div className={style.content}>
               <div className={style.title}>How does shielding work?</div>
               <div className={style.description}>
-                Shielding funds to Nata Network creates a private note on Layer 2. Private notes can be traded 
-                just like normal Polygon assets–but with full privacy protection.
+                Shielding funds to Nata Network creates a private note on Layer 2. Private notes can be traded just like
+                normal Polygon assets–but with full privacy protection.
               </div>
             </div>
           </div>
@@ -80,9 +80,9 @@ export function Home({ onSignup }: HomeProps) {
   );
 }
 
-function Banner({ onShieldNow }: { onShieldNow: () => void; }) {
+function Banner({ onShieldNow }: { onShieldNow: () => void }) {
   const config = useConfig();
-  
+
   return (
     <div className={style.banner}>
       <div className={style.stack}>
@@ -100,10 +100,9 @@ function Banner({ onShieldNow }: { onShieldNow: () => void; }) {
           transaction layer for Polygon.
         </div>
         <div className={style.subtitle}>
-        Nata Network is your portal to private Polygon transactions. Shield
-          funds to start accessing!
+          Nata Network is your portal to private Polygon transactions. Shield funds to start accessing!
         </div>
-        <Button text="Shield Now" onClick={onShieldNow} className={style.shieldButton} disabled={!config.tosAccepted}/>
+        <Button text="Shield Now" onClick={onShieldNow} className={style.shieldButton} disabled={!config.tosAccepted} />
       </div>
     </div>
   );

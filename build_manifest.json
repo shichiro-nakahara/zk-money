@@ -1,8 +1,0 @@
-{
-  "zk-money": {
-    "buildDir": ".",
-    "dockerfile": "Dockerfile",
-    "rebuildPatterns": ["*"],
-    "dependencies": [""]
-  }
-}

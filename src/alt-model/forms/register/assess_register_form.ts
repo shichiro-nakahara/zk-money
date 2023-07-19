@@ -26,7 +26,7 @@ export function assessRegisterForm(resources: RegisterFormResources) {
     ethAddressOfWalletUsedToGenerateAccount,
     depositor,
     aliasFee,
-    alias
+    alias,
   } = resources;
   const aliasValidation = validateAlias(resources.alias);
   const invalidAlias = !aliasValidation.valid;
@@ -47,7 +47,7 @@ export function assessRegisterForm(resources: RegisterFormResources) {
     info: {
       aliasValidationError,
       aliasFee,
-      alias
+      alias,
     },
     issues: {
       aliasAlreadyTaken,

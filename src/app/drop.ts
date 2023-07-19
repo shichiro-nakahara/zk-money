@@ -16,7 +16,7 @@ interface Recipient {
 function generateLeaf(recipient: Recipient): Buffer {
   return Buffer.from(
     ethers.utils.solidityKeccak256(['address', 'uint256'], [recipient.address, recipient.wei]).slice(2),
-    'hex'
+    'hex',
   );
 }
 
@@ -60,33 +60,33 @@ export async function claim(address: string, id: number, uid: string) {
     return;
   }
 
-  const recipients = Object.keys(tree.recipients).map((recipient) => {
+  const recipients = Object.keys(tree.recipients).map(recipient => {
     return {
-      address: recipient, 
-      wei: tree.recipients[recipient]
+      address: recipient,
+      wei: tree.recipients[recipient],
     };
   });
 
   if (recipients.length % 2 != 0) {
     recipients.push({
       address: '0x000000000000000000000000000000000000dEaD',
-      wei: '0'
+      wei: '0',
     });
   }
 
   const merkleTree = new MerkleTree(
-    recipients.map((recipient) => generateLeaf(recipient)),
+    recipients.map(recipient => generateLeaf(recipient)),
     ethers.utils.keccak256,
-    { sort: true }
+    { sort: true },
   );
 
-  const claimLeaf = generateLeaf({address, wei: amount});
+  const claimLeaf = generateLeaf({ address, wei: amount });
   const proof = merkleTree.getHexProof(claimLeaf);
   const config = await getConfig();
   if (!config) {
     console.error(`Could not get config from server`);
     return;
-  }  
+  }
   //console.log(provider);
 
   const provider = new ethers.providers.Web3Provider((<any>window).ethereum);
@@ -94,19 +94,17 @@ export async function claim(address: string, id: number, uid: string) {
 
   // const fuck = await provider.getSigner().signMessage("fuck");
   // console.log(fuck);
-  
+
   const dropContract = new ethers.Contract(config.drop.contract.address, config.drop.contract.abi, signer);
   try {
     console.log(id);
     console.log(address);
     console.log(amount);
     console.log(proof);
-    const tx = await dropContract.claim(id, address, amount, proof, { gasLimit: '250000'});
+    const tx = await dropContract.claim(id, address, amount, proof, { gasLimit: '250000' });
     console.log(tx);
-  }
-  catch (e) {
+  } catch (e) {
     console.error('Could not call claim() on Drop contract');
     console.error(e);
   }
 }
-
