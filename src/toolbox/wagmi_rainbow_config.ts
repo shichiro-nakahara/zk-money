@@ -6,6 +6,7 @@ import { configureChains, createClient, Chain } from 'wagmi';
 import { polygon, polygonMumbai, localhost } from 'wagmi/chains';
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 import type { Config } from '../config.js';
+import { configuration } from '../config.js';
 
 function getChain(config: Config): Chain {
   switch (config.chainId) {
@@ -46,13 +47,11 @@ function getPublicProvider(config: Config) {
 export function getWagmiRainbowConfig(config: Config) {
   const { chains, provider, webSocketProvider } = configureChains([getChain(config)], [getPublicProvider(config)]);
 
-  console.log(chains);
-  console.log(provider);
-  console.log(webSocketProvider);
-
-  const wallets = [braveWallet({ chains })];
-
-  console.log(wallets);
+  const wallets = [
+    metaMaskWallet({ chains }), 
+    walletConnectWallet({ projectId: configuration.walletConnectProjectId, chains }), 
+    braveWallet({ chains })
+  ];
 
   const connectors = connectorsForWallets([{ groupName: 'Supported', wallets }]);
   const wagmiClient = createClient({

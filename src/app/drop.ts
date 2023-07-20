@@ -1,12 +1,9 @@
 import MerkleTree from 'merkletreejs';
 import * as ethers from 'ethers';
 import { configuration } from '../config.js';
-import { getWagmiRainbowConfig } from '../toolbox/wagmi_rainbow_config.js';
-import { getEnvironment } from '../config.js';
 
 const trees = {};
-let cfg = null;
-let prov = null;
+let dropContract: ethers.Contract | undefined = undefined;
 
 interface Recipient {
   address: string;
@@ -20,22 +17,14 @@ function generateLeaf(recipient: Recipient): Buffer {
   );
 }
 
-async function getProvider() {
-  if (!prov) {
-    const { config } = await getEnvironment();
-    const { wagmiClient } = getWagmiRainbowConfig(config);
-    prov = wagmiClient.provider;
-  }
-  return prov;
-}
-
-async function getConfig(): Promise<any> {
-  if (!cfg) {
+export async function getContract(): Promise<ethers.Contract> {
+  if (!dropContract) {
     const result = await fetch(`${configuration.tokenDropUrl}/config`);
-    const configFromServer = (await result.json()).data;
-    cfg = configFromServer;
+    const config = (await result.json()).data;
+    if (!config) throw new Error(`Could not get token drop config from server`);
+    dropContract = new ethers.Contract(config.drop.contract.address, config.drop.contract.abi);
   }
-  return cfg;
+  return dropContract;
 }
 
 export async function getTree(uid: string) {
@@ -52,12 +41,11 @@ export async function getTree(uid: string) {
   return trees[uid];
 }
 
-export async function claim(address: string, id: number, uid: string) {
+export async function claim(signer: ethers.Signer, address: string, id: number, uid: string) {
   const tree = await getTree(uid);
   const amount = tree.recipients[address];
   if (!amount) {
-    console.error(`${address} not eligible for drop ${uid}`);
-    return;
+    throw new Error(`${address} is not eligible for drop ${uid}`);
   }
 
   const recipients = Object.keys(tree.recipients).map(recipient => {
@@ -82,29 +70,7 @@ export async function claim(address: string, id: number, uid: string) {
 
   const claimLeaf = generateLeaf({ address, wei: amount });
   const proof = merkleTree.getHexProof(claimLeaf);
-  const config = await getConfig();
-  if (!config) {
-    console.error(`Could not get config from server`);
-    return;
-  }
-  //console.log(provider);
 
-  const provider = new ethers.providers.Web3Provider((<any>window).ethereum);
-  const signer = provider.getSigner();
-
-  // const fuck = await provider.getSigner().signMessage("fuck");
-  // console.log(fuck);
-
-  const dropContract = new ethers.Contract(config.drop.contract.address, config.drop.contract.abi, signer);
-  try {
-    console.log(id);
-    console.log(address);
-    console.log(amount);
-    console.log(proof);
-    const tx = await dropContract.claim(id, address, amount, proof, { gasLimit: '250000' });
-    console.log(tx);
-  } catch (e) {
-    console.error('Could not call claim() on Drop contract');
-    console.error(e);
-  }
+  const contract = (await getContract()).connect(signer);
+  return await contract.claim(id, address, amount, proof, { gasLimit: '250000' });
 }

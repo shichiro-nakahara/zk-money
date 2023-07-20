@@ -12,6 +12,8 @@ import { useAccountStateManager } from '../../../alt-model/top_level_context/top
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween.js';
 import * as drop from '../../../app/drop.js';
+import { useSigner } from 'wagmi';
+import { ClaimDropModal } from './modals/claim_drop_modal/claim_drop_modal.js';
 
 dayjs.extend(isBetween);
 
@@ -33,12 +35,21 @@ export function Earn(props: EarnProps) {
   const [viewDrop, setViewDrop] = useState(null);
   const [drops, setDrops] = useState([]);
   const [claim, setClaim] = useState({ error: 'Loading...', amount: null });
+  const [claiming, setClaiming] = useState(false);
+  const [tx, setTx] = useState(null);
+  const [contract, setContract] = useState(null);
+  const { data: signer } = useSigner();
 
   useEffect(() => {
     if (!isLoggedIn) navigate(Pages.BALANCE);
-    updateTotalClaimed();
     updateDrops();
+    initContract();
   }, []);
+
+  useEffect(() => {
+    if (!contract) return;
+    updateTotalClaimed();
+  }, [contract]);
 
   useEffect(() => {
     if (!accountState || !accountState.ethAddressUsedForAccountKey) return;
@@ -46,9 +57,18 @@ export function Earn(props: EarnProps) {
   }, [accountState]);
 
   useEffect(() => {
-    if (!viewDrop) return;
+    if (!viewDrop || claiming || !contract) return;
     updateClaim();
-  }, [viewDrop]);
+  }, [viewDrop, claiming, contract]);
+
+  async function initContract() {
+    setContract((await drop.getContract()).connect(new ethers.providers.JsonRpcProvider(configuration.ethereumHost)));
+  }
+
+  async function updateTotalClaimed() {
+    const totalClaimed = await contract.totalClaimed();
+    setTotalClaimed(ethers.utils.formatEther(totalClaimed));
+  }
 
   async function updateClaim() {
     const now = dayjs();
@@ -87,7 +107,8 @@ export function Earn(props: EarnProps) {
       return;
     }
 
-    const amount = tree.recipients[accountState.ethAddressUsedForAccountKey.toString()];
+    const address = accountState.ethAddressUsedForAccountKey.toString();
+    const amount = tree.recipients[address];
     if (!amount) {
       setClaim({
         error: (
@@ -96,20 +117,35 @@ export function Earn(props: EarnProps) {
             <div>Try depositing tokens during the eligibility period next epoch.</div>
           </Fragment>
         ),
-        amount: amount,
+        amount: null,
       });
       return;
+    }
+
+    try {
+      const hasClaimed = await contract.hasClaimed(viewDrop.id, address);
+      if (hasClaimed) {
+        setClaim({
+          error: (
+            <div>
+              Your <span style={{fontWeight: "bold"}}>{ ethers.utils.formatEther(amount) } eNATA</span> reward has 
+              been claimed.
+            </div>
+          ),
+          amount: null,
+        });
+        return;
+      }
+    }
+    catch (e) {
+      console.warn(`Could not get claimed status for ${address} on drop ${viewDrop.id}`);
+      console.warn(e);
     }
 
     setClaim({
       error: false,
       amount: amount,
     });
-  }
-
-  async function updateTotalClaimed() {
-    const result = await fetch(`${configuration.tokenDropUrl}/total-claimed`);
-    setTotalClaimed(ethers.utils.formatEther((await result.json()).data));
   }
 
   async function updateAddressClaimed(address) {
@@ -156,11 +192,29 @@ export function Earn(props: EarnProps) {
 
   async function claimDrop() {
     if (!viewDrop || !accountState || !accountState.ethAddressUsedForAccountKey) {
-      console.error('Could not claim drop, invalid state');
-      return;
+      throw new Error('Could not claim drop, invalid state');
+    }
+    if (!signer) {
+      throw new Error('Could not claim, invalid signer');
     }
 
-    await drop.claim(accountState.ethAddressUsedForAccountKey.toString(), viewDrop.id, viewDrop.uid);
+    setTx(null);
+    setClaiming(true);
+    try {
+      const tx = await drop.claim(
+        signer, 
+        accountState.ethAddressUsedForAccountKey.toString(), 
+        viewDrop.id, 
+        viewDrop.uid
+      );
+      setTx(tx);
+    }
+    catch (e) {
+      setClaiming(false);
+      if (!e.toString().includes('user rejected transaction')) {
+        throw new Error(e);
+      }
+    }
   }
 
   return (
@@ -355,10 +409,12 @@ export function Earn(props: EarnProps) {
           </div>
 
           <div style={{ marginTop: 'auto' }}>
-            <Button text="Claim" disabled={claim.error} onClick={claimDrop} />
+            <Button text="Claim" disabled={claim.error || claiming} onClick={claimDrop} />
           </div>
         </div>
       </div>
+
+      <ClaimDropModal visible={ claiming } txHash={ tx ? tx.hash : null } onClose={() => setClaiming(false)} />
     </div>
   );
 }
