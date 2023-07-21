@@ -11,7 +11,7 @@ export const configuration = {
   rollupHost: 'https://falafel.natanetwork.io',
   defaultRegisterAssetId: 2,
   docsUrl: 'https://docs.natanetwork.io',
-  tokenDropUrl: 'http://localhost:3737',
+  tokenDropUrl: 'https://token-drop.natanetwork.io',
   walletConnectProjectId: 'c6e764e7a1fda558b2420b27e5a20ce5'
 };
 
