@@ -44,10 +44,10 @@ export function Earn(props: EarnProps) {
     if (!isLoggedIn) navigate(Pages.BALANCE);
     updateDrops();
     initContract();
+    setEventListener();
   }, []);
 
   useEffect(() => {
-    if (!contract) return;
     updateTotalClaimed();
   }, [contract]);
 
@@ -57,20 +57,32 @@ export function Earn(props: EarnProps) {
   }, [accountState]);
 
   useEffect(() => {
-    if (!viewDrop || claiming || !contract) return;
     updateClaim();
-  }, [viewDrop, claiming, contract]);
+  }, [viewDrop, contract]);
+
+  async function setEventListener() {
+    drop.setEventListener((log, event) => {
+      console.log('Event received');
+      console.log(log);
+      console.log(event);
+      updateClaim();
+    });
+  }
 
   async function initContract() {
-    setContract((await drop.getContract()).connect(new ethers.providers.JsonRpcProvider(configuration.ethereumHost)));
+    const provider = new ethers.providers.JsonRpcProvider(configuration.ethereumHost);
+    setContract((await drop.getContract()).connect(provider));
   }
 
   async function updateTotalClaimed() {
+    if (!contract) return;
     const totalClaimed = await contract.totalClaimed();
     setTotalClaimed(ethers.utils.formatEther(totalClaimed));
   }
 
   async function updateClaim() {
+    if (!viewDrop || !contract) return;
+
     const now = dayjs();
     if (viewDrop.earn.eligibilityEnd.isAfter(now)) {
       setClaim({
@@ -152,10 +164,9 @@ export function Earn(props: EarnProps) {
     const result = await fetch(`${configuration.tokenDropUrl}/address/${address}/claimed`);
     const { lifetime, drop } = (await result.json()).data;
     setLifetimeClaimed(ethers.utils.formatEther(lifetime));
-    const amount =
-      viewDrop && drop[currentEpoch.uid]
-        ? ethers.utils.formatEther(drop[currentEpoch.uid])
-        : ethers.utils.formatEther('0');
+    const amount = currentEpoch && drop[currentEpoch.uid]
+      ? ethers.utils.formatEther(drop[currentEpoch.uid])
+      : ethers.utils.formatEther('0');
     setCurrentEpochClaimed(amount);
   }
 
@@ -187,15 +198,17 @@ export function Earn(props: EarnProps) {
 
     setDrops(earnDrops);
     setCurrentEpoch(updatedCurrentEpoch);
-    setViewDrop(earnDrops[updatedCurrentEpoch - 1]);
+
+    const viewIndex = updatedCurrentEpoch ? updatedCurrentEpoch - 1 : earnDrops.length - 1;
+    setViewDrop(earnDrops[viewIndex]);
   }
 
   async function claimDrop() {
     if (!viewDrop || !accountState || !accountState.ethAddressUsedForAccountKey) {
-      throw new Error('Could not claim drop, invalid state');
+      throw new Error('Could not claim drop, invalid state.');
     }
     if (!signer) {
-      throw new Error('Could not claim, invalid signer');
+      throw new Error('Could not claim, invalid signer. Please refresh page and try again.');
     }
 
     setTx(null);

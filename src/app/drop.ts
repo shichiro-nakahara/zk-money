@@ -4,6 +4,7 @@ import { configuration } from '../config.js';
 
 const trees = {};
 let dropContract: ethers.Contract | undefined = undefined;
+let listeningToEvents = false;
 
 interface Recipient {
   address: string;
@@ -15,6 +16,22 @@ function generateLeaf(recipient: Recipient): Buffer {
     ethers.utils.solidityKeccak256(['address', 'uint256'], [recipient.address, recipient.wei]).slice(2),
     'hex',
   );
+}
+
+export async function setEventListener(fn: (log: any, event: any) => void) {
+  if (listeningToEvents) return;
+
+  const result = await fetch(`${configuration.tokenDropUrl}/config`);
+  const config = (await result.json()).data;
+  if (!config) throw new Error(`Could not get token drop config from server`);
+
+  const provider = new ethers.providers.JsonRpcProvider(configuration.ethereumHost);
+  
+  provider.on({
+    address: config.drop.contract.address,
+  }, fn);
+
+  listeningToEvents = true;
 }
 
 export async function getContract(): Promise<ethers.Contract> {
