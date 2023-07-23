@@ -18,7 +18,7 @@ function generateLeaf(recipient: Recipient): Buffer {
   );
 }
 
-export async function setEventListener(fn: (log: any, event: any) => void) {
+export async function setEventListener(fn: (log: any) => void) {
   if (listeningToEvents) return;
 
   const result = await fetch(`${configuration.tokenDropUrl}/config`);

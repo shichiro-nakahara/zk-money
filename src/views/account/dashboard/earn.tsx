@@ -38,6 +38,7 @@ export function Earn(props: EarnProps) {
   const [claiming, setClaiming] = useState(false);
   const [tx, setTx] = useState(null);
   const [contract, setContract] = useState(null);
+  const [refresh, setRefresh] = useState(false);
   const { data: signer } = useSigner();
 
   useEffect(() => {
@@ -60,12 +61,18 @@ export function Earn(props: EarnProps) {
     updateClaim();
   }, [viewDrop, contract]);
 
+  useEffect(() => {
+    if (!refresh) return;
+
+    updateTotalClaimed();
+    updateClaim();
+    setRefresh(false);
+
+  }, [refresh]);
+
   async function setEventListener() {
-    drop.setEventListener((log, event) => {
-      console.log('Event received');
-      console.log(log);
-      console.log(event);
-      updateClaim();
+    drop.setEventListener((log) => {
+      setRefresh(true);
     });
   }
 
