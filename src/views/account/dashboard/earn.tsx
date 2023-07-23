@@ -30,8 +30,8 @@ export function Earn(props: EarnProps) {
   const accountState = useObs(accountStateManager.stateObs);
   const [totalClaimed, setTotalClaimed] = useState('Loading...');
   const [lifetimeClaimed, setLifetimeClaimed] = useState('Loading...');
-  const [currentEpochClaimed, setCurrentEpochClaimed] = useState('Loading...');
-  const [currentEpoch, setCurrentEpoch] = useState(null);
+  const [lastEpochClaimed, setLastEpochClaimed] = useState('Loading...');
+  const [lastEpoch, setLastEpoch] = useState(null);
   const [viewDrop, setViewDrop] = useState(null);
   const [drops, setDrops] = useState([]);
   const [claim, setClaim] = useState({ error: 'Loading...', amount: null });
@@ -53,9 +53,9 @@ export function Earn(props: EarnProps) {
   }, [contract]);
 
   useEffect(() => {
-    if (!accountState || !accountState.ethAddressUsedForAccountKey) return;
-    updateAddressClaimed(accountState.ethAddressUsedForAccountKey.toString());
-  }, [accountState]);
+    if (!accountState || !accountState.ethAddressUsedForAccountKey || !lastEpoch) return;
+    updateAddressClaimed(lastEpoch.uid, accountState.ethAddressUsedForAccountKey.toString());
+  }, [accountState, lastEpoch]);
 
   useEffect(() => {
     updateClaim();
@@ -167,14 +167,14 @@ export function Earn(props: EarnProps) {
     });
   }
 
-  async function updateAddressClaimed(address) {
+  async function updateAddressClaimed(dropUid, address) {
     const result = await fetch(`${configuration.tokenDropUrl}/address/${address}/claimed`);
     const { lifetime, drop } = (await result.json()).data;
     setLifetimeClaimed(ethers.utils.formatEther(lifetime));
-    const amount = currentEpoch && drop[currentEpoch.uid]
-      ? ethers.utils.formatEther(drop[currentEpoch.uid])
+    const amount = dropUid && drop[dropUid]
+      ? ethers.utils.formatEther(drop[dropUid])
       : ethers.utils.formatEther('0');
-    setCurrentEpochClaimed(amount);
+    setLastEpochClaimed(amount);
   }
 
   async function updateDrops() {
@@ -197,17 +197,22 @@ export function Earn(props: EarnProps) {
         return drop;
       });
 
-    const now = dayjs();
-    const updatedCurrentEpoch = earnDrops.reduce((currentEpoch, drop) => {
-      if (now.isBetween(drop.earn.eligibilityStart, drop.earn.eligibilityEnd)) currentEpoch = drop.epoch;
-      return currentEpoch;
+    const lastWeek = dayjs().subtract(1, 'week');
+    const updatedLastEpoch = earnDrops.reduce((lastEpoch, drop) => {
+      if (lastWeek.isBetween(drop.earn.eligibilityStart, drop.earn.eligibilityEnd)) lastEpoch = drop;
+      return lastEpoch;
     }, null);
 
     setDrops(earnDrops);
-    setCurrentEpoch(updatedCurrentEpoch);
+    setLastEpoch(updatedLastEpoch);
 
-    const viewIndex = updatedCurrentEpoch ? updatedCurrentEpoch - 1 : earnDrops.length - 1;
-    setViewDrop(earnDrops[viewIndex]);
+    const now = dayjs();
+    const currentEpoch = earnDrops.reduce((currentEpoch, drop) => {
+      if (now.isBetween(drop.earn.eligibilityStart, drop.earn.eligibilityEnd)) currentEpoch = drop;
+      return currentEpoch;
+    }, null);
+
+    setViewDrop(currentEpoch ? currentEpoch : earnDrops[earnDrops.length - 1]);
   }
 
   async function claimDrop() {
@@ -295,9 +300,9 @@ export function Earn(props: EarnProps) {
             </div>
           </div>
           <div>
-            <div className={style.subTitle}>Current Epoch</div>
+            <div className={style.subTitle}>Last Epoch</div>
             <div>
-              {currentEpochClaimed}
+              {lastEpochClaimed}
               <span className={style.tokenSymbol}>eNATA</span>
             </div>
           </div>

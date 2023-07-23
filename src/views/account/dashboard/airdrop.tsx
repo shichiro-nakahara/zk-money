@@ -4,7 +4,7 @@ export function Airdrop() {
       <div>Coming soon...</div>
       <div style={{ fontSize: 'smaller', marginTop: '1em' }}>
         Keep an eye out on{' '}
-        <a href="https://twitter.com/poly_aztec" target="_blank">
+        <a href="https://twitter.com/nata_network_io" target="_blank">
           Twitter
         </a>{' '}
         for details.
