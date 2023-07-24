@@ -251,7 +251,7 @@ export function Earn(props: EarnProps) {
         >
           <div>Loyalty Program</div>
           <div className={style.paragraphText}>
-            Start depositing to Nata Network to earn loyalty tokens. eNATA can be converted to NATA tokens periodically.
+            Start depositing to Nata Network to earn loyalty tokens.
           </div>
           <a href="https://docs.natanetwork.io/how-natanetwork-works/earn" target="_blank">
             <Button text="Loyalty Program ↗" />
