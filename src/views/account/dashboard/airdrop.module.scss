@@ -1,0 +1,21 @@
+.cardWrapper {
+  display: flex;
+  letter-spacing: 0.03em;
+  padding: 30px;
+  gap: 20px;
+  line-height: 150%;
+  background-color: white;
+  overflow: initial;
+  align-items: start;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    padding: 20px;
+    gap: 15px;
+  }
+}
+
+.paragraphText {
+  font-size: 0.75em;
+  line-height: 1.5em;
+}

@@ -144,6 +144,25 @@ export function UserAccountMenu() {
                     )}
                   </div>
                   <Field
+                    label="Polygon Address"
+                    sublabel="This is the Polygon address associated with your Nata Network account"
+                    value={
+                      accountState && accountState.ethAddressUsedForAccountKey ? 
+                        accountState.ethAddressUsedForAccountKey.toString() 
+                        : 
+                        'Loading...'
+                    }
+                    disabled={true}
+                    onClick={() => {
+                      navigator.clipboard.writeText(formattedAddress);
+                      toastsObs.addToast({
+                        text: 'Address copied to clipboard',
+                        autocloseInMs: 5e3,
+                        closable: true,
+                      });
+                    }}
+                  />
+                  <Field
                     label="Nata Network Account Alias"
                     sublabel="This is the alias for your Nata Network account"
                     value={hasAlias ? cachedAlias : alias}

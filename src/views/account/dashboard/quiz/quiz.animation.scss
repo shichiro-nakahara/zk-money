@@ -1,0 +1,22 @@
+.fast-fade-enter {
+  opacity: 0;
+}
+
+.fast-fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms;
+}
+
+.fast-fade-exit {
+  opacity: 1;
+}
+
+.fast-fade-exit-active {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+.fast-fade-exit-done {
+  opacity: 0;
+  display: none;
+}

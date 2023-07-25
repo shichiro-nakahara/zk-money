@@ -93,7 +93,7 @@ export function Views({ config }: ViewsProps) {
         >
           <CSSTransition key={location.pathname} classNames="fade" timeout={250}>
             <Routes location={location.pathname}>
-              <Route path={Pages.AIRDROP} element={<Airdrop />} />
+              <Route path={Pages.AIRDROP} element={<Airdrop isLoggedIn={isLoggedIn} />} />
               <Route path={Pages.EARN} element={<Earn isLoggedIn={isLoggedIn} />} />
               <Route path={Pages.BALANCE} element={<Balance onOpenDefiExitModal={handleOpenDefiExitModal} />} />
               <Route path={Pages.HOME} element={<Home onSignup={() => navigate(Pages.BALANCE)} />} />

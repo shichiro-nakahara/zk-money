@@ -1,0 +1,22 @@
+.slow-fade-enter {
+  opacity: 0;
+}
+
+.slow-fade-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms;
+}
+
+.slow-fade-exit {
+  opacity: 1;
+}
+
+.slow-fade-exit-active {
+  opacity: 0;
+  transition: opacity 1000ms;
+}
+
+.slow-fade-exit-done {
+  opacity: 0;
+  display: none;
+}
