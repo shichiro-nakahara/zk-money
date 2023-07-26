@@ -44,7 +44,7 @@ export async function getContract(): Promise<ethers.Contract> {
   return dropContract;
 }
 
-export async function getTree(uid: string) {
+export async function getTree(uid: string): Promise<Tree | null> {
   if (!trees[uid]) {
     const result = await fetch(`${configuration.tokenDropUrl}/drop/${uid}/tree`);
     const json = await result.json();
@@ -58,11 +58,16 @@ export async function getTree(uid: string) {
   return trees[uid];
 }
 
-export async function claim(signer: ethers.Signer, address: string, id: number, uid: string) {
-  const tree = await getTree(uid);
+interface Tree {
+  uid: string;
+  root: string;
+  recipients: {[address:string]: string}
+}
+
+export async function claim(signer: ethers.Signer, address: string, id: number, tree: Tree) {
   const amount = tree.recipients[address];
   if (!amount) {
-    throw new Error(`${address} is not eligible for drop ${uid}`);
+    throw new Error(`${address} is not eligible for drop ${tree.uid}`);
   }
 
   const recipients = Object.keys(tree.recipients).map(recipient => {
@@ -73,10 +78,7 @@ export async function claim(signer: ethers.Signer, address: string, id: number, 
   });
 
   if (recipients.length % 2 != 0) {
-    recipients.push({
-      address: '0x000000000000000000000000000000000000dEaD',
-      wei: '0',
-    });
+    throw new Error(`Number of recipients is not even`);
   }
 
   const merkleTree = new MerkleTree(

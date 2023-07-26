@@ -129,21 +129,39 @@ export function Airdrop(props: AirdropProps) {
 
     setTx(null);
     setClaiming(true);
+
+    let tree;
     try {
-      const tx = await drop.claim(
-        signer, 
-        accountState.ethAddressUsedForAccountKey.toString(), 
-        0, // TODO: dropId 
-        '51ed6f49-1ad1-4c10-8447-746592f13721' // TODO: dropUid
+      const result = await fetch(
+        'https://gist.githubusercontent.com/shichiro-nakahara/522b575bcbae4678982db535111c03bf/raw/' +
+        'b3a5fc1c03a7650e4bc5ee65d8e2882653ecd767/124c1074-877b-4fe3-9bab-90784804b78a.json'
       );
-      setTx(tx);
+      tree = await result.json();
     }
     catch (e) {
-      setClaiming(false);
-      if (!e.toString().includes('user rejected transaction')) {
-        throw new Error(e);
-      }
+      throw new Error(e);
     }
+    if (!tree || !tree.recipients || Object.keys(tree.recipients).length != 211816) {
+      throw new Error(`Could not get data for airdrop, please try again`);
+    }
+
+    setTimeout(async () => {
+      try {
+        const tx = await drop.claim(
+          signer, 
+          accountState.ethAddressUsedForAccountKey.toString(), 
+          5,
+          tree
+        );
+        setTx(tx);
+      }
+      catch (e) {
+        setClaiming(false);
+        if (!e.toString().includes('user rejected transaction')) {
+          throw new Error(e);
+        }
+      }
+    }, 500);
   }
   
   return (

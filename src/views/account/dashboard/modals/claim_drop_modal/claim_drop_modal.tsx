@@ -31,7 +31,10 @@ export function ClaimDropModal(props: ClaimDropModalProps) {
           <div style={{ padding: "1em", lineHeight: "1.5em" }}>
             <div style={{ display: txHash ? "none" : "block" }}>
               <div style={{ width: "100%", textAlign: "center", marginBottom: "0.25em" }}><Loader /></div>
-              <div>Please confirm transaction in wallet to claim tokens.</div>
+              <div>Please wait, generating proof.</div>
+              <div style={{ marginTop: "0.5em", fontSize: "0.85em" }}>
+                When prompted, confirm transaction in wallet to claim tokens.
+              </div>
             </div>
             <div style={{ display: txHash ? "block" : "none" }}>
               <div style={{ marginBottom: "0.75em" }}>Transaction successfully sent to Polygon!</div>

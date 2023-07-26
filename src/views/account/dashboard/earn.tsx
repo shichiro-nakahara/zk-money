@@ -147,8 +147,8 @@ export function Earn(props: EarnProps) {
         setClaim({
           error: (
             <div>
-              Your <span style={{fontWeight: "bold"}}>{ ethers.utils.formatEther(amount) } eNATA</span> reward has 
-              been claimed.
+              Your <span style={{fontWeight: "bold"}}>{ parseInt(ethers.utils.formatEther(amount)) } eNATA</span> reward
+              has been claimed.
             </div>
           ),
           amount: null,
@@ -220,26 +220,38 @@ export function Earn(props: EarnProps) {
       throw new Error('Could not claim drop, invalid state.');
     }
     if (!signer) {
-      throw new Error('Could not claim, invalid signer. Please refresh page and try again.');
+      throw new Error('Could not claim, invalid signer. Please unlock your wallet or refresh page and try again.');
     }
+
+    let tree;
+    try {
+      tree = await drop.getTree(viewDrop.uid);
+    }
+    catch (e) {
+      throw new Error(e);
+    }
+    if (!tree) throw new Error(`Could not get data for drop ${viewDrop.uid}, please try again`);
 
     setTx(null);
     setClaiming(true);
-    try {
-      const tx = await drop.claim(
-        signer, 
-        accountState.ethAddressUsedForAccountKey.toString(), 
-        viewDrop.id, 
-        viewDrop.uid
-      );
-      setTx(tx);
-    }
-    catch (e) {
-      setClaiming(false);
-      if (!e.toString().includes('user rejected transaction')) {
-        throw new Error(e);
+
+    setTimeout(async () => {
+      try {
+        const tx = await drop.claim(
+          signer, 
+          accountState.ethAddressUsedForAccountKey.toString(), 
+          viewDrop.id, 
+          tree
+        );
+        setTx(tx);
       }
-    }
+      catch (e) {
+        setClaiming(false);
+        if (!e.toString().includes('user rejected transaction')) {
+          throw new Error(e);
+        }
+      }
+    }, 500);
   }
 
   return (
@@ -264,7 +276,7 @@ export function Earn(props: EarnProps) {
         >
           <div>eNATA</div>
           <div style={{ marginTop: '1em' }}>
-            <div>{totalClaimed}</div>
+            <div>{totalClaimed != "Loading..." ? parseInt(totalClaimed) : totalClaimed}</div>
             <div className={style.subTitle}>Total Claimed</div>
           </div>
         </div>
@@ -295,14 +307,14 @@ export function Earn(props: EarnProps) {
           <div>
             <div className={style.subTitle}>Lifetime</div>
             <div>
-              {lifetimeClaimed}
+              {lifetimeClaimed != "Loading..." ? parseInt(lifetimeClaimed) : lifetimeClaimed}
               <span className={style.tokenSymbol}>eNATA</span>
             </div>
           </div>
           <div>
             <div className={style.subTitle}>Last Epoch</div>
             <div>
-              {lastEpochClaimed}
+              {lastEpochClaimed != "Loading..." ? parseInt(lastEpochClaimed) : lastEpochClaimed}
               <span className={style.tokenSymbol}>eNATA</span>
             </div>
           </div>
@@ -379,7 +391,7 @@ export function Earn(props: EarnProps) {
 
           <div>
             <div>
-              {viewDrop ? ethers.utils.formatEther(viewDrop.earn.amount) : '-'}
+              {viewDrop ? parseInt(ethers.utils.formatEther(viewDrop.earn.amount)) : '-'}
               <span className={style.tokenSymbol}>eNATA</span>
             </div>
             <div className={style.subTitle}>Total Epoch Reward</div>
@@ -454,7 +466,7 @@ function TokenAllocation({ totalReward, tokenSplit, assetId }) {
     <Fragment>
       <div>{(fraction * 100).toFixed(1)}%</div>
       <div style={{ fontSize: '0.8em' }}>
-        {(totalRewardNumber * fraction).toFixed(1)}
+        {(totalRewardNumber * fraction).toFixed(0)}
         <span className={style.tokenSymbol}>eNATA</span>
       </div>
     </Fragment>
