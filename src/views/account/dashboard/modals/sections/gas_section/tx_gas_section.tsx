@@ -8,6 +8,7 @@ import { Amount } from '../../../../../../alt-model/assets/index.js';
 import { formatBulkPrice } from '../../../../../../app/index.js';
 import { useL1BalanceIndicator, useL2BalanceIndicator } from '../amount_section/mini_balance_indicators.js';
 import { useWalletInteractionIsOngoing } from '../../../../../../alt-model/wallet_interaction_hooks.js';
+import { SendMode } from '../../../../../../alt-model/send/send_mode.js';
 
 type BalanceType = 'L1' | 'L2';
 
@@ -20,6 +21,7 @@ interface TxGasSectionProps {
   disabled?: boolean;
   feeAmounts?: (Amount | undefined)[] | undefined[];
   onChangeSpeed: (speed: TxSettlementTime) => void;
+  sendMode: SendMode
 }
 
 function getParams(
@@ -68,6 +70,19 @@ export function TxGasSection(props: TxGasSectionProps) {
     //   ),
     // },
   ];
+
+  if (props.sendMode === SendMode.WIDTHDRAW) {
+    options.push({
+      id: TxSettlementTime.INSTANT,
+      content: getParams(
+        'Fastest speed',
+        instantSettlementTime,
+        feeAmounts?.[TxSettlementTime.INSTANT],
+        feeBulkPriceInstant,
+        props.balanceType === 'L1',
+      ),
+    })
+  }
 
   return (
     <FeeSelector

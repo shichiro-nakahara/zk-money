@@ -103,6 +103,7 @@ export const SendFormFieldsPage: React.FunctionComponent<SendProps> = ({
             onChangeSpeed={onChangeSpeed}
             feeAmounts={state.feeAmounts}
             targetAssetIsErc20={asset.id !== 0}
+            sendMode={sendMode}
           />
         }
         rightPanel={<TransactionSettlementTimeInformationSection selectedSpeed={state.fields.speed} />}

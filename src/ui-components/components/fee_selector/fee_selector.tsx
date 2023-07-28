@@ -4,6 +4,7 @@ import successIcon from '../../images/success.svg';
 import errorIcon from '../../images/error.svg';
 import warningIcon from '../../images/warning.svg';
 import style from './fee_selector.module.scss';
+import { TxSettlementTime } from '@polyaztec/sdk';
 
 const cx = bindStyle(style);
 
@@ -76,12 +77,28 @@ export function FeeSelector<TId extends SomeId>(props: FeeSelectorProps<TId>) {
           disabled={props.disabled}
           dropdownType={DropdownType.Fees}
           value={props.value}
-          options={props.options.map(option => ({
-            value: option.id,
-            label: `${option.content.label}${option.content.feeAmountStr ? ` (${option.content.feeAmountStr})` : ``}`,
-            sublabel: `${option.content.feeBulkPriceStr || '-'}`,
-          }))}
-          onChange={value => (!!value || value === 0) && props.onChangeValue(value)}
+          options={props.options.map(option => {
+            if (option.id == TxSettlementTime.INSTANT) {
+              return {
+                value: option.id,
+                label: 'Fastest speed',
+                sublabel: 'Click here to use ZKPay for instant withdrawals'
+              }
+            }
+
+            return {
+              value: option.id,
+              label: `${option.content.label}${option.content.feeAmountStr ? ` (${option.content.feeAmountStr})` : ``}`,
+              sublabel: `${option.content.feeBulkPriceStr || '-'}`,
+            }
+          })}
+          onChange={(value) => {
+            if (value == TxSettlementTime.INSTANT) {
+              window.open('https://zkpay.finance', '_blank', 'noreferrer');
+              return true;
+            }
+            return (!!value || value === 0) && props.onChangeValue(value)
+          }}
         />
         {renderStatusIcon(props.status)}
       </div>
