@@ -400,7 +400,7 @@ export function Earn(props: EarnProps) {
           <div style={{ borderTop: '1px solid #e5e5e5' }}></div>
 
           <div style={{ display: 'flex' }}>
-            <div style={{ width: '33.33%' }}>
+            <div style={{ width: '25%' }}>
               <div className={style.subTitle}>MATIC Allocation</div>
               <TokenAllocation
                 totalReward={viewDrop ? viewDrop.earn.amount : null}
@@ -408,7 +408,7 @@ export function Earn(props: EarnProps) {
                 assetId={0}
               />
             </div>
-            <div style={{ width: '33.33%' }}>
+            <div style={{ width: '25%' }}>
               <div className={style.subTitle}>DAI Allocation</div>
               <TokenAllocation
                 totalReward={viewDrop ? viewDrop.earn.amount : null}
@@ -416,12 +416,19 @@ export function Earn(props: EarnProps) {
                 assetId={1}
               />
             </div>
-            <div style={{ width: '33.33%' }}>
+            <div style={{ width: '25%' }}>
               <div className={style.subTitle}>WETH Allocation</div>
               <TokenAllocation
                 totalReward={viewDrop ? viewDrop.earn.amount : null}
                 tokenSplit={viewDrop ? viewDrop.earn.tokenSplit : null}
                 assetId={2}
+              />
+            </div>
+            <div style={{ width: '25%' }}>
+              <div className={style.subTitle}>Max Deposit Allocation</div>
+              <MaxAllocation
+                totalReward={viewDrop ? viewDrop.earn.amount : null}
+                tokenSplit={viewDrop ? viewDrop.earn.tokenSplit : null}
               />
             </div>
           </div>
@@ -456,11 +463,29 @@ export function Earn(props: EarnProps) {
   );
 }
 
+function MaxAllocation({ totalReward, tokenSplit }) {
+  if (!tokenSplit) return '-';
+
+  const total = tokenSplit.asset.reduce((t, token) => t + token, 0) + tokenSplit.max;
+  const fraction = tokenSplit.max / total;
+  const totalRewardNumber = parseFloat(ethers.utils.formatEther(totalReward));
+
+  return (
+    <Fragment>
+      <div>{(fraction * 100).toFixed(1)}%</div>
+      <div style={{ fontSize: '0.8em' }}>
+        {(totalRewardNumber * fraction).toFixed(0)}
+        <span className={style.tokenSymbol}>eNATA</span>
+      </div>
+    </Fragment>
+  );
+}
+
 function TokenAllocation({ totalReward, tokenSplit, assetId }) {
   if (!tokenSplit) return '-';
 
-  const total = tokenSplit.reduce((t, token) => t + token, 0);
-  const fraction = tokenSplit[assetId] / total;
+  const total = tokenSplit.asset.reduce((t, token) => t + token, 0) + tokenSplit.max;
+  const fraction = tokenSplit.asset[assetId] / total;
   const totalRewardNumber = parseFloat(ethers.utils.formatEther(totalReward));
   return (
     <Fragment>
