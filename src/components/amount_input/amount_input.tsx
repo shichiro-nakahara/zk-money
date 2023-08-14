@@ -3,12 +3,13 @@ import { Amount } from '../../alt-model/assets/amount.js';
 import { StrOrMax, MAX_MODE } from '../../alt-model/forms/constants.js';
 import { getAssetPreferredFractionalDigits } from '../../alt-model/known_assets/known_asset_display_data.js';
 import { TopLevelContext } from '../../alt-model/top_level_context/top_level_context.js';
-import { usePendingBalances } from '../../alt-model/top_level_context/top_level_context_hooks.js';
+import { useConfig, usePendingBalances } from '../../alt-model/top_level_context/top_level_context_hooks.js';
 import { RemoteAsset } from '../../alt-model/types.js';
 import { useWalletInteractionIsOngoing } from '../../alt-model/wallet_interaction_hooks.js';
 import { formatBaseUnits } from '../../app/units.js';
 import { Layer, DropdownOption, FieldStatus, Field } from '../../ui-components/index.js';
 import { getWalletSelectorToast, Toasts } from '../../views/toasts/toast_configurations.js';
+import { ethers } from 'ethers';
 
 export function formatMaxAmount(maxAmount: bigint, asset: RemoteAsset) {
   if (maxAmount === 0n) {
@@ -81,11 +82,23 @@ function getPendingFundsMessage(message?: string, inputAmount?: Amount, pendingA
   }
 }
 
+function getMaxDepositMessage(inputAmount: Amount, asset: RemoteAsset, config) {
+  if (inputAmount.baseUnits == 0n) return undefined;
+
+  const limit = asset.label ? config.txAmountLimits[asset.label] : undefined;
+  if (limit && inputAmount.baseUnits < limit) {
+    return `Deposit ${parseInt(ethers.utils.formatEther(limit))} ${asset.symbol} to maximize eNATA reward.`;
+  }
+
+  return undefined;
+}
+
 export function AmountInput(props: AmountInputProps) {
   const { asset, assetOptions, value, onChangeValue, onChangeAsset, maxAmount, disabled } = props;
   const { walletInteractionToastsObs } = useContext(TopLevelContext);
   const walletInteractionIsOngoing = useWalletInteractionIsOngoing();
   const l1PendingBalance = usePendingBalances()[asset.id];
+  const config = useConfig()
 
   const handleChangeValue = (value: string) => onChangeValue(value.match(/^\d*\.?\d*/)?.[0] ?? '');
   const handleMaxButton = () => onChangeValue(MAX_MODE);
@@ -104,7 +117,8 @@ export function AmountInput(props: AmountInputProps) {
 
   const pendingAmount = new Amount(l1PendingBalance, asset);
   const inputAmount = Amount.from(amountStr, asset);
-  const message = getPendingFundsMessage(props.message, inputAmount, pendingAmount, props.feeAmount);
+  let message = getPendingFundsMessage(props.message, inputAmount, pendingAmount, props.feeAmount);
+  if (!message) message = getMaxDepositMessage(inputAmount, asset, config);
 
   return (
     <Field
