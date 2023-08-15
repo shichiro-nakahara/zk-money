@@ -115,6 +115,7 @@ export function ShieldPage1({
               onChangeAmountStringOrMax={onChangeAmountStrOrMax}
               message={feedback.amount}
               balanceType="L1"
+              shield={true}
             />
           </>
         }

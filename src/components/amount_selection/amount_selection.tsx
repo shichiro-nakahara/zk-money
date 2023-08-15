@@ -28,6 +28,7 @@ interface AmountSelectionProps {
   sublabel?: string;
   onChangeAsset?: (option: number) => void;
   onChangeAmountStringOrMax: (amountStringOrMax: StrOrMax) => void;
+  shield?: boolean;
 }
 
 export function AmountSelection(props: AmountSelectionProps) {
@@ -67,6 +68,7 @@ export function AmountSelection(props: AmountSelectionProps) {
         maxAmount={props.maxAmount}
         onChangeAsset={handleTypeChange}
         onChangeValue={props.onChangeAmountStringOrMax}
+        shield={props.shield}
       />
     </div>
   );

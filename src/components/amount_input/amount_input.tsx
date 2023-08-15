@@ -38,6 +38,7 @@ interface AmountInputProps {
   allowWalletSelection?: boolean;
   onChangeValue: (value: StrOrMax) => void;
   onChangeAsset: (option: number) => void;
+  shield?: boolean;
 }
 
 function getStatus(message?: string, amount?: string) {
@@ -87,7 +88,11 @@ function getMaxDepositMessage(inputAmount: Amount, asset: RemoteAsset, config) {
 
   const limit = asset.label ? config.txAmountLimits[asset.label] : undefined;
   if (limit && inputAmount.baseUnits < limit) {
-    return `Deposit ${parseInt(ethers.utils.formatEther(limit))} ${asset.symbol} to maximize eNATA reward.`;
+    return `Deposit ${parseInt(ethers.utils.formatEther(limit))} ${asset.symbol} to earn Max Deposit reward.`;
+  }
+
+  if (limit && inputAmount.baseUnits >= limit) {
+    return `This deposit will earn the Max Deposit reward.`;
   }
 
   return undefined;
@@ -118,7 +123,7 @@ export function AmountInput(props: AmountInputProps) {
   const pendingAmount = new Amount(l1PendingBalance, asset);
   const inputAmount = Amount.from(amountStr, asset);
   let message = getPendingFundsMessage(props.message, inputAmount, pendingAmount, props.feeAmount);
-  if (!message) message = getMaxDepositMessage(inputAmount, asset, config);
+  if (props.shield && !message) message = getMaxDepositMessage(inputAmount, asset, config);
 
   return (
     <Field
