@@ -37,6 +37,7 @@ interface FeeSelectorProps<TId extends SomeId> {
   disabled?: boolean;
   balance?: string;
   status?: FeeSelectorStatus;
+  surgeMultiplier?: number;
   onChangeValue: (value: TId) => void;
 }
 
@@ -102,6 +103,14 @@ export function FeeSelector<TId extends SomeId>(props: FeeSelectorProps<TId>) {
         />
         {renderStatusIcon(props.status)}
       </div>
+      {
+        props.surgeMultiplier && props.surgeMultiplier > 1 ?
+          <div className={style.subtitle} style={{ marginTop: 0 }}>
+            Experiencing high demand, surge pricing at {props.surgeMultiplier}x, please try again later
+          </div>
+          :
+          null
+      }
     </div>
   );
 }

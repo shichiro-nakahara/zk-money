@@ -9,6 +9,8 @@ import { formatBulkPrice } from '../../../../../../app/index.js';
 import { useL1BalanceIndicator, useL2BalanceIndicator } from '../amount_section/mini_balance_indicators.js';
 import { useWalletInteractionIsOngoing } from '../../../../../../alt-model/wallet_interaction_hooks.js';
 import { SendMode } from '../../../../../../alt-model/send/send_mode.js';
+import { useEffect, useState } from 'react';
+import { useSdk } from '../../../../../../alt-model/top_level_context/top_level_context_hooks.js';
 
 type BalanceType = 'L1' | 'L2';
 
@@ -38,15 +40,24 @@ function getParams(
 }
 
 export function TxGasSection(props: TxGasSectionProps) {
+  const sdk = useSdk();
   const { speed, onChangeSpeed, feeAmounts, disabled } = props;
   const rollupProviderStatus = useRollupProviderStatus();
   const walletInteractionIsOngoing = useWalletInteractionIsOngoing();
   const feeBulkPriceNextRollup = useAmountBulkPrice(feeAmounts?.[TxSettlementTime.NEXT_ROLLUP]);
   const feeBulkPriceInstant = useAmountBulkPrice(feeAmounts?.[TxSettlementTime.INSTANT]);
   const { instantSettlementTime, nextSettlementTime } = estimateTxSettlementTimes(rollupProviderStatus);
+  const [surgeStatus, setSurgeStatus] = useState({pendingTxCount: 0, multiplier: 1});
 
   const l1Balance = useL1BalanceIndicator(props.asset);
   const l2Balance = useL2BalanceIndicator(props.asset);
+
+  useEffect(() => {
+    async function update() {
+      setSurgeStatus(await sdk?.getSurgeStatus());
+    }
+    update();
+  }, [feeAmounts]);
 
   const options = [
     {
@@ -95,6 +106,7 @@ export function TxGasSection(props: TxGasSectionProps) {
       status={speed !== null ? FeeSelectorStatus.Success : undefined}
       balance={props.balanceType === 'L1' ? l1Balance : l2Balance}
       onChangeValue={onChangeSpeed}
+      surgeMultiplier={surgeStatus.multiplier}
     />
   );
 }

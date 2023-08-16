@@ -1730,10 +1730,10 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@polyaztec/sdk@2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@polyaztec/sdk/-/sdk-2.3.1.tgz#0999d7877860c96aadf5e9b165125a1544de40cc"
-  integrity sha512-sUyHSkKwQHJ477u9RkwKd4HvprrTf0JOMCA2I0n6d9uQ57P3uUYg6GXks0ivO0QwgAUWhtPjPCZcFZEKdDUcig==
+"@polyaztec/sdk@2.3.2":
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/@polyaztec/sdk/-/sdk-2.3.2.tgz#6fc9f908f24e47cdcada23022dcf9713158609a8"
+  integrity sha512-IcV0mI2Y/U3aM46tVQIB0qr5QWEb6o4EAuB1XDyDcwPvRpS1sf7VLGvjSnuj48UE8nm8QW670eFlGvX4MEAkQQ==
   dependencies:
     "@aztec/barretenberg" "2.1.95"
     "@aztec/blockchain" "2.1.95"
