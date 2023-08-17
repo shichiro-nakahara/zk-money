@@ -133,18 +133,28 @@ export function Airdrop(props: AirdropProps) {
     if (!accountState || !accountState.ethAddressUsedForAccountKey) return;
 
     const address = accountState.ethAddressUsedForAccountKey.toString();
-    const result = await (await fetch(
+    const resultDrop0 = await (await fetch(
       `${configuration.tokenDropUrl}/drop/01122c4f-30ac-489d-864a-53f2375f9829/address/${address}`
     )).json();
+    const resultDrop1 = await (await fetch(
+      `${configuration.tokenDropUrl}/drop/152a06b2-319f-40b8-835c-8d4a1e85609c/address/${address}`
+    )).json();
 
-    if (result.status != 200 && result.status != 404) throw new Error(`Could not get address eligibility for Airdrop`);
+    if (resultDrop0.status != 200 && resultDrop0.status != 404) {
+      throw new Error(`Could not get address eligibility for Airdrop 0`);
+    }
 
-    if (result.status == 404) {
+    if (resultDrop1.status != 200 && resultDrop1.status != 404) {
+      throw new Error(`Could not get address eligibility for Airdrop 1`);
+    }
+
+    if (resultDrop0.status == 404 && resultDrop1.status == 404) {
       setEligible({
-        isEligible: false,
+        isEligible0: false,
+        isEligible1: false,
         message: <>
           <div>
-            {address} does not qualify for this Airdrop.
+            {address} does not qualify for any Airdrops.
           </div>
           <div>
             Click{' '}
@@ -160,32 +170,59 @@ export function Airdrop(props: AirdropProps) {
     const provider = new ethers.providers.JsonRpcProvider(configuration.ethereumHost);
     const contract = (await drop.getContract()).connect(provider);
 
+    let eligible0;
+    let eligible1;
     try {
-      const hasClaimed = await contract.hasClaimed(5, address);
-      if (hasClaimed) {
+      const hasClaimed0 = await contract.hasClaimed(5, address);
+      const hasClaimed1 = await contract.hasClaimed(9, address);
+      eligible0 = resultDrop0.status == 200 && !hasClaimed0;
+      eligible1 = resultDrop1.status == 200 && !hasClaimed1;
+
+      if (!eligible0 && !eligible1) {
         setEligible({
-          isEligible: false,
-          message: `You have already claimed this Airdrop`
+          isEligible0: false,
+          isEligible1: false,
+          message: `${address} has claimed all eligible Airdrops`
         });
         return;
       }
     }
     catch (e) {
       console.error(e);
-      throw new Error(`Could not get claimed status for ${address} for Airdrop`);
+      throw new Error(`Could not get Airdrops claimed status for ${address}`);
     }
 
+    const combinedShare = (resultDrop0.status == 200 ? resultDrop0.data.share : 0) + 
+      (resultDrop1.status == 200 ? resultDrop1.data.share : 0);
+
     setEligible({
-      isEligible: true,
+      isEligible0: eligible0,
+      isEligible1: eligible1,
       message: <div>
-        { address } is eligible to claim{' '}
-        <span style={{fontWeight: 'bold'}}>{parseInt(ethers.utils.formatEther(result.data.share))} eNATA</span> from 
-        this Airdrop
+        { address } is eligible to claim a total of{' '}
+        <span style={{fontWeight: 'bold'}}>
+          { parseInt(ethers.utils.formatEther(combinedShare)) } eNATA
+        </span>
       </div>
     });
   }
 
-  async function claimDrop() {
+  const airdropClaimData = [
+    {
+      treeDataUrl: `https://gist.githubusercontent.com/shichiro-nakahara/522b575bcbae4678982db535111c03bf/raw/` +
+        'b3a5fc1c03a7650e4bc5ee65d8e2882653ecd767/124c1074-877b-4fe3-9bab-90784804b78a.json',
+      id: 5,
+      addresses: 211816
+    },
+    {
+      treeDataUrl: `https://gist.githubusercontent.com/shichiro-nakahara/21329bcb654c385e7f09937333fbce6e/raw/` +
+        'bde5efc9ef3dcffc2515ce09d4018bf23fa01716/3cf79a34-ef76-4303-8362-f26924eec32e.json',
+      id: 9,
+      addresses: 92786
+    }
+  ];
+
+  async function claimDrop(airdrop) {
     if (!accountState || !accountState.ethAddressUsedForAccountKey) {
       throw new Error('Could not claim drop, invalid state.');
     }
@@ -196,18 +233,17 @@ export function Airdrop(props: AirdropProps) {
     setTx(null);
     setClaiming(true);
 
+    const airdropData = airdropClaimData[airdrop];
+
     let tree;
     try {
-      const result = await fetch(
-        'https://gist.githubusercontent.com/shichiro-nakahara/522b575bcbae4678982db535111c03bf/raw/' +
-        'b3a5fc1c03a7650e4bc5ee65d8e2882653ecd767/124c1074-877b-4fe3-9bab-90784804b78a.json'
-      );
+      const result = await fetch(airdropData.treeDataUrl);
       tree = await result.json();
     }
     catch (e) {
       throw new Error(e);
     }
-    if (!tree || !tree.recipients || Object.keys(tree.recipients).length != 211816) {
+    if (!tree || !tree.recipients || Object.keys(tree.recipients).length != airdropData.addresses) {
       throw new Error(`Could not get data for airdrop, please try again`);
     }
 
@@ -216,7 +252,7 @@ export function Airdrop(props: AirdropProps) {
         const tx = await drop.claim(
           signer, 
           accountState.ethAddressUsedForAccountKey.toString(), 
-          5,
+          airdropData.id,
           tree
         );
         setTx(tx);
@@ -301,8 +337,11 @@ export function Airdrop(props: AirdropProps) {
                   here
                 </a> for a list of eligible addresses.
               </div>
-              <div style={{marginTop: "0.5em", width: "100%",}}>
-                <Button text="Claim" disabled={ eligible && !eligible.isEligible} onClick={claimDrop} />
+              <div style={{marginTop: "0.5em", width: "100%"}}>
+                <Button text="Claim Airdrop #1" disabled={ eligible && !eligible.isEligible0 } onClick={() => {claimDrop(0)}} />
+              </div>
+              <div style={{width: "100%"}}>
+                <Button text="Claim Airdrop #2" disabled={ eligible && !eligible.isEligible1 } onClick={() => {claimDrop(1)}} />
               </div>
             </div>
             <ClaimDropModal visible={ claiming } txHash={ tx ? tx.hash : null } onClose={() => setClaiming(false)} />
