@@ -58,6 +58,17 @@ export function Navbar({
 
       <div className={style.accountRoot}>
         <Link
+          to="https://snapshot.org/#/natanetwork.eth"
+          target="_blank"
+          className={cx(style.link, isSafari && style.noLetterSpacing, style.navLink, {
+            white: theme === Theme.WHITE,
+            gradient: theme === Theme.GRADIENT,
+          })}
+        >
+          <MobileNavbarWallet className={style.mobileImage} />
+          Vote
+        </Link>
+        <Link
           to={Pages.AIRDROP}
           className={cx(style.link, isSafari && style.noLetterSpacing, style.navLink, {
             active: Pages.AIRDROP === location.pathname,
