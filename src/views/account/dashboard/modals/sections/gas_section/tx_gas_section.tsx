@@ -63,7 +63,7 @@ export function TxGasSection(props: TxGasSectionProps) {
     {
       id: TxSettlementTime.NEXT_ROLLUP,
       content: getParams(
-        'Default speed',
+        'Default speed: ~7 hrs',
         nextSettlementTime,
         feeAmounts?.[TxSettlementTime.NEXT_ROLLUP],
         feeBulkPriceNextRollup,

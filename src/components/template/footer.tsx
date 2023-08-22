@@ -37,6 +37,14 @@ const socialItems = [
     name: 'Matrix',
     href: 'https://matrix.to/#/!EiAngTwTXkkAWgdYIJ:matrix.org',
   },
+  {
+    name: 'Governance',
+    href: 'https://natanetwork.canny.io/dao-governance',
+  },
+  {
+    name: 'Feedback',
+    href: 'https://natanetwork.canny.io/dao-governance',
+  },
 ];
 
 const Col = styled.div`
