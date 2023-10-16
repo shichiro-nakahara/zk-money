@@ -22,6 +22,7 @@ import { Toasts } from './toasts/toasts.js';
 import { useL1PendingBalances } from '../alt-model/assets/l1_balance_hooks.js';
 import './app.css';
 import { Airdrop } from './account/dashboard/airdrop.js';
+import { Shop } from './account/dashboard/shop.js';
 
 function useShowTOS(config: Config) {
   const { toastsObs } = useContext(TopLevelContext);
@@ -95,6 +96,7 @@ export function Views({ config }: ViewsProps) {
             <Routes location={location.pathname}>
               <Route path={Pages.AIRDROP} element={<Airdrop isLoggedIn={isLoggedIn} />} />
               <Route path={Pages.EARN} element={<Earn isLoggedIn={isLoggedIn} />} />
+              <Route path={Pages.SHOP} element={<Shop />} />
               <Route path={Pages.BALANCE} element={<Balance onOpenDefiExitModal={handleOpenDefiExitModal} />} />
               <Route path={Pages.HOME} element={<Home onSignup={() => navigate(Pages.BALANCE)} />} />
               <Route

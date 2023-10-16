@@ -5,4 +5,5 @@ export enum Pages {
   TRADE = '/trade',
   BALANCE = '/balance',
   AIRDROP = '/airdrop',
+  SHOP = '/enata'
 }

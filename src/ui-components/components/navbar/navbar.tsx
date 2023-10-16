@@ -58,15 +58,19 @@ export function Navbar({
 
       <div className={style.accountRoot}>
         <Link
-          to="https://snapshot.org/#/natanetwork.eth"
-          target="_blank"
+          to={Pages.SHOP}
           className={cx(style.link, isSafari && style.noLetterSpacing, style.navLink, {
+            active: Pages.SHOP === location.pathname,
             white: theme === Theme.WHITE,
             gradient: theme === Theme.GRADIENT,
           })}
+          style={{
+            pointerEvents: config.tosAccepted ? 'inherit' : 'none',
+            opacity: config.tosAccepted ? 1 : 0.5,
+          }}
         >
           <MobileNavbarWallet className={style.mobileImage} />
-          Vote
+          eNATA
         </Link>
         <Link
           to={Pages.AIRDROP}
