@@ -1,8 +1,8 @@
 import React from 'react';
 import { bindStyle } from '../../util/classnames.js';
-import style from './button.module.scss';
+import styles from './button.module.scss';
 
-const cx = bindStyle(style);
+const cx = bindStyle(styles);
 
 export enum ButtonTheme {
   Primary = 'Primary',
@@ -30,6 +30,7 @@ interface ButtonProps<T> {
   theme?: ButtonTheme;
   gradient?: ButtonGradient;
   color?: string;
+  style?: any;
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>, value?: T) => void;
 }
 
@@ -61,28 +62,29 @@ export function Button<T>(props: ButtonProps<T>) {
     imageSrc,
     theme = ButtonTheme.Primary,
     onClick,
+    style
   } = props;
 
   return (
     <div
       className={cx(
-        style.button,
-        disabled && style.disabled,
-        theme === ButtonTheme.Primary && style.primary,
-        theme === ButtonTheme.Secondary && style.secondary,
-        size === ButtonSize.Large && style.large,
-        size === ButtonSize.Medium && style.medium,
-        size === ButtonSize.Small && style.small,
+        styles.button,
+        disabled && styles.disabled,
+        theme === ButtonTheme.Primary && styles.primary,
+        theme === ButtonTheme.Secondary && styles.secondary,
+        size === ButtonSize.Large && styles.large,
+        size === ButtonSize.Medium && styles.medium,
+        size === ButtonSize.Small && styles.small,
         className,
       )}
-      style={getGradientStyle(gradient)}
+      style={style ? Object.assign(style, getGradientStyle(gradient)) : getGradientStyle(gradient)}
       onClick={event => {
         if (!disabled) onClick?.(event, value);
       }}
     >
-      <div className={style.text} style={getTextStyle(color)}>
+      <div className={styles.text} style={getTextStyle(color)}>
         {text}
-        {imageSrc && <img src={imageSrc} alt="" className={style.image} />}
+        {imageSrc && <img src={imageSrc} alt="" className={styles.image} />}
       </div>
     </div>
   );

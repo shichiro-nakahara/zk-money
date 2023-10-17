@@ -12,6 +12,7 @@ export const configuration = {
   defaultRegisterAssetId: 2,
   docsUrl: 'https://docs.natanetwork.io',
   tokenDropUrl: 'https://token-drop.natanetwork.io',
+  tokenShopUrl: 'http://localhost:3894',
   walletConnectProjectId: 'c6e764e7a1fda558b2420b27e5a20ce5'
 };
 
