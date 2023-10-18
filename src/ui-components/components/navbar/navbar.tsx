@@ -70,7 +70,7 @@ export function Navbar({
           }}
         >
           <MobileNavbarWallet className={style.mobileImage} />
-          eNATA
+          Donate
         </Link>
         <Link
           to={Pages.AIRDROP}
