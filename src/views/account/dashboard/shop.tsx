@@ -17,9 +17,13 @@ import { useObs } from '../../../app/util/index.js';
 import { configuration } from '../../../config.js';
 import { useNavigate } from 'react-router-dom';
 import { Pages } from '../../views.js';
-import Copy from '../../../ui-components/images/copy.svg';
 import { Claim } from './claim.js';
 import { ShopCart } from './shop_cart.js';
+import { CopyButton } from '../../../ui-components/components/copy_button/copy_button.js';
+import { Pagination } from '../../../components/pagination.js';
+import { useSigner } from 'wagmi';
+import * as drop from '../../../app/drop.js';
+import { ClaimDropModal } from './modals/claim_drop_modal/claim_drop_modal.js';
 
 const cx = bindStyle(style);
 
@@ -27,12 +31,15 @@ interface ShopProps {
   isLoggedIn: boolean;
 }
 
+const CLAIMS_PER_PAGE = 5;
+
 export function Shop(props: ShopProps) {
   const assets = useRemoteAssets().filter((a) => a.symbol != 'MATIC');
   const assetOptions = assets.map((a) => { return { value: a.id, label: `zk${a.symbol}` }; });
   const accountStateManager = useAccountStateManager();
   const accountState = useObs(accountStateManager.stateObs);
   const address = accountState ? accountState.ethAddressUsedForAccountKey.toString() : '';
+  const { data: signer } = useSigner();
 
   const [referralAddress, setReferralAddress] = useState('');
   const [referralAddressStatus, setReferralAddressStatus] = useState<FieldStatus | undefined>(undefined);
@@ -49,9 +56,11 @@ export function Shop(props: ShopProps) {
   const [totalSupply, setTotalSupply] = useState('');
   const [receiveStatus, setReceiveStatus] = useState<FieldStatus | undefined>(undefined);
   const [referralAddressMessage, setReferralAddressMessage] = useState('');
-  const [copyButtonClicked, setCopyButtonClicked] = useState(false);
-  const [claims, setClaims] = useState([]);
+  const [claims, setClaims] = useState<any[]>([]);
   const [goToCart, setGoToCart] = useState(false);
+  const [page, setPage] = useState(1);
+  const [claiming, setClaiming] = useState(false);
+  const [tx, setTx] = useState<any>(null);
 
   const l2Balances = assets.reduce((r, a) => {
     r[a.symbol] = useL2BalanceIndicator(a);
@@ -89,17 +98,14 @@ export function Shop(props: ShopProps) {
       window.localStorage.removeItem('donateRef')
       updateReferral(donateRef);
     }
+    updateSaleConfig();
   }, []);
 
   useEffect(() => {
-    async function run() {
-      const result = await fetch(`${configuration.tokenShopUrl}/sale/config`);
-      if (result.status != 200) throw new Error('Could not get donation config from server!');
-      const config = (await result.json()).data;
-      setSaleConfig(config);
-    }
-    run();
-  }, []);
+    if (!address) return;
+    updateClaims(address);
+
+  }, [address]);
 
   useEffect(() => {
     if (!amount || !saleConfig) return;
@@ -175,6 +181,70 @@ export function Shop(props: ShopProps) {
     }
   }
 
+  async function updateClaims(address: string) {
+    const result = await fetch(`${configuration.tokenShopUrl}/drop?address=${address}`);
+    if (result.status != 200) throw new Error('Could not get claim history from server!');
+    const drops = (await result.json()).data;
+
+    const resultAD = await fetch(`${configuration.tokenDropUrl}/drop`);
+    const allDrops = (await resultAD.json()).data;
+
+    setClaims(drops.map((d) => {
+      const config = allDrops.find((aD) => aD.uid == d.drop?.tokenDropUid);
+      d.id = config ? 1 : null;
+      return d;  
+    }));
+  }
+
+  async function updateSaleConfig() {
+    const result = await fetch(`${configuration.tokenShopUrl}/sale/config`);
+    if (result.status != 200) throw new Error('Could not get donation config from server!');
+    const config = (await result.json()).data;
+    setSaleConfig(config);
+  }
+
+  async function claimDrop(tokenDropUid: string, id: null | number) {
+    if (!tokenDropUid || !address || id === null) {
+      console.log(tokenDropUid);
+      console.log(address);
+      console.log(id);
+      throw new Error('Could not claim drop, invalid state.');
+    }
+    if (!signer) {
+      throw new Error('Could not claim, invalid signer. Please unlock your wallet or refresh page and try again.');
+    }
+
+    let tree;
+    try {
+      tree = await drop.getTree(tokenDropUid);
+    }
+    catch (e) {
+      throw new Error(e);
+    }
+    if (!tree) throw new Error(`Could not get data for drop ${tokenDropUid}, please try again`);
+
+    setTx(null);
+    setClaiming(true);
+
+    setTimeout(async () => {
+      try {
+        const tx = await drop.claim(
+          signer, 
+          address, 
+          id, 
+          tree
+        );
+        setTx(tx);
+      }
+      catch (e) {
+        setClaiming(false);
+        if (!e.toString().includes('user rejected transaction')) {
+          throw new Error(e);
+        }
+      }
+    }, 500);
+  }
+
   if (saleConfig === null) {
     return (
       <div 
@@ -195,6 +265,8 @@ export function Shop(props: ShopProps) {
       />
 
       <Terms address={address} termsAccepted={termsAccepted} setTermsAccepted={setTermsAccepted} />
+
+      <ClaimDropModal visible={ claiming } txHash={ tx ? tx.hash : null } onClose={() => setClaiming(false)} />
 
       <div style={{display: termsAccepted ? "flex" : "none", flexDirection: 'column', gap: '40px'}}>
         <div className={style.cardRow}>
@@ -221,20 +293,7 @@ export function Shop(props: ShopProps) {
               >
                 https://natanetwork.io/donate?ref={address}
               </a>
-              <button
-                disabled={copyButtonClicked} 
-                style={{ background: 'none', border: 'none', cursor: copyButtonClicked ? 'default' : 'pointer',
-                  opacity: copyButtonClicked ? '0.5' : '1'
-                }}
-                onClick={(e) => {
-                  navigator.clipboard.writeText(`https://natanetwork.io/donate?ref=${address}`);
-                  setCopyButtonClicked(true);
-                  setTimeout(() => {
-                    setCopyButtonClicked(false);
-                  }, 1000);
-                }}>
-                <img style={{ width: '1.25rem' }} src={ Copy } />
-              </button>
+              <CopyButton text={`https://natanetwork.io/donate?ref=${address}`} />
             </div>
           </div>
 
@@ -309,7 +368,22 @@ export function Shop(props: ShopProps) {
         </div>
         <div>
           <SectionTitle label="Claims" />
-          { claims.map((claim) => <Claim />) }
+          <div>
+            {
+              claims.slice((page - 1) * CLAIMS_PER_PAGE, page * CLAIMS_PER_PAGE).map((claim, i) => 
+                <Claim key={`claim-${i}`} address={claim.address} amount={BigInt(claim.amount)} 
+                  referralAddress={claim.referralAddress} referralAmount={claim.referralAmount}
+                  tokenDropUid={claim.drop ? claim.drop.tokenDropUid : undefined}
+                  name={claim.drop ? claim.drop.name : undefined} id={claim.id}
+                  onClaimDrop={() => claimDrop(claim.drop?.tokenDropUid, claim.id)}
+                />
+              ) 
+            }
+            <Pagination totalItems={claims.length} itemsPerPage={CLAIMS_PER_PAGE} page={page} 
+              onChangePage={(p) => setPage(p)} 
+            />
+          </div>
+          
           <div className={cx(style.cardWrapper, cardWrapperStyle.cardWrapper)}
             style={{ width:'100%', display: claims.length == 0 ? 'flex' : 'none' }}
           >

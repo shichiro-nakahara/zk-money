@@ -1,26 +1,82 @@
 import style from './claim.module.scss';
 import { bindStyle } from '../../../ui-components/util/classnames.js';
+import { useEffect, useState } from 'react';
+import { useAccountStateManager } from '../../../alt-model/top_level_context/top_level_context_hooks.js';
+import { useObs } from '../../../app/util/index.js';
+import { ethers } from 'ethers';
+import { CopyButton } from '../../../ui-components/components/copy_button/copy_button.js';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc.js';
+import advancedFormat from 'dayjs/plugin/advancedFormat.js';
+import { Button, ButtonTheme } from '../../../ui-components/index.js';
+import * as drop from '../../../app/drop.js';
 
 const cx = bindStyle(style);
 
-interface ClaimProps {
+dayjs.extend(utc);
+dayjs.extend(advancedFormat);
+
+enum Type {
+  DONATION,
+  REFERRAL
 }
 
-export function Claim() {
+interface ClaimProps {
+  address: string;
+  amount: bigint;
+  tokenDropUid: undefined | string;
+  name: undefined | string;
+  referralAddress: undefined | string;
+  referralAmount: undefined | bigint;
+  onClaimDrop: Function;
+  id: null | number;
+}
+
+export function Claim(props: ClaimProps) {
+  const accountStateManager = useAccountStateManager();
+  const accountState = useObs(accountStateManager.stateObs);
+  const address = accountState ? accountState.ethAddressUsedForAccountKey.toString() : '';
+
+  const [type, setType] = useState(Type.DONATION);
+
+  useEffect(() => {
+    if (!address) return;
+    setType(address == props.address ? Type.DONATION : Type.REFERRAL);
+  }, [props.address, address]);
+
   return (
     <div className={style.root}>
       <div className={cx(style.segment, style.firstSegment)}>
-        Drop 1
+        { props.name ? `Drop ${props.name}` : 'Pending Drop'}
       </div>
       <div className={cx(style.segment, style.valueField)}>
-        <div className={style.value}>2000 eNATA</div>
+        <div className={style.value}>
+          { parseInt(ethers.utils.formatEther(type == Type.DONATION ? props.amount : props.referralAmount!)) } eNATA
+        </div>
       </div>
       <div className={cx(style.segment, style.feeField)}>
-        <div className={style.fee}>0x00</div>
+        <div className={style.fee}>
+          { 
+            type == Type.DONATION ? 
+              'Donation' 
+              : 
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                Referred by {props.address.substring(0, 6)}...{
+                  props.address.substring(props.address.length - 3, props.address.length)
+                }
+                <CopyButton text={props.address} iconWidth='1rem' />
+              </div> 
+          }
+        </div>
       </div>
       <div className={cx(style.segment, style.lastSegment)}>
         <div className={style.time}>
-          Claim
+          {
+            props.id !== null ?
+              <Button text="Claim" onClick={() => props.onClaimDrop()} />
+              :
+              `Claim after 00:00:00 (UTC)`
+          }
         </div>
       </div>
     </div>
