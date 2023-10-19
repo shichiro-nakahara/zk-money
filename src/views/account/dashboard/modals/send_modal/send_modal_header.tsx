@@ -16,6 +16,8 @@ function getTitle(sendMode?: SendMode) {
       return 'Send to L2';
     case SendMode.WIDTHDRAW:
       return 'Withdraw to L1';
+    case SendMode.DONATE:
+      return 'Donate to Nata Network'
     default:
       return '';
   }

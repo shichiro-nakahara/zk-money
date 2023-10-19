@@ -17,6 +17,7 @@ import { RetrySigningButton } from '../modal_molecules/retry_signing_button/inde
 import { useWalletInteractionIsOngoing } from '../../../../../alt-model/wallet_interaction_hooks.js';
 import { formatEthAddress } from '../../../../../app/util/helpers.js';
 import style from './send_confirmation_page.module.scss';
+import { DonateSubmissionSteps } from './donate_submission_steps.js';
 
 interface SendConfirmationPageProps {
   composerState: SendComposerState;
@@ -75,6 +76,10 @@ export function SendConfirmationPage({
         amountLabel="Amount"
         amount={lockedComposerPayload.targetAmount}
         fee={lockedComposerPayload.feeAmount}
+        donateAmount={lockedComposerPayload.donateAmount}
+        donateAddress={lockedComposerPayload.donateAddress}
+        donateReferralAddress={lockedComposerPayload.donateReferralAddress}
+        donateReferralAmount={lockedComposerPayload.donateReferralAmount}
       />
       <BorderBox>
         {showingDeclaration ? (
@@ -82,7 +87,10 @@ export function SendConfirmationPage({
         ) : showingComplete ? (
           <TransactionComplete onClose={onClose} />
         ) : (
-          <SendSubmissionSteps composerState={composerState} />
+          lockedComposerPayload.recipient.sendMode == SendMode.DONATE ? 
+            <DonateSubmissionSteps composerState={composerState} />
+            :
+            <SendSubmissionSteps composerState={composerState} />
         )}
       </BorderBox>
       {!showingComplete && (

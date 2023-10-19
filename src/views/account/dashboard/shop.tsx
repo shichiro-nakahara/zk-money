@@ -19,6 +19,7 @@ import { useNavigate } from 'react-router-dom';
 import { Pages } from '../../views.js';
 import Copy from '../../../ui-components/images/copy.svg';
 import { Claim } from './claim.js';
+import { ShopCart } from './shop_cart.js';
 
 const cx = bindStyle(style);
 
@@ -50,6 +51,7 @@ export function Shop(props: ShopProps) {
   const [referralAddressMessage, setReferralAddressMessage] = useState('');
   const [copyButtonClicked, setCopyButtonClicked] = useState(false);
   const [claims, setClaims] = useState([]);
+  const [goToCart, setGoToCart] = useState(false);
 
   const l2Balances = assets.reduce((r, a) => {
     r[a.symbol] = useL2BalanceIndicator(a);
@@ -120,10 +122,17 @@ export function Shop(props: ShopProps) {
   }, [saleConfig]);
 
   useEffect(() => {
-    if (!asset) return;
-    updateAmount(amount);
+    if (!amount) {
+      setAmountStatus(undefined);
+      return;
+    }
+    setAmountStatus(ethers.utils.parseEther(amount).toBigInt() > maxOutput ? 
+      FieldStatus.Error 
+      : 
+      FieldStatus.Success
+    );
 
-  }, [asset]);
+  }, [asset, amount, maxOutput]);
 
   useEffect(() => {
     if (!receive || !remainingSupply) return;
@@ -166,20 +175,6 @@ export function Shop(props: ShopProps) {
     }
   }
 
-  function updateAmount(value: string) {
-    const amount = value.replace(/[^0-9.]/g, '');
-    setAmount(amount);
-    if (!amount) {
-      setAmountStatus(undefined);
-      return;
-    }
-    setAmountStatus(ethers.utils.parseEther(amount).toBigInt() > maxOutput ? 
-      FieldStatus.Error 
-      : 
-      FieldStatus.Success
-    );
-  }
-
   if (saleConfig === null) {
     return (
       <div 
@@ -193,6 +188,12 @@ export function Shop(props: ShopProps) {
 
   return (
     <>
+      <ShopCart asset={asset} paid={amount ? ethers.utils.parseEther(amount).toBigInt() : undefined}
+        userId={accountState?.userId} goToCart={goToCart} setGoToCart={setGoToCart} address={address}
+        receive={receive ? ethers.utils.parseEther(receive).toBigInt() : undefined} referralAddress={referralAddress}
+        referralAmount={bonus ? ethers.utils.parseEther(bonus).toBigInt() : undefined}
+      />
+
       <Terms address={address} termsAccepted={termsAccepted} setTermsAccepted={setTermsAccepted} />
 
       <div style={{display: termsAccepted ? "flex" : "none", flexDirection: 'column', gap: '40px'}}>
@@ -267,7 +268,10 @@ export function Shop(props: ShopProps) {
                   setAmount(ethers.utils.formatEther(maxOutput));
                   setAmountStatus(FieldStatus.Success);
                 }}
-                onChangeValue={updateAmount}
+                onChangeValue={(value: string ) => {
+                  const amount = value.replace(/[^0-9.]/g, '');
+                  setAmount(amount);
+                }}
               />
             </div>
             <div style={{display: 'flex', justifyContent: 'center', width: '100%', marginTop: '-20px'}}>
@@ -294,7 +298,7 @@ export function Shop(props: ShopProps) {
               />
             </div>
             <Button text="Donate" 
-              onClick={() => console.log('buy')} 
+              onClick={() => setGoToCart(true)} 
               style={{width: '100%', marginTop: '-1rem'}}
               disabled={amountStatus != FieldStatus.Success || 
                 referralAddressStatus == FieldStatus.Error ||

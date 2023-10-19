@@ -13,7 +13,9 @@ export const configuration = {
   docsUrl: 'https://docs.natanetwork.io',
   tokenDropUrl: 'https://token-drop.natanetwork.io',
   tokenShopUrl: 'http://localhost:3894',
-  walletConnectProjectId: 'c6e764e7a1fda558b2420b27e5a20ce5'
+  walletConnectProjectId: 'c6e764e7a1fda558b2420b27e5a20ce5',
+  shopRecipient: '0x28fa155cdb6dc090b814987095e693b75a40a309147aa399118935cb5b91eadf161a081c802355adf0d2b90c911ccd01c' +
+    '04778a079cbbd150150cdb9f5330aa5' 
 };
 
 export interface Config {

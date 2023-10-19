@@ -3,6 +3,7 @@ import { Amount } from '../../../../../../alt-model/assets/amount.js';
 import { formatBulkPrice } from '../../../../../../app/index.js';
 import { CostBreakdownRecipientRow, CostBreakdownValueRow } from './cost_breakdown_rows.js';
 import style from './cost_breakdown.module.css';
+import { ethers } from 'ethers';
 
 interface CostBreakdownProps {
   amountLabel: string;
@@ -12,6 +13,10 @@ interface CostBreakdownProps {
   deductionIsFromL1?: boolean;
   feeDeductionIsFromL1?: boolean;
   investmentRowElement?: React.ReactNode;
+  donateAmount?: bigint;
+  donateAddress?: string;
+  donateReferralAddress?: string;
+  donateReferralAmount?: bigint;
 }
 
 function maybeBulkPriceStr(bulkPrice?: bigint) {
@@ -27,6 +32,10 @@ export function CostBreakdown({
   deductionIsFromL1,
   feeDeductionIsFromL1,
   investmentRowElement,
+  donateAmount,
+  donateAddress,
+  donateReferralAddress,
+  donateReferralAmount
 }: CostBreakdownProps) {
   const amountBulkPrice = useAmountBulkPrice(amount);
   const feeBulkPrice = useAmountBulkPrice(fee);
@@ -36,6 +45,46 @@ export function CostBreakdown({
   const feeIsInSameAsset = fee && amount?.id === fee.id;
   const totalAmount = feeIsInSameAsset ? amount?.add(fee?.baseUnits) : undefined;
   const totalAsset = feeIsInSameAsset ? amount.info : undefined;
+
+  if (donateAddress && donateAmount) {
+    return (
+      <div className={style.root}>
+        <CostBreakdownRecipientRow label="Your Polygon Address" value={donateAddress} />
+        <CostBreakdownValueRow
+          label="Receive"
+          cost={maybeBulkPriceStr(totalBulkPrice)}
+          asset={undefined}
+          value={`${parseInt(ethers.utils.formatEther(donateAmount))} eNATA`}
+          assetIsZk={false}
+        />
+        { donateReferralAddress ?
+          <CostBreakdownRecipientRow label="Referral Address" value={donateReferralAddress} />
+          : 
+          null 
+        }
+        {
+          donateReferralAmount ? 
+            <CostBreakdownValueRow
+              label="Referral Claims"
+              cost={maybeBulkPriceStr(totalBulkPrice)}
+              asset={undefined}
+              value={`${parseInt(ethers.utils.formatEther(donateReferralAmount))} eNATA`}
+              assetIsZk={false}
+            />
+            :
+            null
+        }
+        <CostBreakdownValueRow
+          label="Total Donation"
+          cost={maybeBulkPriceStr(totalBulkPrice)}
+          asset={totalAsset}
+          value={totalAmount?.format({ layer: deductionIsFromL1 ? 'L1' : 'L2' })}
+          assetIsZk={!deductionIsFromL1}
+        />
+        {investmentRowElement}
+      </div>
+    );
+  }
 
   return (
     <div className={style.root}>
