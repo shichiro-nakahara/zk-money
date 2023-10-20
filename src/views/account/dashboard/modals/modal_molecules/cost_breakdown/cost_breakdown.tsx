@@ -52,7 +52,6 @@ export function CostBreakdown({
         <CostBreakdownRecipientRow label="Your Polygon Address" value={donateAddress} />
         <CostBreakdownValueRow
           label="Receive"
-          cost={maybeBulkPriceStr(totalBulkPrice)}
           asset={undefined}
           value={`${parseInt(ethers.utils.formatEther(donateAmount))} eNATA`}
           assetIsZk={false}
@@ -66,7 +65,6 @@ export function CostBreakdown({
           donateReferralAmount ? 
             <CostBreakdownValueRow
               label="Referral Claims"
-              cost={maybeBulkPriceStr(totalBulkPrice)}
               asset={undefined}
               value={`${parseInt(ethers.utils.formatEther(donateReferralAmount))} eNATA`}
               assetIsZk={false}

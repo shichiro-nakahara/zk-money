@@ -116,7 +116,7 @@ export class SendComposer {
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              aztecTxId: txId, 
+              aztecTxId: txId.toString(), 
               address: donateAddress, 
               amount: donateAmount!.toString(), 
               token: targetAmount.info.id == 1 ? 'DAI' : 'ETH', 

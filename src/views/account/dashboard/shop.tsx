@@ -105,7 +105,7 @@ export function Shop(props: ShopProps) {
     if (!address) return;
     updateClaims(address);
 
-  }, [address]);
+  }, [address, goToCart]);
 
   useEffect(() => {
     if (!amount || !saleConfig) return;
@@ -128,8 +128,12 @@ export function Shop(props: ShopProps) {
   }, [saleConfig]);
 
   useEffect(() => {
-    if (!amount) {
+    if (amount == '') {
       setAmountStatus(undefined);
+      return;
+    }
+    if (parseFloat(amount) == 0) {
+      setAmountStatus(FieldStatus.Error);
       return;
     }
     setAmountStatus(ethers.utils.parseEther(amount).toBigInt() > maxOutput ? 
@@ -313,8 +317,13 @@ export function Shop(props: ShopProps) {
                 label="Amount"
                 placeholder="Enter amount"
                 status={amountStatus}
-                message={amountStatus == FieldStatus.Error ? 
-                  `Insufficient balance, max allowed ${ethers.utils.formatEther(maxOutput)} zk${asset.symbol}` 
+                message={amountStatus == FieldStatus.Error ?
+                  (
+                    parseFloat(amount) == 0 ? 
+                      'Enter a number greater than zero'
+                      : 
+                      `Insufficient balance, max allowed ${ethers.utils.formatEther(maxOutput)} zk${asset.symbol}`
+                  )
                   : 
                   ""
                 }

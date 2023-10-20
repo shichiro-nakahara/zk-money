@@ -24,8 +24,7 @@ export class RegistrationsRepo {
       debug(`Unrecognised deployTag: ${deployTag}`);
     }
     const labelToAssetAddressStr = {
-      ...KNOWN_MAINNET_ASSET_ADDRESS_STRS,
-      ...(registrationsDataRaw[deployTag]?.assets as RegistrationsDataRawAssets),
+      ...KNOWN_MAINNET_ASSET_ADDRESS_STRS
     };
     this.assetAddressStrToLabel = Object.fromEntries(
       Object.entries(labelToAssetAddressStr).map(([k, v]) => [v, k as AssetLabel]),
@@ -38,7 +37,7 @@ export class RegistrationsRepo {
         if (address.equals(EthAddress.ZERO)) return 'Eth';
         return;
       }
-      return Object.entries(labelToAssetAddressStr).find(x => x[1] === addressStr)?.[0] as
+      return Object.entries(labelToAssetAddressStr).find(x => x[1].toLowerCase() === addressStr.toLowerCase())?.[0] as
         | RegisteredAssetLabel
         | undefined;
     };

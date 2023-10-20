@@ -44,15 +44,24 @@ export function Claim(props: ClaimProps) {
     setType(address == props.address ? Type.DONATION : Type.REFERRAL);
   }, [props.address, address]);
 
+  function getAmount() {
+    if (type == Type.DONATION && props.referralAddress == address) {
+      return `${parseInt(ethers.utils.formatEther(props.amount))} + ` +
+        `${parseInt(ethers.utils.formatEther(props.referralAmount!))} eNATA`
+    }
+    if (type == Type.DONATION) {
+      return `${parseInt(ethers.utils.formatEther(props.amount))} eNATA`;
+    }
+    return `${parseInt(ethers.utils.formatEther(props.referralAmount!))} eNATA`;
+  }
+
   return (
     <div className={style.root}>
       <div className={cx(style.segment, style.firstSegment)}>
         { props.name ? `Drop ${props.name}` : 'Pending Drop'}
       </div>
       <div className={cx(style.segment, style.valueField)}>
-        <div className={style.value}>
-          { parseInt(ethers.utils.formatEther(type == Type.DONATION ? props.amount : props.referralAmount!)) } eNATA
-        </div>
+        <div className={style.value}>{ getAmount() }</div>
       </div>
       <div className={cx(style.segment, style.feeField)}>
         <div className={style.fee}>

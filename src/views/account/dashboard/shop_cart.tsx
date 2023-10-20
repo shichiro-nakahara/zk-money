@@ -88,7 +88,7 @@ export function ShopCart(props: ShopCartProps) {
   if (!lockedComposerPayload || !state || !props.goToCart || !composerState) return null;
 
   return (
-    <Modal theme={Theme.WHITE} onClose={() => console.log('closemodal')} noPadding={false}>
+    <Modal theme={Theme.WHITE} onClose={() => {}} noPadding={false}>
       <Card
         cardHeader={
           <SendModalHeader
@@ -107,7 +107,7 @@ export function ShopCart(props: ShopCartProps) {
         }
         cardContent={
           <SendConfirmationPage composerState={composerState} lockedComposerPayload={lockedComposerPayload}
-            state={state} onBack={() => console.log('back')} onClose={() => console.log('close')} 
+            state={state} onBack={() => {}} onClose={() => {}} 
             onSubmit={() => {
               lockedComposer!.compose().then((result) => {
                 if (result) {

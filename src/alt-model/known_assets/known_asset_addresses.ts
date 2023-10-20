@@ -2,16 +2,14 @@ import { EthAddress } from '@polyaztec/sdk';
 import { mapObj } from '../../app/util/objects.js';
 import { RegisteredAssetLabel } from '../registrations_data/registrations_data_types.js';
 
-const dev = window.location.hostname.includes('dev') || window.location.hostname.includes('localhost');
-
 export const KNOWN_MAINNET_ASSET_ADDRESS_STRS = {
   Eth: '0x0000000000000000000000000000000000000000',
-  DAI: dev ? '0xF14f9596430931E177469715c591513308244e8F' : '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
+  DAI: '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063',
   wstETH: '0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0',
   stETH: '0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84',
   yvWETH: '0xa258C4606Ca8206D8aA700cE2143D7db854D168c',
   yvDAI: '0xdA816459F1AB5631232FE5e97a05BBBb94970c95',
-  WETH: dev ? '0xD087ff96281dcf722AEa82aCA57E8545EA9e6C96' : '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
+  WETH: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
   weWETH: '0x3c66B18F67CA6C1A71F829E2F6a0c987f97462d0',
   wewstETH: '0x60897720AA966452e8706e74296B018990aEc527',
   weDAI: '0x4169Df1B7820702f566cc10938DA51F6F597d264',

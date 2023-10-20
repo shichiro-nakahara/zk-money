@@ -11,11 +11,10 @@ export const configuration = {
   rollupHost: 'https://falafel.natanetwork.io',
   defaultRegisterAssetId: 2,
   docsUrl: 'https://docs.natanetwork.io',
-  tokenDropUrl: 'http://localhost:3737',
-  tokenShopUrl: 'http://localhost:3894',
+  tokenDropUrl: 'https://token-drop.natanetwork.io',
+  tokenShopUrl: 'https://token-shop.natanetwork.io',
   walletConnectProjectId: 'c6e764e7a1fda558b2420b27e5a20ce5',
-  shopRecipient: '0x28fa155cdb6dc090b814987095e693b75a40a309147aa399118935cb5b91eadf161a081c802355adf0d2b90c911ccd01c' +
-    '04778a079cbbd150150cdb9f5330aa5' 
+  shopRecipient: '0x0d902e2cb00c5c07619d033c913e6cee1984987068d169061763842598ee15e31a4abd3acafa4e53576caeb9340212dfd161b5f17904fd6c51fa8e74f571a6c7'
 };
 
 export interface Config {
