@@ -195,7 +195,7 @@ export function Shop(props: ShopProps) {
 
     setClaims(drops.map((d) => {
       const config = allDrops.find((aD) => aD.uid == d.drop?.tokenDropUid);
-      d.id = config ? 1 : null;
+      d.id = config ? config.id : null;
       return d;  
     }));
   }

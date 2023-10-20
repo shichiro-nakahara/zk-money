@@ -8,7 +8,8 @@ import { CopyButton } from '../../../ui-components/components/copy_button/copy_b
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc.js';
 import advancedFormat from 'dayjs/plugin/advancedFormat.js';
-import { Button, ButtonTheme } from '../../../ui-components/index.js';
+import { Button } from '../../../ui-components/index.js';
+import { configuration } from '../../../config.js';
 import * as drop from '../../../app/drop.js';
 
 const cx = bindStyle(style);
@@ -38,11 +39,30 @@ export function Claim(props: ClaimProps) {
   const address = accountState ? accountState.ethAddressUsedForAccountKey.toString() : '';
 
   const [type, setType] = useState(Type.DONATION);
+  const [hasClaimed, setHasClaimed] = useState(false);
 
   useEffect(() => {
     if (!address) return;
     setType(address == props.address ? Type.DONATION : Type.REFERRAL);
   }, [props.address, address]);
+
+  useEffect(() => {
+    if (!props.id) return;
+    async function run() {
+      const provider = new ethers.providers.JsonRpcProvider(configuration.ethereumHost);
+      const contract = (await drop.getContract()).connect(provider);
+      try {
+        const hasClaimed = await contract.hasClaimed(props.id, address);
+        setHasClaimed(hasClaimed);
+      }
+      catch (e) {
+        console.error(e);
+        throw new Error(`Could not get claimed status for ${address}`);
+      }
+    }
+    run();
+
+  }, [props.id]);
 
   function getAmount() {
     if (type == Type.DONATION && props.referralAddress == address) {
@@ -82,7 +102,9 @@ export function Claim(props: ClaimProps) {
         <div className={style.time}>
           {
             props.id !== null ?
-              <Button text="Claim" onClick={() => props.onClaimDrop()} />
+              <Button text={hasClaimed ? 'Claimed' : 'Claim'} onClick={() => props.onClaimDrop()} 
+                disabled={hasClaimed} 
+              />
               :
               `Claim after 00:00:00 (UTC)`
           }
