@@ -4,7 +4,7 @@ import cardWrapperStyle from '../../../../ui-components/components/card/card_wra
 import { Button, ButtonTheme } from '../../../../ui-components/index.js';
 import { useState } from 'react';
 import { AcceptTerm } from './accept_term.js';
-import { useSigner, useSignMessage } from 'wagmi';
+import { useSignMessage } from 'wagmi';
 import { useActiveWalletEthAddress } from '../../../../alt-model/active_wallet_hooks.js';
 
 const cx = bindStyle(style);
@@ -72,7 +72,7 @@ export function Terms(props: TermsProps) {
         />
         <AcceptTerm 
           onClick={(clicked) => 
-            setTermChecked(`${termChecked[0]}${clicked ? 't' : 'f'}${termChecked[2]}}`)
+            setTermChecked(`${termChecked[0]}${clicked ? 't' : 'f'}${termChecked[2]}`)
           }
           text={"I am not a citizen or resident of the United States of America (including its territories: American " +
             "Samoa, Guam, Puerto Rico, the Northern Mariana Islands, and the U.S. Virgin Islands) or any other " + 
