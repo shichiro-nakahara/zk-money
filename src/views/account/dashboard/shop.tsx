@@ -46,9 +46,10 @@ export function Shop(props: ShopProps) {
   const [asset, setAsset] = useState<RemoteAsset>(assets[1]);
   const [amount, setAmount] = useState('');
   const [amountStatus, setAmountStatus] = useState<FieldStatus | undefined>(undefined);
+  const [amountMessage, setAmountMessage] = useState('');
   const [receive, setReceive] = useState('');
   const [bonus, setBonus] = useState('');
-  const [termsAccepted, setTermsAccepted] = useState(true); // TODO: Change to 'false'
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const [saleConfig, setSaleConfig] = useState<any>(undefined);
   const [tokenPerDollar, setTokenPerDollar] = useState('');
   const [referralTokenPerDollar, setReferralTokenPerDollar] = useState('');
@@ -110,8 +111,8 @@ export function Shop(props: ShopProps) {
   useEffect(() => {
     if (!amount || !saleConfig) return;
     const tokenPrice = asset.symbol == 'DAI' ? saleConfig.daiPrice : saleConfig.ethPrice;
-    const etherAmount = ethers.utils.parseEther(amount);
-    const receive = etherAmount.div(ethers.BigNumber.from(tokenPrice));
+    const amountWei = ethers.utils.parseEther(amount);
+    const receive = amountWei.div(ethers.BigNumber.from(tokenPrice));
     const bonus = receive.div(10);
     setReceive(receive.toString());
     setBonus(bonus.toString());
@@ -130,19 +131,29 @@ export function Shop(props: ShopProps) {
   useEffect(() => {
     if (amount == '') {
       setAmountStatus(undefined);
+      setAmountMessage('');
       return;
     }
     if (parseFloat(amount) == 0) {
       setAmountStatus(FieldStatus.Error);
+      setAmountMessage('Enter a number greater than zero');
       return;
     }
-    setAmountStatus(ethers.utils.parseEther(amount).toBigInt() > maxOutput ? 
-      FieldStatus.Error 
-      : 
-      FieldStatus.Success
-    );
+    if (ethers.utils.parseEther(amount).toBigInt() > maxOutput) {
+      setAmountStatus(FieldStatus.Error);
+      setAmountMessage(`Insufficient balance, max allowed ${ethers.utils.formatEther(maxOutput)} zk${asset.symbol}`);
+      return;
+    }
+    if (receive && tokenPerDollar && parseFloat(receive) / parseFloat(tokenPerDollar) < 1) {
+      setAmountStatus(FieldStatus.Error);
+      setAmountMessage('Minimum donation is $1');
+      return;
+    }
 
-  }, [asset, amount, maxOutput]);
+    setAmountMessage('');
+    setAmountStatus(FieldStatus.Success);
+
+  }, [asset, amount, maxOutput, receive, tokenPerDollar]);
 
   useEffect(() => {
     if (!receive || !remainingSupply) return;
@@ -317,16 +328,7 @@ export function Shop(props: ShopProps) {
                 label="Amount"
                 placeholder="Enter amount"
                 status={amountStatus}
-                message={amountStatus == FieldStatus.Error ?
-                  (
-                    parseFloat(amount) == 0 ? 
-                      'Enter a number greater than zero'
-                      : 
-                      `Insufficient balance, max allowed ${ethers.utils.formatEther(maxOutput)} zk${asset.symbol}`
-                  )
-                  : 
-                  ""
-                }
+                message={amountMessage}
                 allowAssetSelection={true}
                 assetOptions={assetOptions}
                 selectedAsset={asset}

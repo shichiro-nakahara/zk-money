@@ -43,8 +43,16 @@ const socialItems = [
   },
   {
     name: 'Feedback',
-    href: 'https://natanetwork.canny.io/dao-governance',
+    href: 'https://frenreviews.com/project/403',
   },
+  {
+    name: 'Snapshot',
+    href: 'https://snapshot.org/#/natanetwork.eth'
+  },
+  {
+    name: 'Blog',
+    href: 'https://mirror.xyz/natanetwork.eth'
+  }
 ];
 
 const Col = styled.div`
