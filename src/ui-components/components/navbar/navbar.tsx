@@ -6,6 +6,9 @@ import { PendingBalances } from '../../../alt-model/top_level_context/pending_ba
 import style from './navbar.module.scss';
 import { useConfig } from '../../../alt-model/top_level_context/top_level_context_hooks.js';
 import { Pages } from '../../../views/views.js';
+import { useDropContext } from '../../../context/drop_context.js';
+import { Dot } from '../../../components/dot.js';
+import { useEffect, useState } from 'react';
 
 const cx = bindStyle(style);
 
@@ -47,6 +50,20 @@ export function Navbar({
 }: NavbarProps): JSX.Element {
   const location = useLocation();
   const config = useConfig();
+  const dropContext = useDropContext();
+
+  const [hasClaimable, setHasClaimable] = useState(false);
+
+  useEffect(() => {
+    if (!dropContext.claims) return;
+    for (const claim of dropContext.claims) {
+      if (claim.id && !claim.hasClaimed) {
+        setHasClaimable(true);
+        return;
+      }
+    }
+
+  }, [dropContext.claims]);
 
   return (
     <div className={style.headerRoot}>
@@ -70,7 +87,10 @@ export function Navbar({
           }}
         >
           <MobileNavbarWallet className={style.mobileImage} />
-          Donate
+          <div style={{ display: 'flex', alignItems: 'center'}}>
+            { hasClaimable ? <Dot className={style.dot} size="xs" color="green" /> : null }
+            <div>Donate</div>
+          </div>
         </Link>
         <Link
           to={Pages.AIRDROP}

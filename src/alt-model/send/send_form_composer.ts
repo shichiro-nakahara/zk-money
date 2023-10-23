@@ -97,7 +97,7 @@ export class SendComposer {
       await controller.createProof(PROOF_CREATION_TIMEOUT);
 
       this.stateObs.setPhase(SendComposerPhase.SENDING_PROOF);
-      const txId = await controller.send();
+      const txId = configuration.sendFormComposerDryRun ? `dry-run-${Date.now().toFixed()}` : await controller.send();
 
       if (recipient.sendMode !== SendMode.DONATE) {
         this.stateObs.setPhase(SendComposerPhase.DONE);

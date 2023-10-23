@@ -11,6 +11,7 @@ import { AppInitFailed } from './views/app_init_failed.js';
 import { getSupportStatus } from './device_support.js';
 import { Toolbox } from './toolbox/index.js';
 import { getWagmiRainbowConfig } from './toolbox/wagmi_rainbow_config.js';
+import { DropContextProvider } from './context/drop_context.js';
 
 async function rootRender() {
   try {
@@ -48,9 +49,11 @@ async function rootRender() {
           chains={chains}
         >
           <TopLevelContextProvider config={config} initialRollupProviderStatus={initialRollupProviderStatus}>
-            <BrowserRouter>
-              <Views config={config} />
-            </BrowserRouter>
+            <DropContextProvider>
+              <BrowserRouter>
+                <Views config={config} />
+              </BrowserRouter>
+            </DropContextProvider>
           </TopLevelContextProvider>
         </RainbowKitProvider>
       </WagmiConfig>

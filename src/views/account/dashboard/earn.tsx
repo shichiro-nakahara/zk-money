@@ -14,6 +14,7 @@ import isBetween from 'dayjs/plugin/isBetween.js';
 import * as drop from '../../../app/drop.js';
 import { useSigner } from 'wagmi';
 import { ClaimDropModal } from './modals/claim_drop_modal/claim_drop_modal.js';
+import { useDropContext } from '../../../context/drop_context.js';
 
 dayjs.extend(isBetween);
 
@@ -24,6 +25,7 @@ interface EarnProps {
 }
 
 export function Earn(props: EarnProps) {
+  const dropContext = useDropContext();
   const { isLoggedIn } = props;
   const navigate = useNavigate();
   const accountStateManager = useAccountStateManager();
@@ -43,10 +45,13 @@ export function Earn(props: EarnProps) {
 
   useEffect(() => {
     if (!isLoggedIn) navigate(Pages.BALANCE);
-    updateDrops();
     initContract();
     setEventListener();
   }, []);
+
+  useEffect(() => {
+    updateDrops();
+  }, [dropContext.drops]);
 
   useEffect(() => {
     updateTotalClaimed();
@@ -178,10 +183,10 @@ export function Earn(props: EarnProps) {
   }
 
   async function updateDrops() {
-    const result = await fetch(`${configuration.tokenDropUrl}/drop`);
-    const allDrops = (await result.json()).data;
+    if (!dropContext.drops) return;
+
     let epoch = 1;
-    const earnDrops = allDrops
+    const earnDrops = dropContext.drops
       .filter(drop => drop.earn !== null)
       .map(drop => {
         drop.created = dayjs(drop.created);

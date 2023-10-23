@@ -127,6 +127,6 @@ export function getL1PendingFundsFeedback(resources: L1DepositResources, walletI
       layer: 'L1',
       uniform: true,
     });
-    return `You have ${pendingAmountStr} deposited in the Aztec Network.`;
+    return `You have ${pendingAmountStr} deposited in Nata Network.`;
   }
 }

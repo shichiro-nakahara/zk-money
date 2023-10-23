@@ -24,6 +24,7 @@ import { Pagination } from '../../../components/pagination.js';
 import { useSigner } from 'wagmi';
 import * as drop from '../../../app/drop.js';
 import { ClaimDropModal } from './modals/claim_drop_modal/claim_drop_modal.js';
+import { useDropContext } from '../../../context/drop_context.js';
 
 const cx = bindStyle(style);
 
@@ -40,6 +41,7 @@ export function Shop(props: ShopProps) {
   const accountState = useObs(accountStateManager.stateObs);
   const address = accountState ? accountState.ethAddressUsedForAccountKey.toString() : '';
   const { data: signer } = useSigner();
+  const dropContext = useDropContext();
 
   const [referralAddress, setReferralAddress] = useState('');
   const [referralAddressStatus, setReferralAddressStatus] = useState<FieldStatus | undefined>(undefined);
@@ -49,7 +51,7 @@ export function Shop(props: ShopProps) {
   const [amountMessage, setAmountMessage] = useState('');
   const [receive, setReceive] = useState('');
   const [bonus, setBonus] = useState('');
-  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(true);
   const [saleConfig, setSaleConfig] = useState<any>(undefined);
   const [tokenPerDollar, setTokenPerDollar] = useState('');
   const [referralTokenPerDollar, setReferralTokenPerDollar] = useState('');
@@ -57,7 +59,6 @@ export function Shop(props: ShopProps) {
   const [totalSupply, setTotalSupply] = useState('');
   const [receiveStatus, setReceiveStatus] = useState<FieldStatus | undefined>(undefined);
   const [referralAddressMessage, setReferralAddressMessage] = useState('');
-  const [claims, setClaims] = useState<any[]>([]);
   const [goToCart, setGoToCart] = useState(false);
   const [page, setPage] = useState(1);
   const [claiming, setClaiming] = useState(false);
@@ -103,10 +104,8 @@ export function Shop(props: ShopProps) {
   }, []);
 
   useEffect(() => {
-    if (!address) return;
-    updateClaims(address);
-
-  }, [address, goToCart]);
+    dropContext.updateClaims();
+  }, [goToCart]);
 
   useEffect(() => {
     if (!amount || !saleConfig) return;
@@ -194,21 +193,6 @@ export function Shop(props: ShopProps) {
       setReferralAddressStatus(FieldStatus.Error);
       setReferralAddressMessage('Please enter a valid Polygon address');
     }
-  }
-
-  async function updateClaims(address: string) {
-    const result = await fetch(`${configuration.tokenShopUrl}/drop?address=${address}`);
-    if (result.status != 200) throw new Error('Could not get claim history from server!');
-    const drops = (await result.json()).data;
-
-    const resultAD = await fetch(`${configuration.tokenDropUrl}/drop`);
-    const allDrops = (await resultAD.json()).data;
-
-    setClaims(drops.map((d) => {
-      const config = allDrops.find((aD) => aD.uid == d.drop?.tokenDropUid);
-      d.id = config ? config.id : null;
-      return d;  
-    }));
   }
 
   async function updateSaleConfig() {
@@ -381,22 +365,25 @@ export function Shop(props: ShopProps) {
           <SectionTitle label="Claims" />
           <div>
             {
-              claims.slice((page - 1) * CLAIMS_PER_PAGE, page * CLAIMS_PER_PAGE).map((claim, i) => 
-                <Claim key={`claim-${i}`} address={claim.address} amount={BigInt(claim.amount)} 
-                  referralAddress={claim.referralAddress} referralAmount={claim.referralAmount}
-                  tokenDropUid={claim.drop ? claim.drop.tokenDropUid : undefined}
-                  name={claim.drop ? claim.drop.name : undefined} id={claim.id}
-                  onClaimDrop={() => claimDrop(claim.drop?.tokenDropUid, claim.id)}
-                />
-              ) 
+              dropContext.claims ? 
+                dropContext.claims.slice((page - 1) * CLAIMS_PER_PAGE, page * CLAIMS_PER_PAGE).map((claim, i) => 
+                  <Claim key={`claim-${i}`} address={claim.address} amount={BigInt(claim.amount)} 
+                    referralAddress={claim.referralAddress} referralAmount={claim.referralAmount}
+                    tokenDropUid={claim.drop ? claim.drop.tokenDropUid : undefined} hasClaimed={claim.hasClaimed}
+                    name={claim.drop ? claim.drop.name : undefined} id={claim.id}
+                    onClaimDrop={() => claimDrop(claim.drop?.tokenDropUid, claim.id)}
+                  />
+                )
+                :
+                null
             }
-            <Pagination totalItems={claims.length} itemsPerPage={CLAIMS_PER_PAGE} page={page} 
-              onChangePage={(p) => setPage(p)} 
+            <Pagination totalItems={dropContext.claims ? dropContext.claims.length : 0} itemsPerPage={CLAIMS_PER_PAGE} 
+              page={page} onChangePage={(p) => setPage(p)} 
             />
           </div>
           
           <div className={cx(style.cardWrapper, cardWrapperStyle.cardWrapper)}
-            style={{ width:'100%', display: claims.length == 0 ? 'flex' : 'none' }}
+            style={{ width:'100%', display: !dropContext.claims || dropContext.claims.length == 0 ? 'flex' : 'none' }}
           >
             No claim history
           </div>

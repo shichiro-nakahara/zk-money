@@ -14,7 +14,8 @@ export const configuration = {
   tokenDropUrl: 'https://token-drop.natanetwork.io',
   tokenShopUrl: 'https://token-shop.natanetwork.io',
   walletConnectProjectId: 'c6e764e7a1fda558b2420b27e5a20ce5',
-  shopRecipient: '0x0d902e2cb00c5c07619d033c913e6cee1984987068d169061763842598ee15e31a4abd3acafa4e53576caeb9340212dfd161b5f17904fd6c51fa8e74f571a6c7'
+  shopRecipient: '0x0d902e2cb00c5c07619d033c913e6cee1984987068d169061763842598ee15e31a4abd3acafa4e53576caeb9340212dfd161b5f17904fd6c51fa8e74f571a6c7',
+  sendFormComposerDryRun: false // Affects donations, L2-L2 and withdraw to L1
 };
 
 export interface Config {

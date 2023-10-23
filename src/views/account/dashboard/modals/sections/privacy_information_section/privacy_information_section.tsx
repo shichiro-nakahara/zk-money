@@ -42,7 +42,7 @@ export function PrivacyInformationSection(props: PrivacyInformationSectionProps)
     <InformationSection
       title={'Privacy'}
       buttonLabel={'Why is this important?'}
-      helpLink="https://docs.aztec.network/how-aztec-works/privacy-sets"
+      helpLink="https://docs.natanetwork.io/how-natanetwork-works/privacy-sets"
       subtitle={!props.txToAlias ? subtitle : 'Max'}
       content={<PrivacyContent txToAlias={props.txToAlias} progress={progress} text={text} />}
     />

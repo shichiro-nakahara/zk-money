@@ -31,6 +31,7 @@ interface ClaimProps {
   referralAmount: undefined | bigint;
   onClaimDrop: Function;
   id: null | number;
+  hasClaimed: boolean;
 }
 
 export function Claim(props: ClaimProps) {
@@ -39,30 +40,11 @@ export function Claim(props: ClaimProps) {
   const address = accountState ? accountState.ethAddressUsedForAccountKey.toString() : '';
 
   const [type, setType] = useState(Type.DONATION);
-  const [hasClaimed, setHasClaimed] = useState(false);
 
   useEffect(() => {
     if (!address) return;
     setType(address == props.address ? Type.DONATION : Type.REFERRAL);
   }, [props.address, address]);
-
-  useEffect(() => {
-    if (!props.id) return;
-    async function run() {
-      const provider = new ethers.providers.JsonRpcProvider(configuration.ethereumHost);
-      const contract = (await drop.getContract()).connect(provider);
-      try {
-        const hasClaimed = await contract.hasClaimed(props.id, address);
-        setHasClaimed(hasClaimed);
-      }
-      catch (e) {
-        console.error(e);
-        throw new Error(`Could not get claimed status for ${address}`);
-      }
-    }
-    run();
-
-  }, [props.id]);
 
   function getAmount() {
     if (type == Type.DONATION && props.referralAddress == address) {
@@ -102,8 +84,8 @@ export function Claim(props: ClaimProps) {
         <div className={style.time}>
           {
             props.id !== null ?
-              <Button text={hasClaimed ? 'Claimed' : 'Claim'} onClick={() => props.onClaimDrop()} 
-                disabled={hasClaimed} 
+              <Button text={props.hasClaimed ? 'Claimed' : 'Claim'} onClick={() => props.onClaimDrop()} 
+                disabled={props.hasClaimed} 
               />
               :
               `Claim after 00:00:00 (UTC)`
