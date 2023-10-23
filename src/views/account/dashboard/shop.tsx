@@ -51,7 +51,7 @@ export function Shop(props: ShopProps) {
   const [amountMessage, setAmountMessage] = useState('');
   const [receive, setReceive] = useState('');
   const [bonus, setBonus] = useState('');
-  const [termsAccepted, setTermsAccepted] = useState(true);
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const [saleConfig, setSaleConfig] = useState<any>(undefined);
   const [tokenPerDollar, setTokenPerDollar] = useState('');
   const [referralTokenPerDollar, setReferralTokenPerDollar] = useState('');
