@@ -20,10 +20,10 @@ export type SupportStatus = 'supported' | 'ios-unsupported' | 'android-unsupport
 const mobileEnabled = !!localStorage.getItem('enable_mobile');
 
 export const getSupportStatus = async (): Promise<SupportStatus> => {
-  if (!mobileEnabled) {
-    if (isIOS()) return 'ios-unsupported';
-    if (isAndroid()) return 'android-unsupported';
-  }
+  // if (!mobileEnabled) {
+  //   if (isIOS()) return 'ios-unsupported';
+  //   if (isAndroid()) return 'android-unsupported';
+  // }
   if (isFirefox()) {
     if (!(await hasIndexedDbSupport())) return 'firefox-private-unsupported';
   }
