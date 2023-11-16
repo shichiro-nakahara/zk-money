@@ -83,6 +83,9 @@ export function Navbar({
           })}
           target='_blank'
           rel='noreferrer noopener'
+          style={{
+            opacity: 1
+          }}
         >
           <MobileNavbarWallet className={style.mobileImage} />
           <div style={{ display: 'flex', alignItems: 'center'}}>
