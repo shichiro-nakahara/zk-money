@@ -34,6 +34,10 @@ const socialItems = [
     href: 'https://twitter.com/nata_network_io',
   },
   {
+    name: 'Discord',
+    href: 'https://discord.gg/fm7bn6RV'
+  },
+  {
     name: 'Matrix',
     href: 'https://matrix.to/#/!EiAngTwTXkkAWgdYIJ:matrix.org',
   },
