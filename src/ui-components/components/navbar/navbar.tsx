@@ -9,6 +9,7 @@ import { Pages } from '../../../views/views.js';
 import { useDropContext } from '../../../context/drop_context.js';
 import { Dot } from '../../../components/dot.js';
 import { useEffect, useState } from 'react';
+import New from '../../../images/new-rectangle.svg';
 
 const cx = bindStyle(style);
 
@@ -74,6 +75,25 @@ export function Navbar({
       </div>
 
       <div className={style.accountRoot}>
+        <Link
+          to="https://app.natarouter.com"
+          className={cx(style.link, isSafari && style.noLetterSpacing, style.navLink, {
+            white: theme === Theme.WHITE,
+            gradient: theme === Theme.GRADIENT,
+          })}
+          target='_blank'
+          rel='noreferrer noopener'
+        >
+          <MobileNavbarWallet className={style.mobileImage} />
+          <div style={{ display: 'flex', alignItems: 'center'}}>
+            <div>Router</div>
+            <img src={ New } style={{ 
+                width: '2.5em', marginLeft: '0.5em', marginBottom: '2px',
+                filter: 'invert(12%) sepia(27%) saturate(1570%) hue-rotate(223deg) brightness(101%) contrast(96%)'
+              }} 
+            />
+          </div>
+        </Link>
         <Link
           to={Pages.SHOP}
           className={cx(style.link, isSafari && style.noLetterSpacing, style.navLink, {
