@@ -35,7 +35,7 @@ const socialItems = [
   },
   {
     name: 'Discord',
-    href: 'https://discord.gg/fm7bn6RV'
+    href: 'https://discord.gg/7cswMvWeNc'
   },
   {
     name: 'Matrix',
