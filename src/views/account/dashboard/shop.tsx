@@ -108,7 +108,7 @@ export function Shop(props: ShopProps) {
   }, [goToCart]);
 
   useEffect(() => {
-    if (!amount || !saleConfig) return;
+    if (!amount || !saleConfig || isNaN(parseFloat(amount))) return;
     const tokenPrice = asset.symbol == 'DAI' ? saleConfig.daiPrice : saleConfig.ethPrice;
     const amountWei = ethers.utils.parseEther(amount);
     const receive = amountWei.div(ethers.BigNumber.from(tokenPrice));
@@ -131,6 +131,11 @@ export function Shop(props: ShopProps) {
     if (amount == '') {
       setAmountStatus(undefined);
       setAmountMessage('');
+      return;
+    }
+    if (isNaN(parseFloat(amount))) {
+      setAmountStatus(FieldStatus.Error);
+      setAmountMessage('Enter a valid number');
       return;
     }
     if (parseFloat(amount) == 0) {
@@ -257,7 +262,8 @@ export function Shop(props: ShopProps) {
 
   return (
     <>
-      <ShopCart asset={asset} paid={amount ? ethers.utils.parseEther(amount).toBigInt() : undefined}
+      <ShopCart asset={asset}
+        paid={amount && !isNaN(parseFloat(amount)) ? ethers.utils.parseEther(amount).toBigInt() : undefined} 
         userId={accountState?.userId} goToCart={goToCart} setGoToCart={setGoToCart} address={address}
         receive={receive ? ethers.utils.parseEther(receive).toBigInt() : undefined} referralAddress={referralAddress}
         referralAmount={bonus ? ethers.utils.parseEther(bonus).toBigInt() : undefined}
