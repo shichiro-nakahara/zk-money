@@ -192,8 +192,8 @@ export function Airdrop(props: AirdropProps) {
       throw new Error(`Could not get Airdrops claimed status for ${address}`);
     }
 
-    const combinedShare = (resultDrop0.status == 200 ? resultDrop0.data.share : 0) + 
-      (resultDrop1.status == 200 ? resultDrop1.data.share : 0);
+    const combinedShare = (resultDrop0.status == 200 ? BigInt(resultDrop0.data.share) : 0n) + 
+      (resultDrop1.status == 200 ? BigInt(resultDrop1.data.share) : 0n);
 
     setEligible({
       isEligible0: eligible0,
