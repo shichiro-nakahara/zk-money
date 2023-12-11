@@ -81,20 +81,6 @@ const questions = [
         valid: true
       }
     ]
-  },
-  {
-    question: "A user must participate in every Earn epoch to avoid slashing and redeem $eNATA:$NATA at a 1:1 " +
-      "ratio, true or false?",
-    answers: [
-      {
-        text: "True",
-        valid: true
-      },
-      {
-        text: "False",
-        valid: false
-      }
-    ]
   }
 ];
 

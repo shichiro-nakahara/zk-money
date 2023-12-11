@@ -10,6 +10,7 @@ import { useDropContext } from '../../../context/drop_context.js';
 import { Dot } from '../../../components/dot.js';
 import { useEffect, useState } from 'react';
 import New from '../../../images/new-rectangle.svg';
+import Live from '../../../images/live-rectangle.svg';
 
 const cx = bindStyle(style);
 
@@ -112,7 +113,12 @@ export function Navbar({
           <MobileNavbarWallet className={style.mobileImage} />
           <div style={{ display: 'flex', alignItems: 'center'}}>
             { hasClaimable ? <Dot className={style.dot} size="xs" color="green" /> : null }
-            <div>Donate</div>
+            <div>Private Sale</div>
+            <img src={ Live } style={{ 
+                width: '2.5em', marginLeft: '0.5em', marginBottom: '2px',
+                filter: 'invert(12%) sepia(27%) saturate(1570%) hue-rotate(223deg) brightness(101%) contrast(96%)'
+              }} 
+            />
           </div>
         </Link>
         <Link

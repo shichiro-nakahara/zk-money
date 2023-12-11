@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import { DoneGradientIcon } from '../../../../../../ui-components/components/icons/index.js';
+import { Pages } from '../../../../../views.js';
 
 interface TransactionCompleteProps {
   onClose(): void;
@@ -14,8 +16,10 @@ export function TransactionComplete(props: TransactionCompleteProps) {
         <div>Transaction Confirmed!</div>
       </div>
       <div style={{ fontSize: '0.9em', display: 'flex', justifyContent: 'center' }}>
-        Like Nata Network? Consider leaving 
-        a&nbsp;<a href='https://frenreviews.com/project/403' target='_blank' rel='noopener noreferrer'>review</a>.
+        <div>Can't get enough Nata?&nbsp;</div>
+        <Link to={Pages.SHOP}>
+          Join the private sale.
+        </Link>
       </div>
     </div>
   );

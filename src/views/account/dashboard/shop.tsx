@@ -63,6 +63,7 @@ export function Shop(props: ShopProps) {
   const [page, setPage] = useState(1);
   const [claiming, setClaiming] = useState(false);
   const [tx, setTx] = useState<any>(null);
+  const [assetInitialized, setAssetInitialized] = useState(false);
 
   const l2Balances = assets.reduce((r, a) => {
     r[a.symbol] = useL2BalanceIndicator(a);
@@ -71,13 +72,20 @@ export function Shop(props: ShopProps) {
 
   const config = useConfig();
   const transactionLimit = asset?.symbol && config.txAmountLimits[asset.symbol];
-  const maxChainableValue = !address ? undefined : useMaxSendValue(
+  const maxChainableValueDAI = !address ? undefined : useMaxSendValue(
     SendMode.SEND, 
-    asset.id, 
+    1, 
     TxSettlementTime.NEXT_ROLLUP, 
     EthAddress.fromString(address)
   );
-  const maxOutput = max(min(maxChainableValue?.value || 0n, transactionLimit || 0n), 0n);
+  const maxChainableValueETH = !address ? undefined : useMaxSendValue(
+    SendMode.SEND, 
+    2, 
+    TxSettlementTime.NEXT_ROLLUP, 
+    EthAddress.fromString(address)
+  );
+  const maxOutputDAI = max(min(maxChainableValueDAI?.value || 0n, transactionLimit || 0n), 0n);
+  const maxOutputETH = max(min(maxChainableValueETH?.value || 0n, transactionLimit || 0n), 0n);
 
   const navigate = useNavigate();
 
@@ -102,6 +110,20 @@ export function Shop(props: ShopProps) {
     }
     updateSaleConfig();
   }, []);
+
+  useEffect(() => {
+    if (!maxChainableValueETH || !maxChainableValueDAI || assetInitialized) return;
+    if (maxChainableValueETH.value == 0n && maxChainableValueDAI.value != 0n) setAsset(assets[0]);
+    setAssetInitialized(true);
+
+  }, [maxChainableValueETH, maxChainableValueDAI]);
+
+  useEffect(() => {
+    if (!assetInitialized) return;
+    if (asset.id == 1) setAmount('5000');
+    if (asset.id == 2) setAmount('2');
+
+  }, [assetInitialized]);
 
   useEffect(() => {
     dropContext.updateClaims();
@@ -143,9 +165,10 @@ export function Shop(props: ShopProps) {
       setAmountMessage('Enter a number greater than zero');
       return;
     }
-    if (ethers.utils.parseEther(amount).toBigInt() > maxOutput) {
+    const max = asset.id == 1 ? maxOutputDAI : maxOutputETH;
+    if (ethers.utils.parseEther(amount).toBigInt() > max) {
       setAmountStatus(FieldStatus.Error);
-      setAmountMessage(`Insufficient balance, max allowed ${ethers.utils.formatEther(maxOutput)} zk${asset.symbol}`);
+      setAmountMessage(`Insufficient balance, max allowed ${ethers.utils.formatEther(max)} zk${asset.symbol}`);
       return;
     }
     if (receive && tokenPerDollar && parseFloat(receive) / parseFloat(tokenPerDollar) < 1) {
@@ -157,7 +180,7 @@ export function Shop(props: ShopProps) {
     setAmountMessage('');
     setAmountStatus(FieldStatus.Success);
 
-  }, [asset, amount, maxOutput, receive, tokenPerDollar]);
+  }, [asset, amount, maxOutputDAI, maxOutputETH, receive, tokenPerDollar]);
 
   useEffect(() => {
     if (!receive || !remainingSupply) return;
@@ -279,16 +302,29 @@ export function Shop(props: ShopProps) {
             className={cx(style.cardWrapper, cardWrapperStyle.cardWrapper)}
             style={{ minWidth: '25em' }}
           >
-            <div className={style.donateTitle}>Donate to Earn</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5em', alignItems: 'center'}}>
+            <div className={style.donateTitle}>Private Sale Terms</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5em', alignItems: 'center', 
+              textAlign: 'center'}}
+            >
               <div className={style.donateText} style={{ display: tokenPerDollar ? 'block' : 'none' }}>
-                $1 donation earns {tokenPerDollar} eNATA
+                $1 per {tokenPerDollar} eNATA
               </div>
               <div className={style.donateText} style={{ display: referralTokenPerDollar ? 'block' : 'none' }}>
-                $1 donation earns your referral {referralTokenPerDollar} eNATA
+                $1 earns your referral {referralTokenPerDollar} eNATA
               </div>
               <div className={style.donateText} style={{ display: saleConfig ? 'block' : 'none' }}>
                 { remainingSupply } / { totalSupply } remaining
+              </div>
+              <div className={style.donateText} style={{ display: tokenPerDollar ? 'block' : 'none' }}>
+                All eNATA:NATA is subject to 6 month linear vesting at the time of migration
+              </div>
+              <div className={style.donateText} style={{ display: tokenPerDollar ? 'block' : 'none' }}>
+                Review the roadmap&nbsp;
+                <a target="_blank" rel='noopener noreferrer' 
+                  href="https://docs.natanetwork.io/how-natanetwork-works/roadmap"
+                >
+                  here
+                </a>
               </div>
             </div>
             <div className={style.donateTitle}>Your Referral Link</div>
@@ -325,7 +361,8 @@ export function Shop(props: ShopProps) {
                 onChangeAsset={(id) => setAsset(assets.find((a) => a.id == id)!)}
                 balance={l2Balances[asset.symbol]}
                 onClickBalanceIndicator={() => {
-                  setAmount(ethers.utils.formatEther(maxOutput));
+                  const max = asset.id == 1 ? maxOutputDAI : maxOutputETH;
+                  setAmount(ethers.utils.formatEther(max));
                   setAmountStatus(FieldStatus.Success);
                 }}
                 onChangeValue={(value: string ) => {
@@ -357,7 +394,7 @@ export function Shop(props: ShopProps) {
                 onChangeValue={updateReferral}
               />
             </div>
-            <Button text="Donate" 
+            <Button text="Buy Now" 
               onClick={() => setGoToCart(true)} 
               style={{width: '100%', marginTop: '-1rem'}}
               disabled={amountStatus != FieldStatus.Success || 

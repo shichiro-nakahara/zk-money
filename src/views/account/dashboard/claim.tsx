@@ -18,7 +18,7 @@ dayjs.extend(utc);
 dayjs.extend(advancedFormat);
 
 enum Type {
-  DONATION,
+  PURCHASE,
   REFERRAL
 }
 
@@ -39,19 +39,19 @@ export function Claim(props: ClaimProps) {
   const accountState = useObs(accountStateManager.stateObs);
   const address = accountState ? accountState.ethAddressUsedForAccountKey.toString() : '';
 
-  const [type, setType] = useState(Type.DONATION);
+  const [type, setType] = useState(Type.PURCHASE);
 
   useEffect(() => {
     if (!address) return;
-    setType(address == props.address ? Type.DONATION : Type.REFERRAL);
+    setType(address == props.address ? Type.PURCHASE : Type.REFERRAL);
   }, [props.address, address]);
 
   function getAmount() {
-    if (type == Type.DONATION && props.referralAddress == address) {
+    if (type == Type.PURCHASE && props.referralAddress == address) {
       return `${parseInt(ethers.utils.formatEther(props.amount))} + ` +
         `${parseInt(ethers.utils.formatEther(props.referralAmount!))} eNATA`
     }
-    if (type == Type.DONATION) {
+    if (type == Type.PURCHASE) {
       return `${parseInt(ethers.utils.formatEther(props.amount))} eNATA`;
     }
     return `${parseInt(ethers.utils.formatEther(props.referralAmount!))} eNATA`;
@@ -68,8 +68,8 @@ export function Claim(props: ClaimProps) {
       <div className={cx(style.segment, style.feeField)}>
         <div className={style.fee}>
           { 
-            type == Type.DONATION ? 
-              'Donation' 
+            type == Type.PURCHASE ? 
+              'Purchase' 
               : 
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 Referred by {props.address.substring(0, 6)}...{
