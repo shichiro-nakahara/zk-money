@@ -74,7 +74,6 @@ export function Earn(props: EarnProps) {
 
   useEffect(() => {
     updateClaim();
-    console.log(viewDrop);
   }, [viewDrop, contract]);
 
   useEffect(() => {
