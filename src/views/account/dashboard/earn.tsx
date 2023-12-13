@@ -24,6 +24,16 @@ interface EarnProps {
   isLoggedIn: boolean;
 }
 
+const SG_NETWORK = {
+  '101': 'Ethereum',
+  '106': 'Avalanche',
+  '109': 'Polygon',
+  '110': 'Arbitrum',
+  '111': 'Optimism',
+  '112': 'Fantom',
+  '184': 'Base'
+};
+
 export function Earn(props: EarnProps) {
   const dropContext = useDropContext();
   const { isLoggedIn } = props;
@@ -64,6 +74,7 @@ export function Earn(props: EarnProps) {
 
   useEffect(() => {
     updateClaim();
+    console.log(viewDrop);
   }, [viewDrop, contract]);
 
   useEffect(() => {
@@ -259,6 +270,14 @@ export function Earn(props: EarnProps) {
     }, 500);
   }
 
+  function hasPolygonAllocation() {
+    return viewDrop && (viewDrop.earn.tokenSplit.asset.find((v) => v > 0) || viewDrop.earn.tokenSplit.max > 0);
+  }
+
+  function hasXChainAllocation() {
+    return viewDrop && viewDrop.earn.tokenSplit.network && Object.keys(viewDrop.earn.tokenSplit.network).length > 0;
+  }
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
       <div className={style.cardRow}>
@@ -402,39 +421,60 @@ export function Earn(props: EarnProps) {
             <div className={style.subTitle}>Total Epoch Reward</div>
           </div>
 
-          <div style={{ borderTop: '1px solid #e5e5e5' }}></div>
+          <div style={{ display: hasPolygonAllocation() ? 'block' : 'none'}}>
+            <div style={{ borderTop: '1px solid #e5e5e5', marginBottom: '20px' }}></div>
+            <div className={style.allocationTitle} style={{ marginBottom: '0.5em' }}>Polygon Allocations</div>
+            <div style={{ display: 'flex' }}>
+              <div style={{ width: '25%' }}>
+                <div className={style.subTitle}>MATIC</div>
+                <TokenAllocation
+                  totalReward={viewDrop ? viewDrop.earn.amount : null}
+                  tokenSplit={viewDrop ? viewDrop.earn.tokenSplit : null}
+                  assetId={0}
+                />
+              </div>
+              <div style={{ width: '25%' }}>
+                <div className={style.subTitle}>DAI</div>
+                <TokenAllocation
+                  totalReward={viewDrop ? viewDrop.earn.amount : null}
+                  tokenSplit={viewDrop ? viewDrop.earn.tokenSplit : null}
+                  assetId={1}
+                />
+              </div>
+              <div style={{ width: '25%' }}>
+                <div className={style.subTitle}>WETH</div>
+                <TokenAllocation
+                  totalReward={viewDrop ? viewDrop.earn.amount : null}
+                  tokenSplit={viewDrop ? viewDrop.earn.tokenSplit : null}
+                  assetId={2}
+                />
+              </div>
+              <div style={{ width: '25%' }}>
+                <div className={style.subTitle}>Max Deposit</div>
+                <MaxAllocation
+                  totalReward={viewDrop ? viewDrop.earn.amount : null}
+                  tokenSplit={viewDrop ? viewDrop.earn.tokenSplit : null}
+                />
+              </div>
+            </div>
+          </div>
 
-          <div style={{ display: 'flex' }}>
-            <div style={{ width: '25%' }}>
-              <div className={style.subTitle}>MATIC Allocation</div>
-              <TokenAllocation
-                totalReward={viewDrop ? viewDrop.earn.amount : null}
-                tokenSplit={viewDrop ? viewDrop.earn.tokenSplit : null}
-                assetId={0}
-              />
-            </div>
-            <div style={{ width: '25%' }}>
-              <div className={style.subTitle}>DAI Allocation</div>
-              <TokenAllocation
-                totalReward={viewDrop ? viewDrop.earn.amount : null}
-                tokenSplit={viewDrop ? viewDrop.earn.tokenSplit : null}
-                assetId={1}
-              />
-            </div>
-            <div style={{ width: '25%' }}>
-              <div className={style.subTitle}>WETH Allocation</div>
-              <TokenAllocation
-                totalReward={viewDrop ? viewDrop.earn.amount : null}
-                tokenSplit={viewDrop ? viewDrop.earn.tokenSplit : null}
-                assetId={2}
-              />
-            </div>
-            <div style={{ width: '25%' }}>
-              <div className={style.subTitle}>Max Deposit Allocation</div>
-              <MaxAllocation
-                totalReward={viewDrop ? viewDrop.earn.amount : null}
-                tokenSplit={viewDrop ? viewDrop.earn.tokenSplit : null}
-              />
+          <div style={{ display: hasXChainAllocation() ? 'block' : 'none' }}>
+            <div style={{ borderTop: '1px solid #e5e5e5', marginBottom: '20px' }}></div>
+            <div className={style.allocationTitle} style={{ marginBottom: '0.5em' }}>X-Chain Allocations</div>
+            <div style={{ display: 'grid', gridRowGap: '20px', 
+              gridTemplateColumns: 'repeat(auto-fill, minmax(21%, 1fr))' }}
+            >
+              { 
+                hasXChainAllocation() ? 
+                  Object.keys(viewDrop!.earn.tokenSplit.network).map((sgChainId) => 
+                    <ChainAllocation sgChainId={sgChainId} tokenSplit={viewDrop!.earn.tokenSplit} 
+                      totalReward={viewDrop!.earn.amount} 
+                    />
+                  )
+                  :
+                  null
+              }
             </div>
           </div>
         </div>
@@ -492,6 +532,7 @@ function TokenAllocation({ totalReward, tokenSplit, assetId }) {
   const total = tokenSplit.asset.reduce((t, token) => t + token, 0) + tokenSplit.max;
   const fraction = tokenSplit.asset[assetId] / total;
   const totalRewardNumber = parseFloat(ethers.utils.formatEther(totalReward));
+
   return (
     <Fragment>
       <div>{(fraction * 100).toFixed(1)}%</div>
@@ -500,6 +541,24 @@ function TokenAllocation({ totalReward, tokenSplit, assetId }) {
         <span className={style.tokenSymbol}>eNATA</span>
       </div>
     </Fragment>
+  );
+}
+
+function ChainAllocation({ sgChainId, totalReward, tokenSplit }) {
+
+  const total = Object.keys(tokenSplit.network).reduce((t, v) => t + tokenSplit.network[v], 0);
+  const fraction = tokenSplit.network[sgChainId] / total;
+  const totalRewardNumber = parseFloat(ethers.utils.formatEther(totalReward));
+
+  return (
+    <div>
+      <div className={style.subTitle}>{ SG_NETWORK[sgChainId] }</div>
+      <div>{(fraction * 100).toFixed(1)}%</div>
+      <div style={{ fontSize: '0.8em' }}>
+        {(totalRewardNumber * fraction).toFixed(0)}
+        <span className={style.tokenSymbol}>eNATA</span>
+      </div>
+    </div>
   );
 }
 
