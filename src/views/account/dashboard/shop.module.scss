@@ -30,6 +30,29 @@
   font-size: 18px;
 }
 
+.donateTextBold {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
 .donateText {
   font-size: 1rem;
+}
+
+/*=== progressBar CSS By David Porras ===*/
+
+.progress {
+  background-color: rgb(229,233,235);
+  height: 1em;
+  position: relative;
+  width: 100%;
+  border-radius: 1em;
+}
+
+.progressBarBlue {
+  background-size: 23em 0.25em;
+  height: 100%;
+  position: relative;
+  background-color: #2f1f49;
+  border-radius: 1em;
 }

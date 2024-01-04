@@ -54,9 +54,10 @@ export function Shop(props: ShopProps) {
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [saleConfig, setSaleConfig] = useState<any>(undefined);
   const [tokenPerDollar, setTokenPerDollar] = useState('');
-  const [referralTokenPerDollar, setReferralTokenPerDollar] = useState('');
-  const [remainingSupply, setRemainingSupply] = useState('');
-  const [totalSupply, setTotalSupply] = useState('');
+  const [remainingSupplyP1, setRemainingSupplyP1] = useState('');
+  const [totalSupplyP1, setTotalSupplyP1] = useState('');
+  const [remainingSupplyP2, setRemainingSupplyP2] = useState('');
+  const [totalSupplyP2, setTotalSupplyP2] = useState('');
   const [receiveStatus, setReceiveStatus] = useState<FieldStatus | undefined>(undefined);
   const [referralAddressMessage, setReferralAddressMessage] = useState('');
   const [goToCart, setGoToCart] = useState(false);
@@ -143,9 +144,27 @@ export function Shop(props: ShopProps) {
     if (!saleConfig) return;
     const tokenPerDollar = ethers.utils.parseEther(`1`).div(ethers.BigNumber.from(saleConfig.price.amount));
     setTokenPerDollar(tokenPerDollar.toString());
-    setReferralTokenPerDollar(tokenPerDollar.div(10).toString());
-    setRemainingSupply(parseInt(ethers.utils.formatEther(saleConfig.remaining).toString()).toString());
-    setTotalSupply(parseInt(ethers.utils.formatEther(saleConfig.supply).toString()).toString());
+
+    if (saleConfig.name == 'Phase 1') {
+      setRemainingSupplyP1(parseInt(ethers.utils.formatEther(saleConfig.remaining).toString()).toString());
+      setTotalSupplyP1(parseInt(ethers.utils.formatEther(saleConfig.supply).toString()).toString());
+      setRemainingSupplyP2('500000000');
+      setTotalSupplyP2('500000000');
+      return;
+    }
+
+    if (saleConfig.name == 'Phase 2') {
+      setRemainingSupplyP1('0');
+      setTotalSupplyP1('500000000');
+      setRemainingSupplyP2(parseInt(ethers.utils.formatEther(saleConfig.remaining).toString()).toString());
+      setTotalSupplyP2(parseInt(ethers.utils.formatEther(saleConfig.supply).toString()).toString());
+      return;
+    }
+
+    setRemainingSupplyP1('0');
+    setTotalSupplyP1('500000000');
+    setRemainingSupplyP2('0');
+    setTotalSupplyP2('500000000');
 
   }, [saleConfig]);
 
@@ -183,8 +202,8 @@ export function Shop(props: ShopProps) {
   }, [asset, amount, maxOutputDAI, maxOutputETH, receive, tokenPerDollar]);
 
   useEffect(() => {
-    if (!receive || !remainingSupply) return;
-    if (BigInt(receive) > BigInt(remainingSupply)) {
+    if (!receive || !remainingSupplyP1) return;
+    if (BigInt(receive) > BigInt(remainingSupplyP1)) {
       setReceiveStatus(FieldStatus.Error);
     }
     else {
@@ -193,7 +212,7 @@ export function Shop(props: ShopProps) {
 
     updateReferral(referralAddress);
 
-  }, [receive, remainingSupply]);
+  }, [receive, remainingSupplyP1]);
 
   function updateReferral(value: string) {
     if (!value) {
@@ -207,7 +226,7 @@ export function Shop(props: ShopProps) {
       const validAddress = ethers.utils.getAddress(value);
       setReferralAddress(validAddress);
 
-      if (receive && bonus && remainingSupply && (BigInt(receive) + BigInt(bonus)) > BigInt(remainingSupply)) {
+      if (receive && bonus && remainingSupplyP1 && (BigInt(receive) + BigInt(bonus)) > BigInt(remainingSupplyP1)) {
         setReferralAddressStatus(FieldStatus.Error);
         setReferralAddressMessage('Insufficient eNATA remaining, please lower amount');
         return;
@@ -278,7 +297,7 @@ export function Shop(props: ShopProps) {
         className={cx(style.cardWrapper, cardWrapperStyle.cardWrapper)}
         style={{ minHeight: "15em" }}
       >
-        Donations no longer accepted.
+        Private sale has concluded.
       </div>
     );
   }
@@ -300,41 +319,88 @@ export function Shop(props: ShopProps) {
         <div className={style.cardRow}>
           <div
             className={cx(style.cardWrapper, cardWrapperStyle.cardWrapper)}
-            style={{ minWidth: '25em' }}
+            style={{ minWidth: '25em', alignItems: 'start', justifyContent: 'space-between' }}
           >
-            <div className={style.donateTitle}>Private Sale Terms</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5em', alignItems: 'center', 
-              textAlign: 'center'}}
-            >
-              <div className={style.donateText} style={{ display: tokenPerDollar ? 'block' : 'none' }}>
-                $1 per {tokenPerDollar} eNATA
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1em', width: '100%' }}>
+              <div className={style.donateTitle}>Private Sale Terms</div>
+              <div>
+                <div className={style.donateTextBold} style={{ display: tokenPerDollar ? 'block' : 'none' }}>
+                  Phase 1
+                </div>
+                <div className={style.donateText} style={{ display: tokenPerDollar ? 'flex' : 'none' }}>
+                  <div style={{ minWidth: '7em' }}>Price:</div>
+                  <div>0.0005</div>
+                </div>
+                <div className={style.donateText} style={{ display: tokenPerDollar ? 'flex' : 'none' }}>
+                  <div style={{ minWidth: '7em' }}>Remaining:</div>
+                  <div>
+                    { Math.floor(Number(remainingSupplyP1) / 1000000) }M / { Number(totalSupplyP1) / 1000000 }M
+                  </div>
+                </div>
+                <div className={style.donateText} style={{ display: tokenPerDollar ? 'flex' : 'none' }}>
+                  <div style={{ minWidth: '7em' }}>Valuation:</div>
+                  <div>$5M</div>
+                </div>
+                <div className={style.progress} style={{ marginTop: '0.75rem', marginBottom: '0.5rem' }}>
+                  <div className={style.progressBarBlue} 
+                    style={{ width: `${((1 - (Number(remainingSupplyP1) / Number(totalSupplyP1))) * 100)}%` }}
+                  >
+                  </div>
+                  <div style={{ fontSize: '0.75em', width: '100%', textAlign: 'center', marginTop: '-1.6em', 
+                    position: 'relative', zIndex: '100', 
+                    color: Number(remainingSupplyP1) / Number(totalSupplyP1) > 0.52 ? 'black' : 'white'
+                  }}>
+                    { `${((1 - (Number(remainingSupplyP1) / Number(totalSupplyP1))) * 100).toFixed(2)}%` }
+                  </div>
+                </div>
               </div>
-              <div className={style.donateText} style={{ display: referralTokenPerDollar ? 'block' : 'none' }}>
-                $1 earns your referral {referralTokenPerDollar} eNATA
+              <div>
+                <div className={style.donateTextBold} style={{ display: tokenPerDollar ? 'block' : 'none' }}>
+                  Phase 2
+                </div>
+                <div className={style.donateText} style={{ display: tokenPerDollar ? 'flex' : 'none' }}>
+                  <div style={{ minWidth: '7em' }}>Price:</div>
+                  <div>0.001</div>
+                </div>
+                <div className={style.donateText} style={{ display: tokenPerDollar ? 'flex' : 'none' }}>
+                  <div style={{ minWidth: '7em' }}>Remaining:</div>
+                  <div>
+                    { Math.floor(Number(remainingSupplyP2) / 1000000) }M / { Number(totalSupplyP2) / 1000000 }M
+                  </div>
+                </div>
+                <div className={style.donateText} style={{ display: tokenPerDollar ? 'flex' : 'none' }}>
+                  <div style={{ minWidth: '7em' }}>Valuation:</div>
+                  <div>$10M</div>
+                </div>
+                <div className={style.progress} style={{ marginTop: '0.75rem', marginBottom: '0.5rem' }}>
+                  <div className={style.progressBarBlue} 
+                    style={{ width: `${(1 - (Number(remainingSupplyP2) / Number(totalSupplyP2))) * 100}%` }}
+                  >
+                  </div>
+                  <div style={{ fontSize: '0.75em', width: '100%', textAlign: 'center', marginTop: '-1.6em', 
+                    position: 'relative', zIndex: '100', 
+                    color: Number(remainingSupplyP2) / Number(totalSupplyP2) > 0.52 ? 'black' : 'white'
+                  }}>
+                    { `${((1 - (Number(remainingSupplyP2) / Number(totalSupplyP2))) * 100).toFixed(2)}%` }
+                  </div>
+                </div>
               </div>
-              <div className={style.donateText} style={{ display: saleConfig ? 'block' : 'none' }}>
-                { remainingSupply } / { totalSupply } remaining
-              </div>
-              <div className={style.donateText} style={{ display: tokenPerDollar ? 'block' : 'none' }}>
-                All eNATA:NATA is subject to 6 month linear vesting at the time of migration
-              </div>
-              <div className={style.donateText} style={{ display: tokenPerDollar ? 'block' : 'none' }}>
-                Review the roadmap&nbsp;
-                <a target="_blank" rel='noopener noreferrer' 
-                  href="https://docs.natanetwork.io/how-natanetwork-works/roadmap"
-                >
-                  here
-                </a>
+              <div className={style.donateText}>
+                Learn more <a href="https://mirror.xyz/natanetwork.eth/wOfwQ95BKz7YBijXt4qusP6Deck-TvhU0LHwcU5uVlI" 
+                  target='_blank' rel='noopener noreferrer'>here</a>.
               </div>
             </div>
-            <div className={style.donateTitle}>Your Referral Link</div>
-            <div style={{ display: address ? 'flex' : 'none', gap: '1rem' }}>
-              <a href={`https://natanetwork.io/donate?ref=${address}`} target='_blank' rel='noopener noreferrer'
-                className={style.donateText} style={{ wordBreak: 'break-all' }}
-              >
-                https://natanetwork.io/donate?ref={address}
-              </a>
-              <CopyButton text={`https://natanetwork.io/donate?ref=${address}`} />
+            
+            <div>
+              <div className={style.donateTitle} style={{ width: '100%', marginTop: '2em' }}>Your Referral Link</div>
+              <div style={{ display: address ? 'flex' : 'none', gap: '1rem' }}>
+                <a href={`https://natanetwork.io/donate?ref=${address}`} target='_blank' rel='noopener noreferrer'
+                  className={style.donateText} style={{ wordBreak: 'break-all' }}
+                >
+                  https://natanetwork.io/donate?ref={address}
+                </a>
+                <CopyButton text={`https://natanetwork.io/donate?ref=${address}`} />
+              </div>
             </div>
           </div>
 

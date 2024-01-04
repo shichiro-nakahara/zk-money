@@ -61,7 +61,7 @@ export function Home({ onSignup }: HomeProps) {
               <div className={style.title}>How does shielding work?</div>
               <div className={style.description}>
                 Shielding funds to Nata Network creates a private note on Layer 2. Private notes can be traded just like
-                normal Polygon assets–but with full privacy protection.
+                normal assets–but with full privacy protection.
               </div>
             </div>
           </div>
@@ -97,10 +97,10 @@ function Banner({ onShieldNow }: { onShieldNow: () => void }) {
           <span className={style.bold}>
             private <img src={privateUnderline} className={style.underline} alt="Underline" />
           </span>
-          transaction layer for Polygon.
+          transaction layer for a multi-chain future.
         </div>
         <div className={style.subtitle}>
-          Nata Network is your portal to private Polygon transactions. Shield funds to start accessing!
+          Nata Network is your portal to private cross-chain transactions. Shield funds to start accessing!
         </div>
         <Button text="Shield Now" onClick={onShieldNow} className={style.shieldButton} disabled={!config.tosAccepted} />
       </div>
