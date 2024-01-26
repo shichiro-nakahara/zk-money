@@ -26,11 +26,14 @@ interface EarnProps {
 
 const SG_NETWORK = {
   '101': 'Ethereum',
+  '102': 'BNB',
   '106': 'Avalanche',
   '109': 'Polygon',
   '110': 'Arbitrum',
   '111': 'Optimism',
   '112': 'Fantom',
+  '177': 'Kava',
+  '181': 'Mantle',
   '184': 'Base'
 };
 
