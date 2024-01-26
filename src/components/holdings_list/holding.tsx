@@ -40,6 +40,11 @@ export function PendingBalance({
 
   const pendingAmount = new Amount(l1PendingBalance, targetAsset);
   const pendingAmountMinusFee = pendingAmount.subtract(feeAmount.baseUnits);
+
+  if (pendingAmountMinusFee.baseUnits < 0n ) {
+    return null;
+  }
+
   const formattedPendingAmount = pendingAmount.format({
     layer: 'L1',
     uniform: true,

@@ -1,4 +1,3 @@
-import createDebug from 'debug';
 import { EthAddress, TxSettlementTime } from '@polyaztec/sdk';
 import { useState } from 'react';
 import { useAccount, useNetwork } from 'wagmi';
@@ -26,8 +25,6 @@ import {
   usePendingBalances,
 } from '../top_level_context/top_level_context_hooks.js';
 import { removePrefixFromRecipient } from '../../views/account/dashboard/modals/sections/recipient_section/helpers.js';
-
-const debug = createDebug('zm:shield_form_hooks');
 
 export function useShieldForm(
   preselectedAssetId?: number,
@@ -104,15 +101,15 @@ export function useShieldForm(
   const attemptLock = () => {
     setAttemptedLock(true);
     if (!validationResult.isValid) {
-      debug('Attempted to submit invalid form');
+      console.error('Attempted to submit invalid form');
       return;
     }
     if (lockedComposer) {
-      debug('Attempted to recreate ShieldComposer');
+      console.error('Attempted to recreate ShieldComposer');
       return;
     }
     if (!validationResult.validPayload || !sdk || !userId || !depositor) {
-      debug('Attempted to create ShieldComposer with incomplete dependencies', {
+      console.error('Attempted to create ShieldComposer with incomplete dependencies', {
         validationResult,
         sdk,
       });
@@ -130,11 +127,11 @@ export function useShieldForm(
 
   const submit = async () => {
     if (!lockedComposer) {
-      debug('Attempted to submit before locking');
+      console.error('Attempted to submit before locking');
       return;
     }
     if (composerState?.phase !== ShieldComposerPhase.IDLE) {
-      debug('Tried to resubmit form while in progress');
+      console.error('Tried to resubmit form while in progress');
       return;
     }
     const txId = await lockedComposer.compose();
@@ -150,7 +147,7 @@ export function useShieldForm(
 
   const unlock = () => {
     if (composerState?.phase !== ShieldComposerPhase.IDLE) {
-      debug('Tried to unlock form while in progress');
+      console.error('Tried to unlock form while in progress');
       return;
     }
     setAttemptedLock(false);
