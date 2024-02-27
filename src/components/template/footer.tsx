@@ -38,14 +38,6 @@ const socialItems = [
     href: 'https://discord.gg/m9Ma7PbFwb'
   },
   {
-    name: 'Matrix',
-    href: 'https://matrix.to/#/!EiAngTwTXkkAWgdYIJ:matrix.org',
-  },
-  {
-    name: 'Governance',
-    href: 'https://natanetwork.canny.io/dao-governance',
-  },
-  {
     name: 'Feedback',
     href: 'https://frenreviews.com/project/403',
   },
