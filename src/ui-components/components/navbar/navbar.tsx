@@ -99,21 +99,20 @@ export function Navbar({
           </div>
         </Link>
         <Link
-          to={Pages.SHOP}
+          to="https://app.natarouter.com"
           className={cx(style.link, isSafari && style.noLetterSpacing, style.navLink, {
-            active: Pages.SHOP === location.pathname,
             white: theme === Theme.WHITE,
             gradient: theme === Theme.GRADIENT,
           })}
+          target='_blank'
+          rel='noreferrer noopener'
           style={{
-            pointerEvents: config.tosAccepted && isUserRegistered ? 'inherit' : 'none',
-            opacity: config.tosAccepted && isUserRegistered ? 1 : 0.5,
+            opacity: 1
           }}
         >
           <MobileNavbarWallet className={style.mobileImage} />
           <div style={{ display: 'flex', alignItems: 'center'}}>
-            { hasClaimable ? <Dot className={style.dot} size="xs" color="green" /> : null }
-            <div>Private Sale</div>
+            <div>eNATA Sale</div>
             <img src={ Live } style={{ 
                 width: '2.5em', marginLeft: '0.5em', marginBottom: '2px',
                 filter: 'invert(12%) sepia(27%) saturate(1570%) hue-rotate(223deg) brightness(101%) contrast(96%)'
