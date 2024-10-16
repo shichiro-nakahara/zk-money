@@ -11,6 +11,7 @@ import whyZkMoney2 from '../images/why_zkmoney_2.svg';
 import nataNetworkLogo from '../images/nata_network_logo.svg';
 
 import { bindStyle } from '../ui-components/util/classnames.js';
+import { SunsetWarning } from '../components/sunset_warning/sunset_warning.js';
 import style from './home.module.scss';
 import { useConfig } from '../alt-model/top_level_context/top_level_context_hooks.js';
 
@@ -23,6 +24,9 @@ interface HomeProps {
 export function Home({ onSignup }: HomeProps) {
   return (
     <div className={style.homeWrapper}>
+      <div className={style.sunsetWarningWrapper}>
+        <SunsetWarning />
+      </div>
       <Banner onShieldNow={onSignup} />
       <div className={style.section}>
         <div className={style.sectionTitle}>How do I use Nata Network?</div>

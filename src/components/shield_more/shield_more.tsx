@@ -17,9 +17,9 @@ export function ShieldMore(props: ShieldMoreProps) {
   return (
     <>
       <CardWrapper className={style.shieldMoreWrapper}>
-        <div className={style.shieldMoreLabel}>Shield additional funds from L1</div>
+        <div className={style.shieldMoreLabel}>Nata Network is sunsetting, deposits are disabled.</div>
         <Button
-          disabled={walletInteractionIsOngoing || !isSynced}
+          disabled={true}
           className={style.shieldMoreButton}
           text="Shield More"
           onClick={() => props.onOpenShieldModal()}

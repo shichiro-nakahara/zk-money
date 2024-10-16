@@ -35,12 +35,12 @@ function getTitle(userHasConfirmationKey: boolean, userHasSpendingKeys: boolean)
     };
   if (!userHasSpendingKeys)
     return {
-      title: 'Sign a message to retrieve a Spending Key for your Nata Network account',
-      subtitle: 'You will use your Polygon wallet for this action.',
+      title: 'Nata Network is sunsetting',
+      subtitle: 'Registering new accounts is no longer available.',
     };
   return {
-    title: 'Save your data somewhere safe but accessible',
-    subtitle: `This data is not sensitive, but will help you login if you forget your details.`,
+    title: 'Nata Network is sunsetting',
+    subtitle: 'Registering new accounts is no longer available.',
   };
 }
 
@@ -249,7 +249,7 @@ export function KeysGenerationPage(props: KeysGenerationPageProps) {
           onSetPhase={setPhase}
           onSetKeyType={setKeyType}
         />
-        {userHasConfirmationKeys && !props.assessment.accountKey.issues.accountKeysDontMatch && (
+        {/* {userHasConfirmationKeys && !props.assessment.accountKey.issues.accountKeysDontMatch && (
           <KeyGenerationInput
             keyType={'spending'}
             accountKeys={fields.spendingKeys}
@@ -257,7 +257,7 @@ export function KeysGenerationPage(props: KeysGenerationPageProps) {
             onSetPhase={setPhase}
             onSetKeyType={setKeyType}
           />
-        )}
+        )} */}
         {userHasSpendingKeys && (
           <ImageButton
             icon={ImageButtonIcon.Copy}

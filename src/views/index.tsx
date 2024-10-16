@@ -14,6 +14,7 @@ import { Pages } from './views.js';
 import { getTOSToast } from './toasts/toast_configurations.js';
 import { Navbar, Theme } from '../ui-components/index.js';
 import { UserAccountMenu } from '../components/template/user_account_menu.js';
+import { SunsetModal } from '../components/sunset_modal/sunset_modal.js';
 import { Balance } from './account/dashboard/balance.js';
 import { Earn } from './account/dashboard/earn.js';
 import { DefiModal, DefiModalProps } from './account/dashboard/modals/defi_modal/defi_modal.js';
@@ -111,6 +112,7 @@ export function Views({ config }: ViewsProps) {
           </CSSTransition>
         </TransitionGroup>
         <Toasts />
+        <SunsetModal />
         {defiModalProps && <DefiModal {...defiModalProps} />}
       </Template>
       <PageTransitionHandler />

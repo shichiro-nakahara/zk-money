@@ -114,7 +114,7 @@ export function Holding({ assetValue, onSend, onShield, onGoToEarn }: HoldingPro
             size={ButtonSize.Medium}
             onClick={() => onShield?.(asset)}
             text={'Shield'}
-            disabled={walletInteractionIsOngoing || !isSynced}
+            disabled={true}
           />
         )}
         {!spendableBalanceIsDust && (
